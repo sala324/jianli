@@ -1,0 +1,6 @@
+<view class="wrap">
+  <image src="../../images/login.png"></image>
+  <view class="title">请输入激活码</view>
+  <input value="{{code}}" maxlength="6" bindinput="changeCode"></input>
+  <btn title="确认" bind:myevent="nextStep"></btn>
+</view>

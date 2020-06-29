@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "新增旁站记录-第二步",
+  "usingComponents": {
+    "voice": "/components/voice/index",
+    "btn": "/components/btn/index"
+  }
+}

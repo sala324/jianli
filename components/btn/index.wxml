@@ -1,0 +1,6 @@
+<view class="btnWrap">
+  <view class="btnBox"></view>
+  <view class="btn">
+    <view class="btnText" bindtap="clickBtn">{{title}}</view>
+  </view>
+</view>

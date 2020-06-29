@@ -1,0 +1,58 @@
+.topInfo{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.diaryRecord{
+  border-top:12rpx solid #F1F3F5;
+  margin: 120rpx 0 0;
+}
+.diaryRecordItem{
+  padding: 20rpx 0;
+  margin: 0 20rpx;
+  border-bottom: 1rpx solid #E1E3E5;
+}
+.diaryRecordItem .itemDate{
+  display: inline-block;
+  width: 200rpx;
+  font-size: 26rpx;
+  color: #999;
+  vertical-align: top;
+}
+.diaryRecordItem .recordItem{
+  display: inline-block;
+  font-size: 26rpx;
+  color: #191F25;
+  line-height: 42rpx;
+}
+.bottomBox{
+  height: 344rpx;
+}
+.bottomTab{
+  position: fixed;
+  bottom: 0;
+  left:0rpx;
+  right: 0rpx;
+  height: 344rpx;
+  border-top: 12rpx solid #F1F3F5;
+  font-size: 0;
+  text-align: center;
+  z-index: 2;
+  background: #fff;
+}
+.bottomTab .itemTab{
+  display: inline-block;
+  width: 230rpx;
+  font-size: 26rpx;
+  color: #191F25;
+}
+.bottomTab .itemTab image{
+  margin-top: 37rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+.bottomTab .itemTab .itemTitle{
+  padding-bottom: 20rpx;
+}

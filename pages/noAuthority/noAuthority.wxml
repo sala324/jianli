@@ -1,0 +1,4 @@
+<view class="wrap">
+  <image src="../../images/Unconnected.png"></image>
+  <view class="des">请确认您微信绑定的手机号是否已被正确授权，或激活码是否已失效，如有问题，请与您的管理员联系。</view>
+</view>

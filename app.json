@@ -1,0 +1,28 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/pangzhan/pangzhanFirst/pangzhanFirst",
+    "pages/noAuthority/noAuthority",
+    "pages/login/login",
+    "pages/pangzhan/pangzhanList/pangzhanList",
+    "pages/pangzhan/pangzhanDetail/pangzhanDetail",
+    "pages/pangzhan/pangzhan/pangzhan",
+    "pages/pangzhan/pangzhanSign/pangzhanSign",
+    "pages/pangzhan/pangzhanSecond/pangzhanSecond",
+    "pages/projectDetail/projectDetail"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "智慧电力监理",
+    "navigationBarTextStyle":"black"
+  },
+  "plugins": {
+    "QCloudAIVoice": {
+      "version": "1.2.0",
+      "provider": "wx3e17776051baf153"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,61 @@
+<template name="mokuai">
+  <view class="wrap">
+    <view class="item">
+      <text class="name">工程名称</text>
+      <view class="info">{{name}}</view>
+    </view>
+    <view class="item">
+        <text class="name">编号</text>
+        <view class="info">{{id}}</view>
+    </view>
+    <view class="item">
+      <text class="name">日期</text>
+      <view class="info">{{date}} </view>
+    </view>
+    <view class="item">
+      <text class="name">天气</text>
+      <view class="info">{{weather}}</view>
+    </view>
+    <view class="item">
+      <text class="name">施工单位</text>
+      <view class="info">{{danwei}}</view>
+    </view>
+    <view class="item">
+      <text class="name">记录标题</text>
+      <view class="info"><view class="box {{!reset?'auto':''}}">{{title}}</view> <image wx:if="{{reset}}" src="../../images/reset.png" bindtap="resetDetail" data-page="/pages/pangzhan/pangzhanFirst/pangzhanFirst"></image> </view>
+    </view>
+    <view class="item">
+      <text class="name">开始时间</text>
+      <view class="info">{{startTime}}</view>
+    </view>
+    <view class="item">
+      <text class="name">结束时间</text>
+      <view class="info">{{endTime}}</view>
+    </view>
+    <view class="item">
+      <text class="name">情况描述</text>
+      <view class="info">
+        <view class="box {{!reset?'auto':''}}">{{des}}</view>
+        <image src="../../images/reset.png" class="reset" wx:if="{{reset}}" bindtap="resetDetail" data-page="/pages/pangzhan/pangzhanSecond/pangzhanSecond"></image> 
+      </view>
+    </view>
+    <view class="item">
+      <text class="name">发现问题及处理</text>
+      <view class="info"><view class="box {{!reset?'auto':''}}">{{question}}</view><image src="../../images/reset.png"  wx:if="{{reset}}" bindtap="resetDetail" data-page="/pages/pangzhan/pangzhanThird/pangzhanThird"></image> </view>
+    </view>
+    <view class="item">
+      <text class="name"> 填写日期</text>
+      <view class="info">{{date2}}</view>
+    </view>
+  </view>
+</template>
+<template name="imgs">
+  <view class="uploadImg">
+  <view class="title">上传相关图片</view>
+  <view class="imgWrap">
+    <image src="../../images/1.png" class="img" wx:for="{{imgArr}}" wx:key="index">
+    </image>
+  </view>
+  <view class="des">支持jpg、png、bmp格式</view>
+</view>
+</template>

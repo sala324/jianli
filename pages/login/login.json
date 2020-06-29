@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "智慧电力监理",
+  "usingComponents": {
+    "btn": "/components/btn/index"
+  }
+}

@@ -1,0 +1,13 @@
+<view class="uploadImg">
+  <view class="title">上传相关图片</view>
+  <view class="imgWrap">
+    <view class="imgItem" wx:for="{{imgArr}}" wx:key="index">
+      <image src="../../images/1.png" class="img"></image>
+      <image src="../../images/del.png" class="del" data-index="{{index}}" bindtap="delItem"></image>
+    </view>
+    <view class="imgItem gray">
+      <image src="../../images/add.png" class="add" bindtap="imgUpload"></image>
+    </view>
+  </view>
+  <view class="des">支持jpg、png、bmp格式</view>
+</view>

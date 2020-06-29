@@ -1,0 +1,10 @@
+<project-item projectItem="{{item}}" class="topInfo"></project-item>
+<view class="recoreWrap">
+  <record-item wx:for="{{4}}" wx:key="index" bindtap="turnDetail"></record-item>
+  <!-- <record-item></record-item>
+  <record-item></record-item>
+  <record-item></record-item>
+  <record-item></record-item> -->
+</view>
+<btn title="新增旁站记录" bind:myevent="addRecord"></btn>
+

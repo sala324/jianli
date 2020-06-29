@@ -1,0 +1,21 @@
+.btnWrap{
+  height: 120rpx;
+}
+.btn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+}
+.btnText{
+  width:400rpx;
+  height:78rpx;
+  line-height: 78rpx;
+  background:rgba(49,151,251,1);
+  border-radius:39rpx;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: center;
+  margin: 20rpx auto;
+}

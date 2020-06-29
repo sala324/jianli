@@ -1,0 +1,22 @@
+.btn{
+  width:400rpx;
+  height:78rpx;
+  line-height: 78rpx;
+  background:rgba(49,151,251,1);
+  border-radius:39rpx;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: center;
+  margin: 60rpx auto 40rpx;
+}
+.lineItem{
+  margin-top:28rpx;
+  background: #fff;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding:0 20rpx;
+  display: flex;
+  justify-content: space-between;
+  color: #191F25;
+  font-size: 30rpx;
+}

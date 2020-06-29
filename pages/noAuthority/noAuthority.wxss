@@ -1,0 +1,15 @@
+.wrap{
+  text-align: center;
+}
+.wrap image{
+  width: 174rpx;
+  height: 193rpx;
+  margin-top: 144rpx;
+}
+.wrap .des{
+  margin: 87rpx auto;
+  width: 502rpx;
+  font-size: 28rpx;
+  color: #191F25;
+  text-align: center;
+}

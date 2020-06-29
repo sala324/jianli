@@ -1,0 +1,80 @@
+/* 记录详情 */
+.item{
+  padding: 0 30rpx 30rpx;
+  font-size: 28rpx;
+  display: flex;
+}
+.item .name{
+  color: #999;
+  width: 112rpx;
+  text-align: right;
+}
+.item .info{
+  flex: 1;
+  color: #191F25;
+  display: inline-block;
+  margin-left: 25rpx;
+  vertical-align: top;
+}
+.item .info .box{
+  width: 486rpx;
+  display: inline-block;
+}
+.item .info .box.auto{
+  width: auto;
+}
+.item .info image{
+  width: 29rpx;
+  height: 23rpx;
+  padding: 30rpx 0rpx 0 40rpx;
+}
+
+.item{
+  padding: 0 30rpx 30rpx;
+  font-size: 28rpx;
+  display: flex;
+}
+.item .name{
+  color: #999;
+  width: 112rpx;
+  text-align: right;
+}
+.item .info{
+  flex: 1;
+  color: #191F25;
+  display: inline-block;
+  margin-left: 25rpx;
+  vertical-align: top;
+}
+/* 记录详情 */
+/* 九宫格图片样式 */
+.uploadImg{
+  border-top: 20rpx solid #F1F3F5;
+  padding: 0 30rpx;
+  font-size: 0;
+}
+.uploadImg .title{
+  font-size: 32rpx;
+  color: #333;
+  line-height: 92rpx;
+
+}
+.uploadImg .imgWrap{
+  width:690rpx ;
+  font-size: 0;
+}
+
+.uploadImg .imgWrap .img{
+  width: 222rpx;
+  height: 222rpx;
+  display: inline-block;
+  margin:0 14rpx 14rpx 0;
+}
+.uploadImg .imgWrap .img:nth-child(3n){
+  margin-right:0;
+}
+.des{
+  font-size: 26rpx;
+  color: #999;
+}
+/* 九宫格图片样式 */

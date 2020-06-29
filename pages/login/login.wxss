@@ -1,0 +1,15 @@
+.wrap{
+  text-align: center;
+}
+.wrap image{
+  width: 750rpx;
+  height: 381rpx;
+  margin: 100rpx 0 60rpx;
+}
+.wrap input{
+  width:400rpx;
+  height:80rpx;
+  margin:30rpx auto;
+  background:rgba(201,224,254,1);
+  opacity:0.5;
+}

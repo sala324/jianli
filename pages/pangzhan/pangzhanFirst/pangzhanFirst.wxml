@@ -1,0 +1,53 @@
+<view class="lineItem">
+  <text class="name">工程名称</text>
+  <text class="detail">白沙洲变电枢纽二期项目</text>
+</view>
+<view class="lineItem">
+  <text class="name">编号</text>
+  <text class="detail">0098654</text>
+</view>
+<view class="lineItem">
+  <text class="name">日期</text>
+  <picker mode="date" class="detail" value="{{date}}" start="2015-09-01" end="{{dateEnd}}" bindchange="bindDateChange">
+    <view class="picker" wx:if="{{!date}}">
+      请选择 >
+    </view>
+    <view wx:else>{{date}}</view>
+  </picker>
+</view>
+<view class="lineItem">
+  <text class="name">天气</text>
+  <text class="detail">阴天有雨，35度</text>
+</view>
+<view class="lineItem">
+  <text class="name">施工单位</text>
+  <text class="detail">供电局施工队</text>
+</view>
+<view class="lineItem">
+  <text class="name">开始时间</text>
+  <picker mode="time" value="{{startTime}}" start="startTime" end="23:59" bindchange="bindTimeChange1">
+    <view class="picker">{{startTime}}</view>
+  </picker>
+</view>
+<view class="lineItem">
+  <text class="name">结束时间</text>
+  <picker mode="time" value="{{endTime}}" start="startTime" end="23:59" bindchange="bindTimeChange2">
+    <view class="picker">{{endTime}}</view>
+  </picker>
+</view>
+<view class="jilu">
+  <text class="name">记录概要</text>
+  <textarea value="{{detail}}" placeholder="请输入"></textarea>
+</view>
+<view class="voiceWrap" bindtouchend="recordingStop">
+<voice bind:myevent="setGaiyao"></voice>
+</view>
+<!-- <view class="btnWrap">
+  <view class="btnBox"></view>
+  <cover-view class="btn">
+    <cover-view class="btnText" bindtap="nextStep">下一步</cover-view>
+  </cover-view>
+</view> -->
+<btn title="下一步" bind:myevent="nextStep"></btn>
+
+

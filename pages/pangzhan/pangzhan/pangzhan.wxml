@@ -1,0 +1,5 @@
+<import src ="../../template/template.wxml"/>
+<template is="mokuai" data="{{...info}}"/>
+<img-upload imgArr="{{imgArr}}" class="uploadImg" bind:delItem="delItem">
+</img-upload>
+<navigator url="/pages/pangzhan/pangzhanSign/pangzhanSign" class="btn">下一步</navigator>

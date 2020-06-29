@@ -1,0 +1,7 @@
+<view class="dialog" >
+  <view class="info">
+    <view class="des">请复制下载链接</view>
+    <view class="des2">由于微信限制，无法打开当前下载链接，请复制链接开前往浏览器查看，</view>
+  </view>
+  <view class="copyBtn" bindtap="copyTBL">立即复制</view>
+</view>

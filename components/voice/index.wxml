@@ -1,0 +1,8 @@
+<button 
+  bindtouchstart="recordingStart"
+  bindtouchend="recordingStop"
+  class="voice {{talking?'talking':''}}"
+  >
+  <image class="right" src="../../images/Microphone.png" wx:if="{{!talking}}"></image>
+  <image class="right" src="../../images/talking.png" wx:else></image>
+</button>

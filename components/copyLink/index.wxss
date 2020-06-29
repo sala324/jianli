@@ -1,0 +1,36 @@
+.dialog{
+  width:660rpx;
+  height:297rpx;
+  background:rgba(255,255,255,1);
+  border:1rpx solid rgba(226,228,230,1);
+  box-shadow:0rpx 0rpx 48rpx 3rpx rgba(102,102,102,0.16);
+  border-radius:10rpx;
+  position: fixed;
+  height: 298rpx;
+  left: 50%;
+  top: 50%;
+  margin: -149rpx 0 0 -330rpx;
+  padding: 40rpx 0 0;
+  box-sizing: border-box;
+}
+.dialog .info{
+  padding: 0 40rpx;
+}
+.dialog .des{
+  font-size: 28rpx;
+  color: #191F25;
+}
+.dialog .des2{
+  color: #999999;
+  font-size: 28rpx;
+  line-height: 46rpx;
+  padding: 19rpx 0 27rpx;
+}
+.dialog .copyBtn{
+  height: 86rpx;
+  line-height: 86rpx;
+  border-top: 1rpx solid #E7E7E7;
+  text-align: center;
+  color: #007AFF;
+  font-size: 28rpx;
+}
