@@ -14,7 +14,7 @@ Page({
   },
   nextStep(){
     wx.navigateTo({
-      url: '/pages/pangzhan/pangzhan/pangzhan',
+      url: '/pages/xunshi/xunshiForth/xunshiForth'
     })
   },
   /**

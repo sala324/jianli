@@ -2,19 +2,30 @@ const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
-    dateEnd:''
+    dateEnd:'',
+    shuru:false
   },
   setGaiyao(e){
     this.setData({
       detail:e.detail
     })
   },
-  onLoad: function (options) {
-
+  onLoad(options){
+    
   },
-  nextStep(){
-    wx.navigateTo({
-      url: '/pages/pangzhan/pangzhan/pangzhan',
+  bindDateChange(e){
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  bindTimeChange1(e){
+    this.setData({
+      startTime: e.detail.value
+    })
+  },
+  bindTimeChange2(e){
+    this.setData({
+      endTime: e.detail.value
     })
   },
   /**
@@ -23,7 +34,12 @@ Page({
   onReady: function () {
 
   },
-
+  nextStep(){
+    wx.navigateTo({
+      url: '/pages/xunshi/xunshiSecond/xunshiSecond',
+    })
+  },
+  
   /**
    * 生命周期函数--监听页面显示
    */

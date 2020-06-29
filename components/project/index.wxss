@@ -1,8 +1,10 @@
 .item{
+  width:750rpx;
   height: 120rpx;
   display: flex;
   align-items: center;
   background: #fff;
+  position: relative;
 }
 .item .itemLogo{
   width: 88rpx;
@@ -20,6 +22,7 @@
   height: 100%;
   margin-left: 20rpx;
   border-bottom: 1rpx solid #E1E3E5;
+  position: relative;
 }
 .item .itemInfo.nobd{
   border-bottom: none;
@@ -50,6 +53,18 @@
   background: #C9CFD7;
   color: #fff;
   border:none;
+}
+.item .remove{
+  width: 160rpx;  
+  height: 100%;  
+  background-color: red; 
+  color: white; 
+  position: absolute;  
+  top: 0;  
+  right: -160rpx;  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;
 }
 .itemDate{
   font-size: 24rpx;

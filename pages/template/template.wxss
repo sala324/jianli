@@ -68,7 +68,7 @@
   width: 222rpx;
   height: 222rpx;
   display: inline-block;
-  margin:0 14rpx 14rpx 0;
+  margin:0 13rpx 13rpx 0;
 }
 .uploadImg .imgWrap .img:nth-child(3n){
   margin-right:0;

@@ -1,22 +1,34 @@
-const util = require('../../../utils/util');
+// pages/projectDetail/projectDetail.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    detail:'',
-    dateEnd:''
+    item:{
+      name:'白沙洲变电枢纽二期项目',
+      date:'你最近更新: 2020-09-22',
+      state:'1',
+      border:'none'
+    }
   },
-  setGaiyao(e){
-    this.setData({
-      detail:e.detail
+  addRecord(e){
+    wx.navigateTo({
+      url: '/pages/xunshi/xunshiFirst/xunshiFirst',
     })
   },
+  turnDetail(){
+    wx.navigateTo({
+      url: '/pages/xunshi/xunshiDetail/xunshiDetail',
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
 
   },
-  nextStep(){
-    wx.navigateTo({
-      url: '/pages/pangzhan/pangzhan/pangzhan',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -28,15 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      startTime:util.formatTime(new Date()),
-      endTime:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
-      dateEnd:util.formatDate(new Date())
-    })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
+
   },
 
   /**

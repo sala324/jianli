@@ -10,8 +10,8 @@
 		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
-		"coverView": true,
 		"autoAudits": false,
+		"coverView": true,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
 		"checkInvalidKey": true,
@@ -28,7 +28,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.11.3",
 	"appid": "wx0d5c9babffee85f6",
-	"projectname": "智慧电力监理",
+	"projectname": "%E6%99%BA%E6%85%A7%E7%94%B5%E5%8A%9B%E7%9B%91%E7%90%86",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

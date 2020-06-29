@@ -4,17 +4,13 @@ Page({
     detail:'',
     dateEnd:''
   },
-  setGaiyao(e){
-    this.setData({
-      detail:e.detail
-    })
-  },
+  
   onLoad: function (options) {
 
   },
-  nextStep(){
-    wx.navigateTo({
-      url: '/pages/pangzhan/pangzhan/pangzhan',
+  signBtn(){
+    wx.reLaunch({
+      url: '/pages/xunshi/xunshiDetail/xunshiDetail',
     })
   },
   /**

@@ -1,4 +1,4 @@
-<view class="item">
+<view class="item" bindtouchstart="drawStart" data-index='{{index}}' bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{right}}rpx">
   <text class="itemLogo">陈</text>
   <view class="itemInfo {{projectItem.border=='none'?'nobd':''}}">
     <view class="itemTop">
@@ -9,4 +9,5 @@
     <view class="itemDate">{{projectItem.date}}</view>
     
   </view>
+  <view class="remove" bindtap="delItem">删除 </view>
 </view>

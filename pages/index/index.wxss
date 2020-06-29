@@ -1,3 +1,7 @@
+.wrap{
+  width: 750rpx;
+  overflow: hidden;
+}
 .userBox{
   margin: 30rpx auto 50rpx;
   width:690rpx;

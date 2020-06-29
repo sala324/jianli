@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "历史巡视记录",
+  "usingComponents": {
+    "project-item": "/components/project/index",
+    "btn": "/components/btn/index",
+    "record-item": "/components/record/index"
+  }
+}

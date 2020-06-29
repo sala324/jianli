@@ -1,0 +1,6 @@
+
+<import src ="../../template/template.wxml"/>
+<template is="mokuai2" data="{{...info}}"/>
+<template is="imgs" data="{{imgArr:imgArr}}"/>
+<view class="btn" bindtap="showCopyBtn">下载PDF文件</view>
+<copy-link wx:if="{{showCopy}}" bind:myevent="hideCopy"></copy-link>
