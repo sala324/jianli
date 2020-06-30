@@ -37,7 +37,7 @@
 </view>
 <view class="jilu">
   <text class="name">记录概要</text>
-  <textarea value="{{detail}}" placeholder="请输入"></textarea>
+  <textarea value="{{detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
 </view>
 <view class="voiceWrap" bindtouchend="recordingStop">
 <voice bind:myevent="setGaiyao"></voice>

@@ -11,7 +11,33 @@ Page({
     })
   },
   onLoad(options){
-    
+    if(options.default){
+      this.setData({
+        detail:options.default,
+        reset:true
+      })
+    }
+  },
+  changeDetail(e){
+    this.setData({
+      detail:e.detail.value
+    })
+  },
+  nextStep(){
+    if(this.data.reset){
+      let pages = getCurrentPages();//当前页面栈
+      let prevPage = pages[pages.length - 2];//上一页面
+      prevPage.setData({
+          title:this.data.detail
+      });
+      wx.navigateBack({
+        complete: (res) => {},
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/pangzhan/pangzhanSecond/pangzhanSecond',
+      })
+    }
   },
   bindDateChange(e){
     this.setData({
@@ -34,12 +60,6 @@ Page({
   onReady: function () {
 
   },
-  nextStep(){
-    wx.navigateTo({
-      url: '/pages/pangzhan/pangzhanSecond/pangzhanSecond',
-    })
-  },
-  
   /**
    * 生命周期函数--监听页面显示
    */

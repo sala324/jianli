@@ -9,13 +9,35 @@ Page({
       detail:e.detail
     })
   },
+  changeDetail(e){
+    this.setData({
+      detail:e.detail.value
+    })
+  },
   onLoad: function (options) {
-
+    if(options.default){
+      this.setData({
+        detail:options.default,
+        reset:true
+      })
+    }
   },
   nextStep(){
-    wx.navigateTo({
-      url: '/pages/xunshi/xunshiForth/xunshiForth'
-    })
+    if(this.data.reset){
+      let pages = getCurrentPages();//当前页面栈
+      let prevPage = pages[pages.length - 2];//上一页面
+      prevPage.setData({
+          wenti:this.data.detail
+      });
+      wx.navigateBack({
+        complete: (res) => {},
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/xunshi/xunshiForth/xunshiForth'
+      })
+    }
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

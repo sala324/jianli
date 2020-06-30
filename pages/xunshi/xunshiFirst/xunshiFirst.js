@@ -11,7 +11,17 @@ Page({
     })
   },
   onLoad(options){
-    
+    if(options.default){
+      this.setData({
+        detail:options.default,
+        reset:true
+      })
+    }
+  },
+  changeDetail(e){
+    this.setData({
+      detail:e.detail.value
+    })
   },
   bindDateChange(e){
     this.setData({
@@ -35,9 +45,21 @@ Page({
 
   },
   nextStep(){
-    wx.navigateTo({
-      url: '/pages/xunshi/xunshiSecond/xunshiSecond',
-    })
+    if(this.data.reset){
+      let pages = getCurrentPages();//当前页面栈
+      let prevPage = pages[pages.length - 2];//上一页面
+      prevPage.setData({
+          buwei:this.data.detail
+      });
+      wx.navigateBack({
+        complete: (res) => {},
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/xunshi/xunshiSecond/xunshiSecond',
+      })
+    }
+    
   },
   
   /**

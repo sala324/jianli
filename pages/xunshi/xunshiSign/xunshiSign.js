@@ -13,6 +13,11 @@ Page({
       url: '/pages/xunshi/xunshiDetail/xunshiDetail',
     })
   },
+  changeDetail(e){
+    this.setData({
+      detail:e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -56,27 +56,27 @@
 <view class="bottomBox"> </view>
 <view class="bottomTab">
   <navigator url="/pages/pangzhan/pangzhanList/pangzhanList" class="itemTab">
-    <image src="../../images/book.png"></image>
+    <image src="../../images/ico_pzjl.png"></image>
     <view class="itemTitle">旁站记录</view>
   </navigator>
   <navigator url="/pages/pangzhan/pangzhanList/pangzhanList" class="itemTab">
-    <image src="../../images/book.png"></image>
+    <image src="../../images/ico_pxjyjl.png"></image>
     <view class="itemTitle">平行经验记录</view>
   </navigator>
-  <view class="itemTab">
-    <image src="../../images/book.png"></image>
+  <navigator url="/pages/xunshi/xunshiList/xunshiList" class="itemTab">
+    <image src="../../images/ico_xsjl.png"></image>
     <view class="itemTitle">巡视记录</view>
-  </view>
+  </navigator>
   <view class="itemTab">
-    <image src="../../images/book.png"></image>
+    <image src="../../images/ico_lyrz.png"></image>
     <view class="itemTitle">监理日志</view>
   </view>
   <view class="itemTab">
-    <image src="../../images/book.png"></image>
+    <image src="../../images/ico_zzlxd.png"></image>
     <view class="itemTitle">工作联系单</view>
   </view>
   <view class="itemTab">
-    <image src="../../images/book.png"></image>
+    <image src="../../images/ico_wjlrgc.png"></image>
     <view class="itemTitle">我监理的工程</view>
   </view>
 </view>

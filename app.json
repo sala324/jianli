@@ -1,8 +1,9 @@
 {
   "pages":[
+    "pages/projectDetail/projectDetail",
+    "pages/test/test",
     "pages/index/index",
     "pages/xunshi/xunshiList/xunshiList",
-    "pages/test/test",
     "pages/pangzhan/pangzhanFirst/pangzhanFirst",
     "pages/noAuthority/noAuthority",
     "pages/login/login",
@@ -10,8 +11,7 @@
     "pages/pangzhan/pangzhanDetail/pangzhanDetail",
     "pages/pangzhan/pangzhan/pangzhan",
     "pages/pangzhan/pangzhanSign/pangzhanSign",
-    "pages/pangzhan/pangzhanSecond/pangzhanSecond",
-    "pages/projectDetail/projectDetail"
+    "pages/pangzhan/pangzhanSecond/pangzhanSecond"
   ],
   "window":{
     "backgroundTextStyle":"light",
