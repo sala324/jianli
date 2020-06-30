@@ -23,21 +23,22 @@ Page({
       detail:e.detail.value
     })
   },
-  nextStep(){
-    if(this.data.reset){
-      let pages = getCurrentPages();//当前页面栈
-      let prevPage = pages[pages.length - 2];//上一页面
-      prevPage.setData({
-          title:this.data.detail
-      });
-      wx.navigateBack({
-        complete: (res) => {},
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/pangzhan/pangzhanSecond/pangzhanSecond',
-      })
-    }
+  nextStep1(){
+    util.nextStep(this,'title','/pages/pangzhan/pangzhanSecond/pangzhanSecond')
+    // if(this.data.reset){
+    //   let pages = getCurrentPages();//当前页面栈
+    //   let prevPage = pages[pages.length - 2];//上一页面
+    //   prevPage.setData({
+    //       title:this.data.detail
+    //   });
+    //   wx.navigateBack({
+    //     complete: (res) => {},
+    //   })
+    // } else {
+    //   wx.navigateTo({
+    //     url: '/pages/pangzhan/pangzhanSecond/pangzhanSecond',
+    //   })
+    // }
   },
   bindDateChange(e){
     this.setData({

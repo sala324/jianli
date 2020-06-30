@@ -1,0 +1,1 @@
+<textarea value="{{detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>

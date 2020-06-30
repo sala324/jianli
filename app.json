@@ -1,8 +1,8 @@
 {
   "pages":[
+    "pages/index/index",
     "pages/projectDetail/projectDetail",
     "pages/test/test",
-    "pages/index/index",
     "pages/xunshi/xunshiList/xunshiList",
     "pages/pangzhan/pangzhanFirst/pangzhanFirst",
     "pages/noAuthority/noAuthority",
