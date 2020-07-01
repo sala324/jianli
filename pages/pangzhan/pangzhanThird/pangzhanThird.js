@@ -23,20 +23,7 @@ Page({
     })
   },
   nextStep(){
-    if(this.data.reset){
-      let pages = getCurrentPages();//当前页面栈
-      let prevPage = pages[pages.length - 2];//上一页面
-      prevPage.setData({
-          wenti:this.data.detail
-      });
-      wx.navigateBack({
-        complete: (res) => {},
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/pangzhan/pangzhan/pangzhan',
-      })
-    }
+    util.nextStepCommon(this,'wenti','/pages/pangzhan/pangzhan/pangzhan')
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

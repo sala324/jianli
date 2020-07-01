@@ -19,6 +19,7 @@
 .item .info .box{
   width: 486rpx;
   display: inline-block;
+  vertical-align: top;
 }
 .item .info .box.auto{
   width: auto;
@@ -26,7 +27,7 @@
 .item .info image{
   width: 29rpx;
   height: 23rpx;
-  padding: 30rpx 0rpx 0 40rpx;
+  padding: 0rpx 0 30rpx  40rpx;
 }
 
 .item{
@@ -38,6 +39,7 @@
   color: #999;
   width: 112rpx;
   text-align: right;
+  vertical-align: top;
 }
 .item .info{
   flex: 1;
@@ -49,7 +51,7 @@
 /* 记录详情 */
 /* 九宫格图片样式 */
 .uploadImg{
-  border-top: 20rpx solid #F1F3F5;
+  /* border-top: 20rpx solid #F1F3F5; */
   padding: 0 30rpx;
   font-size: 0;
 }

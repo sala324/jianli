@@ -1,6 +1,21 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/lianxidan/lianxidanDetail/lianxidanDetail",
+    "pages/lianxidan/lianxidanFirst/lianxidanFirst",
+    "pages/lianxidan/lianxidan/lianxidan",
+    "pages/lianxidan/lianxidanList/lianxidanList",
+    "pages/lianxidan/lianxidanSign/lianxidanSign",
+    "pages/lianxidan/lianxidanSecond/lianxidanSecond",
+    "pages/jianli/jianliList/jianliList",
+    "pages/jianli/jianliFirst/jianliFirst",
+    "pages/jianli/jianliDetail/jianliDetail",
+    "pages/jianli/jianli/jianli",
+    "pages/xunshi/xunshiFirst/xunshiFirst",
+    "pages/xunshi/xunshiSecond/xunshiSecond",
+    "pages/xunshi/xunshiThird/xunshiThird",
+    "pages/xunshi/xunshiForth/xunshiForth",
+    
     "pages/projectDetail/projectDetail",
     "pages/test/test",
     "pages/xunshi/xunshiList/xunshiList",

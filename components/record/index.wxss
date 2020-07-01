@@ -40,3 +40,8 @@
   display: inline-block;
   font-size: 20rpx;
 }
+.state.gray{
+  background: #CAD0D7;
+  color: #fff;
+  border: none;
+}

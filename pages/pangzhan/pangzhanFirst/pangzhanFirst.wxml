@@ -48,6 +48,6 @@
     <cover-view class="btnText" bindtap="nextStep">下一步</cover-view>
   </cover-view>
 </view> -->
-<btn title="下一步" bind:myevent="nextStep1"></btn>
+<btn title="下一步" bind:myevent="nextStep"></btn>
 
 

@@ -12,7 +12,16 @@ Page({
       border:'none'
     }
   },
-
+  turnIndex(){
+    let pages = getCurrentPages();//当前页面栈
+    let prevPage = pages[pages.length - 2];//上一页面
+    prevPage.setData({
+        showAll:true
+    });
+    wx.navigateBack({
+      complete: (res) => {},
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

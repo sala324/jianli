@@ -81,6 +81,56 @@
     </view>
   </view>
 </template>
+<template name="mokuai3">
+  <view class="wrap">
+    <view class="item">
+      <text class="name">工程名称</text>
+      <view class="info">{{name}}</view>
+    </view>
+    <view class="item">
+        <text class="name">日期</text>
+        <view class="info">2020-05-06 星期三</view>
+    </view>
+    <view class="item">
+      <text class="name">天气</text>
+      <view class="info">白天：阴天有雨
+    夜晚：阴天有雨 </view>
+    </view>
+    <view class="item">
+      <text class="name">气温</text>
+      <view class="info">最高 35度
+    最低 15度</view>
+    </view>
+    <view class="item">
+      <text class="name">日志详情</text>
+      <view class="info"><view class="box {{!reset?'auto':''}}">{{detail}}</view> <image wx:if="{{reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{detail}}"  data-page="/pages/jianli/jianliFirst/jianliFirst"></image> </view>
+    </view>
+  </view>
+</template>
+<template name="mokuai4">
+  <view class="wrap">
+    <view class="item">
+      <text class="name">工程名称</text>
+      <view class="info">{{name}}</view>
+    </view>
+    <view class="item">
+        <text class="name">编号</text>
+        <view class="info">0098645</view>
+    </view>
+    <view class="item">
+      <text class="name">联系单位</text>
+      <view class="info">第一分队</view>
+    </view>
+    <view class="item">
+      <text class="name">事由</text>
+      <view class="info"><view class="box {{!reset?'auto':''}}">{{shiyou}}</view> <image wx:if="{{reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{shiyou}}"  data-page="/pages/lianxidan/lianxidanFirst/lianxidanFirst"></image> </view>
+    </view>
+    <view class="item">
+      <text class="name">内容</text>
+      <view class="info"><view class="box {{!reset?'auto':''}}">{{content}}</view> <image wx:if="{{reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{content}}"  data-page="/pages/lianxidan/lianxidanSecond/lianxidanSecond"></image> </view>
+    </view>
+  </view>
+</template>
 <template name="imgs">
   <view class="uploadImg">
   <view class="title">上传相关图片</view>

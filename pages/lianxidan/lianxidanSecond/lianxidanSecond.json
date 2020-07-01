@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "第二步-监理工作联系单",
+  "usingComponents": {
+    "voice": "/components/voice/index",
+    "btn": "/components/btn/index"
+  }
+}

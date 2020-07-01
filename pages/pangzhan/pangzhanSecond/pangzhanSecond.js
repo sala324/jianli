@@ -23,20 +23,7 @@ Page({
     })
   },
   nextStep(){
-    if(this.data.reset){
-      let pages = getCurrentPages();//当前页面栈
-      let prevPage = pages[pages.length - 2];//上一页面
-      prevPage.setData({
-          des:this.data.detail
-      });
-      wx.navigateBack({
-        complete: (res) => {},
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/pangzhan/pangzhanThird/pangzhanThird',
-      })
-    }
+    util.nextStepCommon(this,'des','/pages/pangzhan/pangzhanThird/pangzhanThird')
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

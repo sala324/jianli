@@ -23,20 +23,7 @@ Page({
     }
   },
   nextStep(){
-    if(this.data.reset){
-      let pages = getCurrentPages();//当前页面栈
-      let prevPage = pages[pages.length - 2];//上一页面
-      prevPage.setData({
-          cuoshi:this.data.detail
-      });
-      wx.navigateBack({
-        complete: (res) => {},
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/xunshi/xunshi/xunshi'
-      })
-    }
+    util.nextStepCommon(this,'cuoshi','/pages/xunshi/xunshi/xunshi')
     
   },
   /**

@@ -23,8 +23,8 @@ Page({
       detail:e.detail.value
     })
   },
-  nextStep1(){
-    util.nextStep(this,'title','/pages/pangzhan/pangzhanSecond/pangzhanSecond')
+  nextStep(){
+    util.nextStepCommon(this,'title','/pages/pangzhan/pangzhanSecond/pangzhanSecond')
     // if(this.data.reset){
     //   let pages = getCurrentPages();//当前页面栈
     //   let prevPage = pages[pages.length - 2];//上一页面

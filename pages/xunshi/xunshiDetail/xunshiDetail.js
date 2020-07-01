@@ -2,6 +2,10 @@
 Page({
   data: {
     showCopy:false,
+    buwei:'巡视部位2',
+    xianchang:'施工现场2',
+    wenti:'存在的问题2',
+    cuoshi:'措施2',
     info:{
       name:'白沙洲变电枢纽二期项目',
       id:'0098654',

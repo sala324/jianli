@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "监理工作联系单",
+  "usingComponents": {
+    "img-upload": "/components/imgUpload/index",
+    "copy-link": "/components/copyLink/index"
+  }
+}

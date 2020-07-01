@@ -67,15 +67,15 @@
     <image src="../../images/ico_xsjl.png"></image>
     <view class="itemTitle">巡视记录</view>
   </navigator>
-  <view class="itemTab">
+  <navigator url="/pages/jianli/jianliList/jianliList" class="itemTab">
     <image src="../../images/ico_lyrz.png"></image>
     <view class="itemTitle">监理日志</view>
-  </view>
-  <view class="itemTab">
+  </navigator>
+  <navigator url="/pages/lianxidan/lianxidanList/lianxidanList" class="itemTab">
     <image src="../../images/ico_zzlxd.png"></image>
     <view class="itemTitle">工作联系单</view>
-  </view>
-  <view class="itemTab">
+  </navigator>
+  <view class="itemTab" bindtap="turnIndex">
     <image src="../../images/ico_wjlrgc.png"></image>
     <view class="itemTitle">我监理的工程</view>
   </view>

@@ -1,9 +1,9 @@
 <view class="item">
-  <view class="title">旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群</view>
-  <view class="des">电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。</view>
+  <view class="title">{{projectItem.title}}</view>
+  <view class="des">{{projectItem.des}}</view>
   <view class="info">
-    <view class="id">编号: 003223 | 2020-02 22</view>
-    <view class="state" wx:if="{{state==1}}">未签名</view>
-    <view class="state" wx:else>已签名</view>
+    <view class="id">{{projectItem.id}}</view>
+    <view class="state" wx:if="{{projectItem.state==1}}">未签名</view>
+    <view class="state gray" wx:else>已签名</view>
   </view>
 </view>

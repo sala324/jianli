@@ -1,0 +1,6 @@
+<view class="jilu">
+  <text class="name">内容</text>
+  <textarea value="{{detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
+</view>
+<voice bind:myevent="setGaiyao"></voice>
+<btn title="下一步" bind:myevent="nextStep"></btn>

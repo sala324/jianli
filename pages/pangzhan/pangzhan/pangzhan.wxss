@@ -1,27 +1,2 @@
-/* .item{
-  padding: 0 30rpx 30rpx;
-  font-size: 28rpx;
-  display: flex;
-}
-.item .name{
-  color: #999;
-  width: 112rpx;
-  text-align: right;
-}
-.item .info{
-  flex: 1;
-  color: #191F25;
-  display: inline-block;
-  margin-left: 25rpx;
-  vertical-align: top;
-}
-.item .info .box{
-  width: 486rpx;
-  display: inline-block;
-}
-.item .info image{
-  width: 29rpx;
-  height: 23rpx;
-  padding: 30rpx 0rpx 0 40rpx;
-} */
+
 @import "../../template/template.wxss";

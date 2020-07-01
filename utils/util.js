@@ -28,7 +28,7 @@ const toasts = (title,time=2000) => {
     duration: time
   })
 }
-const nextStep=(that,val,path)=>{
+const nextStepCommon=(that,val,path)=>{
   if(that.data.reset){
     let pages = getCurrentPages();//当前页面栈
     let prevPage = pages[pages.length - 2];//上一页面
@@ -48,6 +48,6 @@ module.exports = {
   formatTime,
   formatDate,
   formatTime2,
-  nextStep,
+  nextStepCommon,
   toasts
 }

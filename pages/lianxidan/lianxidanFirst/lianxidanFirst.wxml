@@ -1,0 +1,38 @@
+<view class="lineItem">
+  <text class="name">工程名称</text>
+  <text class="detail">白沙洲变电枢纽二期项目</text>
+</view>
+<view class="lineItem">
+  <text class="name">联系单位</text>
+  <picker bindchange="bindUnitChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      {{array[index]}} >
+    </view>
+  </picker>
+</view>
+<view class="lineItem">
+  <text class="name">巡视时间</text>
+  <picker mode="date" class="detail" value="{{date}}" start="2015-09-01" end="{{dateEnd}}" bindchange="bindDateChange">
+    <view class="picker" wx:if="{{!date}}">
+      请选择 >
+    </view>
+    <view wx:else>{{date}}</view>
+  </picker>
+</view>
+
+<view class="jilu">
+  <text class="name">事由</text>
+  <textarea value="{{detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
+</view>
+<view class="voiceWrap" bindtouchend="recordingStop">
+<voice bind:myevent="setGaiyao"></voice>
+</view>
+<!-- <view class="btnWrap">
+  <view class="btnBox"></view>
+  <cover-view class="btn">
+    <cover-view class="btnText" bindtap="nextStep">下一步</cover-view>
+  </cover-view>
+</view> -->
+<btn title="下一步" bind:myevent="nextStep"></btn>
+
+
