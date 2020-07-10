@@ -3,6 +3,10 @@ Page({
   data: {
     detail:'',
     dateEnd:'',
+    navInfo:{
+            type:3,
+            step:1
+          },
     shuru:false
   },
   setGaiyao(e){

@@ -2,6 +2,10 @@ const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
+    navInfo:{
+      type:4,
+      step:2
+    },
     dateEnd:''
   },
   setGaiyao(e){

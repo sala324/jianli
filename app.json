@@ -1,8 +1,13 @@
 {
   "pages":[
+    "pages/pangzhan/pangzhanThird/pangzhanThird",
+    "pages/xunshi/xunshiThird/xunshiThird",
+    "pages/pangzhan/pangzhanSecond/pangzhanSecond",
+    "pages/pangzhan/pangzhanFirst/pangzhanFirst",
     "pages/index/index",
-    "pages/lianxidan/lianxidanDetail/lianxidanDetail",
+    "pages/xunshi/xunshiFirst/xunshiFirst",
     "pages/lianxidan/lianxidanFirst/lianxidanFirst",
+    "pages/lianxidan/lianxidanDetail/lianxidanDetail",
     "pages/lianxidan/lianxidan/lianxidan",
     "pages/lianxidan/lianxidanList/lianxidanList",
     "pages/lianxidan/lianxidanSign/lianxidanSign",
@@ -11,22 +16,18 @@
     "pages/jianli/jianliFirst/jianliFirst",
     "pages/jianli/jianliDetail/jianliDetail",
     "pages/jianli/jianli/jianli",
-    "pages/xunshi/xunshiFirst/xunshiFirst",
     "pages/xunshi/xunshiSecond/xunshiSecond",
-    "pages/xunshi/xunshiThird/xunshiThird",
     "pages/xunshi/xunshiForth/xunshiForth",
     
     "pages/projectDetail/projectDetail",
     "pages/test/test",
     "pages/xunshi/xunshiList/xunshiList",
-    "pages/pangzhan/pangzhanFirst/pangzhanFirst",
     "pages/noAuthority/noAuthority",
     "pages/login/login",
     "pages/pangzhan/pangzhanList/pangzhanList",
     "pages/pangzhan/pangzhanDetail/pangzhanDetail",
     "pages/pangzhan/pangzhan/pangzhan",
-    "pages/pangzhan/pangzhanSign/pangzhanSign",
-    "pages/pangzhan/pangzhanSecond/pangzhanSecond"
+    "pages/pangzhan/pangzhanSign/pangzhanSign"
   ],
   "window":{
     "backgroundTextStyle":"light",

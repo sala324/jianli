@@ -31,6 +31,9 @@ Component({
         talking:false
       })
     },
+    clickBtn(){
+      this.triggerEvent('myevent2', '')
+    }
   },
   ready(){
     manager.onStart((res) => {

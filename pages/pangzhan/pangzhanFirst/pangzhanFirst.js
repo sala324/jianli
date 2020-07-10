@@ -3,11 +3,29 @@ Page({
   data: {
     detail:'',
     dateEnd:'',
+    index1:0,
+    gongXuArr:['桩基工程','桩基工程1','桩基工程2','桩基工程3'],
+    index2:0,
+    gongXuArr2:['桩基工程部位','桩基工程部位1','桩基工程部位2','桩基工程部位3'],
+    navInfo:{
+      type:1,
+      step:1
+    },
     shuru:false
   },
   setGaiyao(e){
     this.setData({
       detail:e.detail
+    })
+  },
+  gongXuChange(e){
+    this.setData({
+      index1:e.detail.value
+    })
+  },
+  gongXuChange2(e){
+    this.setData({
+      index2:e.detail.value
     })
   },
   onLoad(options){

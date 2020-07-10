@@ -28,7 +28,7 @@ textarea{
 }
 .voiceWrap{
   background: #fff;
-  padding: 80rpx 0 60rpx;
+  /* padding: 80rpx 0 60rpx; */
 }
 .voice image{
   width: 58rpx;

@@ -1,6 +1,9 @@
-<view class="jilu">
-  <text class="name">情况描述</text>
-  <textarea value="{{detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
+<navs navInfo="{{navInfo}}"></navs>
+<view class="info">
+  <view class="item" wx:for="{{arr}}" wx:key="index">
+    <view class="title">{{item.title}}</view>
+    <input placeholder="请输入" class="itemDetail {{index3===index&&index4===index2?'active':''}}" bindinput="changeValue" bindfocus="changeItem" value="{{cell.val}}" data-index3="{{index}}" data-index4="{{index2}}" wx:for="{{item.items}}" wx:for-item="cell" wx:key="index2" wx:for-index='index2'>
+    </input>
+  </view>
 </view>
-<voice bind:myevent="setGaiyao"></voice>
-<btn title="下一步" bind:myevent="nextStep"></btn>
+<voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>

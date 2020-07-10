@@ -2,6 +2,7 @@
   "navigationBarTitleText": "新增巡视记录-第一步",
   "usingComponents": {
     "voice": "/components/voice/index",
+    "navs": "/components/nav/index",
     "btn": "/components/btn/index"
   }
 }

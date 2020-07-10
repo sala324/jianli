@@ -1,3 +1,4 @@
+<navs navInfo="{{navInfo}}"></navs>
 <view class="lineItem">
   <text class="name">工程名称</text>
   <text class="detail">白沙洲变电枢纽二期项目</text>
@@ -19,15 +20,8 @@
   <text class="name">巡视部位</text>
   <textarea value="{{detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
 </view>
-<view class="voiceWrap" bindtouchend="recordingStop">
-<voice bind:myevent="setGaiyao"></voice>
+<view class="voiceWrap">
+<voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>
 </view>
-<!-- <view class="btnWrap">
-  <view class="btnBox"></view>
-  <cover-view class="btn">
-    <cover-view class="btnText" bindtap="nextStep">下一步</cover-view>
-  </cover-view>
-</view> -->
-<btn title="下一步" bind:myevent="nextStep"></btn>
 
 

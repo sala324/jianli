@@ -10,7 +10,7 @@
   margin: 60rpx auto 40rpx;
 }
 .lineItem{
-  margin-top:28rpx;
+  margin-bottom:28rpx;
   background: #fff;
   height: 90rpx;
   line-height: 90rpx;

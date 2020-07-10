@@ -4,7 +4,7 @@ Page({
     detail:'',
     navInfo:{
       type:1,
-      step:3
+      step:4
     },
     dateEnd:''
   },
@@ -27,7 +27,7 @@ Page({
     })
   },
   nextStep(){
-    util.nextStepCommon(this,'wenti','/pages/pangzhan/pangzhanfourth/pangzhanfourth')
+    util.nextStepCommon(this,'wenti','/pages/pangzhan/pangzhan/pangzhan')
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,8 +1,14 @@
-<button 
-  bindtouchstart="recordingStart"
-  bindtouchend="recordingStop"
-  class="voice {{talking?'talking':''}}"
-  >
-  <image class="right" src="../../images/Microphone.png" wx:if="{{!talking}}"></image>
-  <image class="right" src="../../images/talking.png" wx:else></image>
-</button>
+ <view class="voiceBtnWrap">
+  <button 
+    bindtouchstart="recordingStart"
+    bindtouchend="recordingStop"
+    class="voice {{talking?'talking':''}}"
+    >
+    <image class="right" src="../../images/Microphone.png" wx:if="{{!talking}}"></image>
+    <image class="right" src="../../images/talking.png" wx:else></image>
+  </button>
+  <view class="btn">
+    <view class="btnText" bindtap="clickBtn">下一步</view>
+  </view>
+</view>
+<view class="voiceBtnBox"></view>

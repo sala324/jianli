@@ -1,6 +1,9 @@
-<view class="jilu">
-  <text class="name">情况描述</text>
-  <textarea value="{{detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
+<navs navInfo="{{navInfo}}"></navs>
+<view class="info">
+  <view class="title">二、作业过程风险控制措施检查</view>
+  <view class="item" wx:for="{{10}}" wx:key="index">
+    <text class="text">1.核对杆号或停电间隔及回路</text>
+    <switch checked></switch>
+  </view>
 </view>
-<voice bind:myevent="setGaiyao"></voice>
 <btn title="下一步" bind:myevent="nextStep"></btn>

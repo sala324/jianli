@@ -2,11 +2,51 @@ const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
+    itemCheck:'aa',
+    index3:0,
+    index4:0,
+    navInfo:{
+      type:1,
+      step:2
+    },
+    arr:[
+      {
+        title:'一、作业必备条件检查',
+        items:[{name:'aa',val:''},{name:'bb',val:''},{name:'cc',val:''}]
+    },
+    {
+      title:'二、作业必备条件检查2',
+      items:[{name:'dd',val:''},{name:'ee',val:''},{name:'ff',val:''}]
+  }
+  ],
     dateEnd:''
   },
-  setGaiyao(e){
+  changeItem(e){
+    let index=e.currentTarget.dataset.index3
+    let index2=e.currentTarget.dataset.index4
     this.setData({
-      detail:e.detail
+      index3:index,
+      index4:index2
+    })
+  },
+  changeValue(e){
+    let arr=this.data.arr
+    let index=e.currentTarget.dataset.index3
+    let index2=e.currentTarget.dataset.index4
+    arr[index].items[index2].val=e.detail.value
+    this.setData({
+      arr:arr,
+      index3:index,
+      index4:index2
+    })
+  },
+  setGaiyao(e){
+    let arr=this.data.arr
+    let index=this.data.index3
+    let index2=this.data.index4
+    arr[index].items[index2].val=e.detail
+    this.setData({
+      arr:arr
     })
   },
   onLoad(options){

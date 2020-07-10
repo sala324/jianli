@@ -1,6 +1,10 @@
 const util = require('../../../utils/util');
 Page({
   data: {
+    navInfo:{
+      type:4,
+      step:1
+    },
     index:0,
     detail:'',
     dateEnd:'',

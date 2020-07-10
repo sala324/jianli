@@ -2,6 +2,7 @@ page{
   background: #F1F3F5;
 }
 .jilu{
+  margin: 28rpx 0;
   color: #191F25;
   font-size: 30rpx;
   padding: 20rpx;

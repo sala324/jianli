@@ -1,3 +1,4 @@
+<navs navInfo="{{navInfo}}"></navs>
 <view class="lineItem">
   <text class="name">工程名称</text>
   <text class="detail">白沙洲变电枢纽二期项目</text>
@@ -35,19 +36,20 @@
     <view class="picker">{{endTime}}</view>
   </picker>
 </view>
-<view class="jilu">
-  <text class="name">记录概要</text>
-  <textarea value="{{detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
+<view class="lineItem">
+  <text class="name">旁站监理的工序</text>
+  <picker bindchange="gongXuChange" value="{{index}}" range="{{gongXuArr}}">
+    <view class="picker">{{gongXuArr[index1]}} >
+    </view>
+  </picker>
 </view>
-<view class="voiceWrap" bindtouchend="recordingStop">
-<voice bind:myevent="setGaiyao"></voice>
+<view class="lineItem">
+  <text class="name">旁站监理的部位</text>
+  <picker bindchange="gongXuChange2" value="{{index2}}" range="{{gongXuArr2}}">
+    <view class="picker">{{gongXuArr2[index2]}} >
+    </view>
+  </picker>
 </view>
-<!-- <view class="btnWrap">
-  <view class="btnBox"></view>
-  <cover-view class="btn">
-    <cover-view class="btnText" bindtap="nextStep">下一步</cover-view>
-  </cover-view>
-</view> -->
-<btn title="下一步" bind:myevent="nextStep"></btn>
+<voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>
 
 

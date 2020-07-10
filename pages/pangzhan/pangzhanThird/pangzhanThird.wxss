@@ -1,16 +1,24 @@
-page{
-  background: #F1F3F5;
+.info{
+  padding:0 20rpx;
 }
-.jilu{
-  margin: 28rpx 0;
+.info .title{
   color: #191F25;
   font-size: 30rpx;
-  padding: 20rpx;
-  background: #fff;
-  height: 300rpx;
+  padding: 36rpx 0;
 }
-textarea{
-  padding: 20rpx 0;
-  display: block;
-  height: 240rpx;
+.info .item{
+  padding: 25rpx;
+  background: #F2F4F5;
+  border-radius: 20rpx;
+  margin-bottom: 9rpx;
+  color: #191F25;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.info .item .text{
+  vertical-align: middle;
+}
+switch{
+  height: 40rpx;
 }
