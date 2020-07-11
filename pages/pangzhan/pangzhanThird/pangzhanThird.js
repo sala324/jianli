@@ -2,32 +2,33 @@ const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
+    arr:[{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:false},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true}],
     navInfo:{
       type:1,
       step:3
     },
     dateEnd:''
   },
-  setGaiyao(e){
+  resetState(e){
+    let arr=this.data.arr
+    console.log(arr)
+    console.log(e.currentTarget.dataset.index)
+    console.log(arr[e.currentTarget.dataset.index])
+    arr[e.currentTarget.dataset.index].checked=!arr[e.currentTarget.dataset.index].checked
     this.setData({
-      detail:e.detail
+      arr:arr
     })
   },
   onLoad(options){
     if(options.default){
       this.setData({
-        detail:options.default,
+        arr:JSON.parse(options.default),
         reset:true
       })
     }
   },
-  changeDetail(e){
-    this.setData({
-      detail:e.detail.value
-    })
-  },
   nextStep(){
-    util.nextStepCommon(this,'wenti','/pages/pangzhan/pangzhanfourth/pangzhanfourth')
+    util.nextStepCommon(this,'arr2','/pages/pangzhan/pangzhanfourth/pangzhanfourth','arr')
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

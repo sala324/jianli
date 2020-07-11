@@ -1,0 +1,4 @@
+.recoreWrap{
+  /* margin-top: 120rpx; */
+  border-top: 12rpx solid #F1F3F5;
+}

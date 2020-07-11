@@ -1,34 +1,28 @@
 const util = require('../../../utils/util');
 Page({
   data: {
-    detail:'',
-    itemCheck:'aa',
-    index3:0,
-    index4:0,
     navInfo:{
-      type:1,
+      type:2,
       step:2
     },
-    arr:[
-      {
-        title:'一、作业必备条件检查',
-        items:[{name:'aa',val:''},{name:'bb',val:''},{name:'cc',val:''}]
-    },
-    {
-      title:'二、作业必备条件检查2',
-      items:[{name:'dd',val:''},{name:'ee',val:''},{name:'ff',val:''}]
-  }
-  ],
+    arr:[{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''}],
     dateEnd:''
   },
-  changeItem(e){
-    let index=e.currentTarget.dataset.index3
-    let index2=e.currentTarget.dataset.index4
-    let oldValues=this.data.arr[index].items[index2].val
+  changeRemarks(e){
+    let index=e.currentTarget.dataset.index
+    let arr=this.data.arr
+    arr[index].remarks=e.detail.value
     this.setData({
-      index3:index,
-      index4:index2,
-      oldValues:oldValues
+      arr:arr
+    })
+    console.log(this.data.arr)
+  },
+  changeState(e){
+    let index=e.currentTarget.dataset.index
+    let arr=this.data.arr
+    arr[index].result=!arr[index].result
+    this.setData({
+      arr:arr
     })
   },
   changeValue(e){
@@ -66,7 +60,7 @@ Page({
     })
   },
   nextStep(){
-    util.nextStepCommon(this,'arr','/pages/pangzhan/pangzhanThird/pangzhanThird','arr')
+    util.nextStepCommon(this,'arr','/pages/jingyan/jingyanThird/jingyanThird','arr')
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

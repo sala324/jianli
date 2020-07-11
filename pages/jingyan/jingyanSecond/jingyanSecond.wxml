@@ -1,0 +1,22 @@
+<navs navInfo="{{navInfo}}"></navs>
+<view class="info">
+  <view class="itemBox" wx:for="{{arr}}" wx:key="index">
+    <view class="item">
+      <text class="name">检验项目</text>
+      <text class="detail">{{item.name}}</text>
+    </view>
+    <view class="item">
+      <text class="name">质量标准</text>
+      <text class="detail">{{item.standard}}</text>
+    </view>
+    <view class="item">
+      <text class="name">检验结果</text>
+      <switch checked="{{item.result}}" data-index="{{index}}" bindtap="changeState"></switch>
+    </view>
+    <view class="item" wx:if="{{!item.result}}">
+      <text class="name">备注</text>
+      <input class="input" placeholder="单行输入" data-index="{{index}}" bindinput="changeRemarks" value="{{item.remarks}}"></input>
+    </view>
+  </view>
+</view>
+<btn bind:myevent="nextStep" title="下一步"></btn>

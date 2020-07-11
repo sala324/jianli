@@ -13,7 +13,7 @@ Page({
   onLoad(options){
     if(options.default){
       this.setData({
-        detail:options.default,
+        detail:JSON.parse(options.default),
         reset:true
       })
       wx.setNavigationBarTitle({

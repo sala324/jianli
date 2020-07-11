@@ -1,0 +1,36 @@
+.info{
+  /* padding:0 20rpx; */
+}
+.itemBox{
+  border-bottom: 20rpx solid #F2F4F5;
+  padding-bottom: 35rpx;
+}
+.itemBox .item{
+  font-size: 28rpx;
+  padding: 30rpx 25rpx 0;
+}
+.itemBox .item .name{
+  color: #999999;
+  display: inline-block;
+  width: 124rpx;
+  text-align: right;
+  margin-right: 20rpx;
+}
+.itemBox .item .detail{
+  display: inline-block;
+  color: #191F25;
+}
+.itemBox .item switch{
+  zoom: 0.5;
+  vertical-align: middle;
+}
+.itemBox .item .input{
+  display: inline-block;
+  width:540rpx;
+  height:60rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  background:rgba(242,244,245,1);
+  border-radius:20rpx;
+  vertical-align: middle;
+}

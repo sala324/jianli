@@ -2,15 +2,48 @@ const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
+    dateEnd:'',
+    index:0,
+    activeNav:'name',
+    array:['材料','工序'],
+    array2:['桩基工程1','桩基工程2','桩基工程部位2','桩基工程部位3'],
+    array3:['工程1队','工程2队','工程31队','工程4队'],
+    index2:0,
+    index3:0,
     navInfo:{
-      type:1,
-      step:4
+      type:2,
+      step:1
     },
-    dateEnd:''
+    shuru:false
+  },
+  chooseItem(e){
+    let name=e.currentTarget.dataset.name
+    this.setData({
+      activeNav:name
+    })
+  },
+  changeValue(e){
+    let name=e.currentTarget.dataset.name
+    this.setData({
+      [name]:e.detail.value,
+      activeNav:name
+    })
+    console.log(this.data.activeNav)
   },
   setGaiyao(e){
+    let name=this.data.activeNav
     this.setData({
-      detail:e.detail
+      [name]:e.detail
+    })
+  },
+  gongXuChange(e){
+    this.setData({
+      index1:e.detail.value
+    })
+  },
+  gongXuChange2(e){
+    this.setData({
+      index2:e.detail.value
     })
   },
   onLoad(options){
@@ -27,7 +60,22 @@ Page({
     })
   },
   nextStep(){
-    util.nextStepCommon(this,'wenti','/pages/pangzhan/pangzhan/pangzhan')
+    util.nextStepCommon(this,'title','/pages/pangzhan/pangzhanSecond/pangzhanSecond')
+  },
+  bindDateChange(e){
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  bindTimeChange1(e){
+    this.setData({
+      startTime: e.detail.value
+    })
+  },
+  bindTimeChange2(e){
+    this.setData({
+      endTime: e.detail.value
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -35,7 +83,6 @@ Page({
   onReady: function () {
 
   },
-
   /**
    * 生命周期函数--监听页面显示
    */

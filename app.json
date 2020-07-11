@@ -1,10 +1,15 @@
 {
   "pages":[
+    "pages/jingyan/jingyanThird/jingyanThird",
+    "pages/jingyan/jingyanSecond/jingyanSecond",
+    "pages/jingyan/jingyanFirst/jingyanFirst",
+    "pages/jingyan/jingyanList/jingyanList",
+    "pages/pangzhan/pangzhan/pangzhan",
+    "pages/index/index",
     "pages/pangzhan/pangzhanThird/pangzhanThird",
     "pages/xunshi/xunshiThird/xunshiThird",
     "pages/pangzhan/pangzhanSecond/pangzhanSecond",
     "pages/pangzhan/pangzhanFirst/pangzhanFirst",
-    "pages/index/index",
     "pages/xunshi/xunshiFirst/xunshiFirst",
     "pages/lianxidan/lianxidanFirst/lianxidanFirst",
     "pages/lianxidan/lianxidanDetail/lianxidanDetail",
@@ -26,7 +31,6 @@
     "pages/login/login",
     "pages/pangzhan/pangzhanList/pangzhanList",
     "pages/pangzhan/pangzhanDetail/pangzhanDetail",
-    "pages/pangzhan/pangzhan/pangzhan",
     "pages/pangzhan/pangzhanSign/pangzhanSign"
   ],
   "window":{

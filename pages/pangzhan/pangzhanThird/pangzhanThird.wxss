@@ -20,5 +20,5 @@
   vertical-align: middle;
 }
 switch{
-  height: 40rpx;
+  zoom:.6;
 }

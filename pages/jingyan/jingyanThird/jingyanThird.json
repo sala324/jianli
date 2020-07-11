@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "新增平行经验-第三步",
+  "usingComponents": {
+    "voice": "/components/voice/index",
+    "navs": "/components/nav/index"
+  }
+}

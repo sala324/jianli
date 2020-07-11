@@ -28,13 +28,20 @@ const toasts = (title,time=2000) => {
     duration: time
   })
 }
-const nextStepCommon=(that,val,path)=>{
+const nextStepCommon=(that,val,path,val2)=>{
   if(that.data.reset){
     let pages = getCurrentPages();//当前页面栈
     let prevPage = pages[pages.length - 2];//上一页面
-    prevPage.setData({
+    if(val2){
+      prevPage.setData({
+        [val]:that.data[val2]
+    });
+    } else {
+      prevPage.setData({
         [val]:that.data.detail
     });
+    }
+    
     wx.navigateBack({
       complete: (res) => {},
     })

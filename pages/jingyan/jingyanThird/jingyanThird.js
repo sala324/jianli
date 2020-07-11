@@ -2,15 +2,19 @@ const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
+    bianhao:'',
+    activeNav:'detail',
+    arr:[{title:'发现问题及时处理',name:'detail',val:''},{title:'发现问题及时处理',name:'bianhao',val:''}],
     navInfo:{
-      type:1,
-      step:4
+      type:2,
+      step:3
     },
     dateEnd:''
   },
   setGaiyao(e){
+    let name=this.data.activeNav
     this.setData({
-      detail:e.detail
+      [name]:e.detail
     })
   },
   onLoad(options){
@@ -21,13 +25,22 @@ Page({
       })
     }
   },
-  changeDetail(e){
+  checkitem(e){
+    let activeNav=e.currentTarget.dataset.name
     this.setData({
-      detail:e.detail.value
+      activeNav:activeNav
+    })
+  },
+  changeDetail(e){
+    let name=e.currentTarget.dataset.name
+    let activeNav=e.currentTarget.dataset.name
+    this.setData({
+      [name]:e.detail.value,
+      activeNav:activeNav
     })
   },
   nextStep(){
-    util.nextStepCommon(this,'wenti','/pages/pangzhan/pangzhan/pangzhan')
+    util.nextStepCommon(this,'arr','/pages/pangzhan/pangzhan/pangzhan','arr')
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

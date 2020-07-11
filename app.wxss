@@ -20,3 +20,29 @@
   color: #191F25;
   font-size: 30rpx;
 }
+.lineItem .item{
+  display: flex;
+  justify-content: space-between;
+  margin: 8rpx 0;
+  background: #FFF;
+  border-radius: 20rpx;
+  margin-left: -12rpx;
+}
+.lineItem .item.active{
+  background: #FFF3E1;
+}
+.lineItem .item .name{
+  padding-left:12rpx;
+  width: 180rpx;
+  vertical-align: middle;
+  height: 74rpx;
+  line-height: 74rpx;
+}
+.lineItem .item input{
+  vertical-align: middle;
+  width: 530rpx;
+  text-align: right;
+  height: 74rpx;
+  line-height: 74rpx;
+  padding-right:12rpx;
+}

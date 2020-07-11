@@ -19,7 +19,9 @@ Component({
       manager.onRecognize((res) => {
         if (res.result) {
           that.triggerEvent('myevent', res.result)
-          console.log("current result", res.result)
+          // that.setData({
+          //   voiceValue:res.result
+          // })
         } else if (res.errMsg) {
           console.log("recognize error", res.errMsg)
         }
@@ -30,6 +32,8 @@ Component({
       this.setData({
         talking:false
       })
+      // console.log(this.data.voiceValue)
+      // this.triggerEvent('myevent',this.data.voiceValue)
     },
     clickBtn(){
       this.triggerEvent('myevent2', '')

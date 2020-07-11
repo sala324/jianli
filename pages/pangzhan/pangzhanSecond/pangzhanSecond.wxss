@@ -12,8 +12,18 @@
   padding: 24rpx;
   border-radius: 20rpx;
   font-size: 30rpx;
+  width: 660rpx;
   color: #191F25;
 }
 .itemDetail.active{
   background: #FFF3E1;
+}
+.abc{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200rpx;
+  z-index: 2;
+  background: #fff;
 }

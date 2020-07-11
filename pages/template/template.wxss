@@ -48,6 +48,23 @@
   margin-left: 25rpx;
   vertical-align: top;
 }
+.title{
+  font-size:32rpx;
+  color: #191F25;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  border-bottom: 20rpx solid #F2F4F5;
+}
+.detailItem{
+  font-size: 28rpx;
+}
+.detailItem2{
+  background: #F2F4F5;
+  border-radius: 20rpx;
+  margin-bottom: 11rpx;
+  padding: 20rpx;
+  line-height: 26rpx;
+}
 /* 记录详情 */
 /* 九宫格图片样式 */
 .uploadImg{
