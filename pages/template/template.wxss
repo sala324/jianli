@@ -97,3 +97,35 @@
   color: #999;
 }
 /* 九宫格图片样式 */
+.jingyanWrap{
+  margin: -40rpx 0 40rpx;
+}
+.jyItem:nth-child(1) view{
+  background: rgba(49, 151, 251, 0.1);
+}
+.jyItem{
+  display: flex;
+  font-size: 26rpx;
+}
+.jyItem view{
+  padding: 15rpx;
+  background: #F2F4F5;
+  margin: 4rpx 4rpx 0 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.jyItem .index{
+  flex: 1.2;
+}
+.jyItem .name{
+  flex: 3;
+}
+.jyItem .size{
+  flex: 2.5;
+}
+.jyItem .size2{
+  flex: 3;
+  margin-right: 0;
+}
+/* .jingyanWrap  */

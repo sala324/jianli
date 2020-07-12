@@ -3,8 +3,8 @@ Page({
   data: {
     detail:'',
     bianhao:'',
-    activeNav:'detail',
-    arr:[{title:'发现问题及时处理',name:'detail',val:''},{title:'发现问题及时处理',name:'bianhao',val:''}],
+    activeNav:0,
+    arr:[{title:'检验结论',name:'detail',val:''},{title:'检验仪器及编号',name:'bianhao',val:''}],
     navInfo:{
       type:2,
       step:3
@@ -12,35 +12,37 @@ Page({
     dateEnd:''
   },
   setGaiyao(e){
-    let name=this.data.activeNav
+    let index=this.data.activeNav
+    let arr=this.data.arr
+    arr[index].val=e.detail.value
     this.setData({
-      [name]:e.detail
+      arr:arr
     })
   },
   onLoad(options){
     if(options.default){
       this.setData({
-        detail:JSON.parse(options.default),
+        arr:JSON.parse(options.default),
         reset:true
       })
     }
   },
   checkitem(e){
-    let activeNav=e.currentTarget.dataset.name
     this.setData({
-      activeNav:activeNav
+      activeNav:e.currentTarget.dataset.index
     })
   },
   changeDetail(e){
-    let name=e.currentTarget.dataset.name
-    let activeNav=e.currentTarget.dataset.name
+    let arr=this.data.arr
+    let index=e.currentTarget.dataset.index
+    arr[index].val=e.detail.value
     this.setData({
-      [name]:e.detail.value,
-      activeNav:activeNav
+      arr:arr
     })
+    console.log(this.data.arr)
   },
   nextStep(){
-    util.nextStepCommon(this,'arr','/pages/pangzhan/pangzhan/pangzhan','arr')
+    util.nextStepCommon(this,'arr2','/pages/jingyan/jingyan/jingyan','arr')
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

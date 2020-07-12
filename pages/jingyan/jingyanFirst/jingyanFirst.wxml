@@ -48,13 +48,13 @@
 </view>
 <view class="lineItem">
   <view class="item {{activeNav=='actory'?'active':''}}">
-    <text class="name">材料型号规格</text>
+    <text class="name">生产厂家</text>
     <input class="detail" value="{{actory}}" bindfocus="chooseItem" bindinput="changeValue" data-name="actory" placeholder="单行输入"></input>
   </view>
 </view>
 <view class="lineItem">
   <view class="item {{activeNav=='size'?'active':''}}">
-    <text class="name">生产厂家</text>
+    <text class="name">材料型号规格</text>
     <input class="detail" value="{{size}}"  bindfocus="chooseItem" bindinput="changeValue" data-name="size" placeholder="单行输入"></input>
   </view>
 </view>

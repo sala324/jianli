@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "查看旁站记录详情",
+  "usingComponents": {
+    "copy-link": "/components/copyLink/index"
+  }
+}
