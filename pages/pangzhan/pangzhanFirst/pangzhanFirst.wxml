@@ -1,7 +1,7 @@
 <navs navInfo="{{navInfo}}"></navs>
 <view class="lineItem">
   <text class="name">工程名称</text>
-  <text class="detail">白沙洲变电枢纽二期项目</text>
+  <text class="detail">{{info.title}}</text>
 </view>
 <view class="lineItem">
   <text class="name">编号</text>
@@ -9,11 +9,11 @@
 </view>
 <view class="lineItem">
   <text class="name">日期</text>
-  <picker mode="date" class="detail" value="{{date}}" start="2015-09-01" end="{{dateEnd}}" bindchange="bindDateChange">
-    <view class="picker" wx:if="{{!date}}">
+  <picker mode="date" class="detail" value="{{info.date}}" data-name="date" start="2015-09-01" end="{{dateEnd}}" bindchange="changeItem">
+    <view class="picker" wx:if="{{!info.date}}">
       请选择 >
     </view>
-    <view wx:else>{{date}}</view>
+    <view wx:else>{{info.date}}</view>
   </picker>
 </view>
 <view class="lineItem">
@@ -26,29 +26,26 @@
 </view>
 <view class="lineItem">
   <text class="name">开始时间</text>
-  <picker mode="time" value="{{startTime}}" start="startTime" end="23:59" bindchange="bindTimeChange1">
-    <view class="picker">{{startTime}}</view>
+  <picker mode="time" value="{{info.startTime}}" data-name="startTime" start="{{info.startTime}}" end="23:59" bindchange="changeItem">
+    <view class="picker">{{info.startTime}}</view>
   </picker>
 </view>
 <view class="lineItem">
   <text class="name">结束时间</text>
-  <picker mode="time" value="{{endTime}}" start="startTime" end="23:59" bindchange="bindTimeChange2">
-    <view class="picker">{{endTime}}</view>
+  <picker mode="time" value="{{info.endTime}}" data-name="endTime" start="{{info.startTime}}" end="23:59" bindchange="changeItem">
+    <view class="picker">{{info.endTime}}</view>
   </picker>
 </view>
 <view class="lineItem">
   <text class="name">旁站监理的工序</text>
-  <picker bindchange="gongXuChange" value="{{index}}" range="{{gongXuArr}}">
-    <view class="picker">{{gongXuArr[index1]}} >
+  <picker bindchange="changeItem" value="{{info.index}}" data-name="index" range="{{gongXuArr}}">
+    <view class="picker">{{gongXuArr[info.index]}} >
     </view>
   </picker>
 </view>
 <view class="lineItem">
   <text class="name">旁站监理的部位</text>
-  <picker bindchange="gongXuChange2" value="{{index2}}" range="{{gongXuArr2}}">
-    <view class="picker">{{gongXuArr2[index2]}} >
-    </view>
-  </picker>
+  <input class="detail input" value="{{info.position}}" data-name="position" bindinput="changeItem" placeholder="请输入"></input>
 </view>
 <voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>
 

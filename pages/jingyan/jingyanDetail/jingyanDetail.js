@@ -2,35 +2,28 @@
 Page({
   data: {
     showCopy:false,
-    title:'旁站监理的部位或工序:电缆管群、电缆井土石方开挖',
-    arr:[{name:'aa',val:'核对杆号或停电间隔及回路',tips:'输入1'},{name:'bb',val:'核对杆号或停电间隔及回路',tips:'输入2'},{name:'cc',val:'核对杆号或停电间隔及回路',tips:'输入33333'},{name:'dd',val:'核对杆号或停电间隔及回路',tips:'输入4444'},{name:'ee',val:'核对杆号或停电间隔及回路',tips:'输入555555'}],
-    arr2:[{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:false},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},],
-    wenti:'暂无问题',
-    reset:true,
-    info:{
-      title:'白沙洲变电枢纽二期项目',
-      id:'0098654',
-      date:'2020-05-06 ',
-      weather:'有雨，28度',
-      shigong:'供电局施工队',
-      startTime:'12:45',
-      endTime:'13:45',
-      process:'桩基工程1',
-      position:'桩基工程部位1',
-      question:'无',
-      date2:'2020-05-06',
-      reset:true
+    baseInfo:{
+      title:'工程名称1',
+      id:'0098645',
+      date:'2020-05-06',
+      type:1,
+      name:'材料名称1',
+      size:'材料部位1',
+      actory:'厂家1',
+      position:'部位1',
+      processName:'桩基工程2',
+      buildUnits:'工程2队',
+      reset:false
     },
+    arr2:[{title:'检验结论',name:'detail',val:'结论1'},{title:'检验仪器及编号',name:'bianhao',val:'材料编号'}],
+    title:'旁站监理的部位或工序:电缆管群、电缆井土石方开挖',
+    arr:[{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''}],
+    wenti:'暂无问题',
     imgArr:['../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png']
   },
   resetDetail(e){
     wx.navigateTo({
       url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail),
-    })
-  },
-  nextStep(){
-    wx.navigateTo({
-      url: '/pages/pangzhan/pangzhanSign/pangzhanSign',
     })
   },
   delItem(e){

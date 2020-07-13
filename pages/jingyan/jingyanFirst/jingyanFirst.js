@@ -10,6 +10,13 @@ Page({
     array3:['工程1队','工程2队','工程31队','工程4队'],
     index2:0,
     index3:0,
+    reset:false,
+    baseInfo:{
+      name:'',
+      actory:'',
+      size:'',
+      position:''
+    },
     navInfo:{
       type:2,
       step:1
@@ -24,33 +31,52 @@ Page({
   },
   changeValue(e){
     let name=e.currentTarget.dataset.name
+    let info=this.data.baseInfo
+    info[name]=e.detail.value
     this.setData({
-      [name]:e.detail.value,
+      baseInfo:info,
       activeNav:name
     })
     console.log(this.data.activeNav)
   },
   setGaiyao(e){
     let name=this.data.activeNav
+    let info=this.data.baseInfo
+    info[name]=e.detail
     this.setData({
-      [name]:e.detail
+      baseInfo:info
     })
   },
-  gongXuChange(e){
+  changeItem(e){
+    let info=this.data.baseInfo
+    info[e.currentTarget.dataset.name]=e.currentTarget.dataset.arr[e.detail.value]
     this.setData({
-      index1:e.detail.value
-    })
-  },
-  gongXuChange2(e){
-    this.setData({
-      index2:e.detail.value
+      [e.currentTarget.dataset.index]:e.detail.value
     })
   },
   onLoad(options){
     if(options.default){
+      let info=JSON.parse(options.default)
+      if(info.type==1){
+        //工序
+        let index=this.data.array3.findIndex((val,index)=>{
+          return val==info.buildUnits
+        })
+        let index2=this.data.array2.findIndex((val,index)=>{
+          return val==info.processName
+        })
+        this.setData({
+          index3:index,
+          index2:index2,
+        })
+      }
       this.setData({
-        detail:JSON.parse(options.default),
-        reset:true
+        baseInfo:info,
+        reset:true,
+        index:Number(info.type)
+      })
+      wx.setNavigationBarTitle({
+        title: '修改平行经验-第一步',
       })
     }
   },
@@ -60,21 +86,11 @@ Page({
     })
   },
   nextStep(){
-    util.nextStepCommon(this,'title','/pages/pangzhan/pangzhanSecond/pangzhanSecond')
+    util.nextStepCommon(this,'baseInfo','/pages/jingyan/jingyanSecond/jingyanSecond','baseInfo')
   },
   bindDateChange(e){
     this.setData({
       date: e.detail.value
-    })
-  },
-  bindTimeChange1(e){
-    this.setData({
-      startTime: e.detail.value
-    })
-  },
-  bindTimeChange2(e){
-    this.setData({
-      endTime: e.detail.value
     })
   },
   /**

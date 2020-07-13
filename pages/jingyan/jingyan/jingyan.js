@@ -2,21 +2,23 @@
 Page({
   data: {
     showCopy:false,
+    baseInfo:{
+      title:'工程名称1',
+      id:'0098645',
+      date:'2020-05-06',
+      type:1,
+      name:'材料名称1',
+      size:'材料部位1',
+      actory:'厂家1',
+      position:'部位1',
+      processName:'桩基工程2',
+      buildUnits:'工程2队',
+      reset:true
+    },
     arr2:[{title:'检验结论',name:'detail',val:'结论1'},{title:'检验仪器及编号',name:'bianhao',val:'材料编号'}],
     title:'旁站监理的部位或工序:电缆管群、电缆井土石方开挖',
     arr:[{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''}],
     wenti:'暂无问题',
-    info:{
-      name:'白沙洲变电枢纽二期项目',
-      id:'0098654',
-      date:'2020-05-06 ',
-      type:'材料',
-      name:'材料名称1',
-      size:'型号规格1',
-      actory:'厂家1',
-      position:'部位1',
-      reset:true
-    },
     imgArr:['../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png']
   },
   resetDetail(e){

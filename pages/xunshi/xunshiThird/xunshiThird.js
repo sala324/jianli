@@ -2,33 +2,57 @@ const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
+    bianhao:'',
+    oldValues:'',
+    activeNav:0,
+    arr:[{title:'现场存在问题',name:'detail',val:''},{title:'监理有关措施',name:'bianhao',val:''}],
     navInfo:{
-            type:3,
-            step:3
-          },
+      type:3,
+      step:3
+    },
     dateEnd:''
   },
+  
+  checkitem(e){
+    let index=e.currentTarget.dataset.index
+    let oldValues=this.data.arr[index].val
+    this.setData({
+      activeNav:index,
+      oldValues:oldValues
+    })
+  },
   setGaiyao(e){
+    let arr=this.data.arr
+    let index=this.data.activeNav
+    arr[index].val=this.data.oldValues+e.detail
     this.setData({
-      detail:e.detail
+      arr:arr,
+      oldValues:this.data.oldValues+e.detail
     })
   },
-  changeDetail(e){
-    this.setData({
-      detail:e.detail.value
-    })
-  },
-  onLoad: function (options) {
+  onLoad(options){
     if(options.default){
       this.setData({
-        detail:JSON.parse(options.default),
+        arr:JSON.parse(options.default),
+        oldValues:JSON.parse(options.default)[0].val,
         reset:true
+      })
+      wx.setNavigationBarTitle({
+        title: '修改巡视记录-第三步',
       })
     }
   },
+  changeDetail(e){
+    let arr=this.data.arr
+    let index=e.currentTarget.dataset.index
+    arr[index].val=e.detail.value
+    this.setData({
+      arr:arr
+    })
+    console.log(this.data.arr)
+  },
   nextStep(){
-    util.nextStepCommon(this,'wenti','/pages/xunshi/xunshiForth/xunshiForth')
-    
+    util.nextStepCommon(this,'arr2','/pages/xunshi/xunshi/xunshi','arr')
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

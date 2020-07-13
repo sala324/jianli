@@ -59,7 +59,7 @@
     <image src="../../images/ico_pzjl.png"></image>
     <view class="itemTitle">旁站记录</view>
   </navigator>
-  <navigator url="/pages/pangzhan/pangzhanList/pangzhanList" class="itemTab">
+  <navigator url="/pages/jingyan/jingyanList/jingyanList" class="itemTab">
     <image src="../../images/ico_pxjyjl.png"></image>
     <view class="itemTitle">平行经验记录</view>
   </navigator>

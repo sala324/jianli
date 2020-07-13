@@ -25,6 +25,9 @@ Page({
         arr:JSON.parse(options.default),
         reset:true
       })
+      wx.setNavigationBarTitle({
+        title: '修改平行经验-第三步',
+      })
     }
   },
   checkitem(e){

@@ -1,6 +1,6 @@
 <navs navInfo="{{navInfo}}"></navs>
-<view class="jilu">
-  <text class="name">现场存在的问题</text>
-  <textarea value="{{detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
+<view class="jilu {{activeNav==index?'active':''}}" wx:for="{{arr}}" wx:key="index">
+  <text class="name">{{item.title}}</text>
+  <textarea value="{{item.val}}" bindinput="changeDetail" data-index="{{index}}" data-name="{{item.name}}" bindfocus="checkitem" placeholder="请输入"></textarea>
 </view>
 <voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>

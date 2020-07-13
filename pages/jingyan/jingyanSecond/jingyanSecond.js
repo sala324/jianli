@@ -52,7 +52,11 @@ Page({
         arr:JSON.parse(options.default),
         reset:true
       })
+      wx.setNavigationBarTitle({
+        title: '修改平行经验-第二步',
+      })
     }
+    
   },
   changeDetail(e){
     this.setData({

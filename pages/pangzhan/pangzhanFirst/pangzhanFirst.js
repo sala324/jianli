@@ -3,10 +3,17 @@ Page({
   data: {
     detail:'',
     dateEnd:'',
-    index1:0,
     gongXuArr:['桩基工程','桩基工程1','桩基工程2','桩基工程3'],
-    index2:0,
-    gongXuArr2:['桩基工程部位','桩基工程部位1','桩基工程部位2','桩基工程部位3'],
+    info:{
+      index:0,
+      title:'工程名称12',
+      id:'0089456',
+      date:'2020/7/12',
+      weather:'阴天有雨，35度',
+      shigong:'供电局施工队',
+      startTime:'18:20',
+      endTime:'18:50',
+    },
     navInfo:{
       type:1,
       step:1
@@ -14,25 +21,24 @@ Page({
     shuru:false
   },
   setGaiyao(e){
+    let info=this.data.info
+    info.position=e.detail
     this.setData({
-      detail:e.detail
-    })
-  },
-  gongXuChange(e){
-    this.setData({
-      index1:e.detail.value
-    })
-  },
-  gongXuChange2(e){
-    this.setData({
-      index2:e.detail.value
+      info:info
     })
   },
   onLoad(options){
     if(options.default){
+      let info=JSON.parse(options.default)
+      info.index=this.data.gongXuArr.findIndex((item,index,arr)=>{
+        return item==info.process
+      })
       this.setData({
-        detail:JSON.parse(options.default),
+        info:info,
         reset:true
+      })
+      wx.setNavigationBarTitle({
+        title: '修改旁站记录——第一步',
       })
     }
   },
@@ -42,35 +48,17 @@ Page({
     })
   },
   nextStep(){
-    util.nextStepCommon(this,'title','/pages/pangzhan/pangzhanSecond/pangzhanSecond')
-    // if(this.data.reset){
-    //   let pages = getCurrentPages();//当前页面栈
-    //   let prevPage = pages[pages.length - 2];//上一页面
-    //   prevPage.setData({
-    //       title:this.data.detail
-    //   });
-    //   wx.navigateBack({
-    //     complete: (res) => {},
-    //   })
-    // } else {
-    //   wx.navigateTo({
-    //     url: '/pages/pangzhan/pangzhanSecond/pangzhanSecond',
-    //   })
-    // }
+    util.nextStepCommon(this,'info','/pages/pangzhan/pangzhanSecond/pangzhanSecond','info')
   },
-  bindDateChange(e){
+  changeItem(e){
+    let info=this.data.info
+    let name=e.currentTarget.dataset.name
+    info[name]=e.detail.value
+    if(name=='index'){
+      info.process=this.data.gongXuArr[e.detail.value]
+    }
     this.setData({
-      date: e.detail.value
-    })
-  },
-  bindTimeChange1(e){
-    this.setData({
-      startTime: e.detail.value
-    })
-  },
-  bindTimeChange2(e){
-    this.setData({
-      endTime: e.detail.value
+      info: info
     })
   },
   /**
@@ -83,15 +71,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      startTime:util.formatTime(new Date()),
-      endTime:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
-      dateEnd:util.formatDate(new Date())
-    })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
+    if(!this.data.reset){
+      let info=this.data.info
+      info.startTime=util.formatTime(new Date())
+      info.endTime=util.formatTime2(new Date())
+      info.date=util.formatDate(new Date())
+      info.dateEnd=util.formatDate(new Date())
+      console.log(info)
+      this.setData({
+        info:info
+      })
+    }
+    
   },
 
   /**

@@ -15,6 +15,7 @@
   font-size: 30rpx;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .info .item .text{
   vertical-align: middle;

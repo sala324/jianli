@@ -1,34 +1,71 @@
+let plugin = requirePlugin("QCloudAIVoice");
+let manager = plugin.getRecordRecognitionManager()
+plugin.setQCloudSecret(1302214974, 'AKIDvafTyD2uf9O5Wdie4C2gYDYhbFdN799s', 'e2A2eHdttbMrFNE8lIYquze3BNek59xO', true); 
 const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
+    itemCheck:'aa',
+    index1:0,
+    oldValues:'',
     navInfo:{
-            type:3,
-            step:2
-          },
+      type:3,
+      step:2
+    },
+    arr:[{name:'aa',val:'',tips:'输入1'},{name:'bb',val:'',tips:'输入2'},{name:'cc',val:'',tips:'输入33333'},{name:'dd',val:'',tips:'输入4444'},{name:'ee',val:'',tips:'输入555555'}],
     dateEnd:''
   },
-  setGaiyao(e){
+  changeItem(e){
+    let index=e.currentTarget.dataset.index
+    let oldValues=this.data.arr[index].val
     this.setData({
-      detail:e.detail
+      index1:index,
+      oldValues:oldValues
     })
+  },
+  addValue(e){
+    this.setData({
+      oldValues:this.data.oldValues+e.detail
+    })
+  },
+  changeValue(e){
+    let arr=this.data.arr
+    let index=e.currentTarget.dataset.index
+    arr[index].val=e.detail.value
+    this.setData({
+      arr:arr,
+      index1:index,
+      oldValues:e.detail.value
+    })
+  },
+  setGaiyao(e){
+    let arr=this.data.arr
+    let index=this.data.index1
+    arr[index].val=this.data.oldValues+e.detail
+    this.setData({
+      arr:arr,
+      oldValues:this.data.oldValues+e.detail
+    })
+  },
+  onLoad(options){
+    if(options.default){
+      this.setData({
+        arr:JSON.parse(options.default),
+        oldValues:JSON.parse(options.default)[0].val,
+        reset:true
+      })
+      wx.setNavigationBarTitle({
+        title: '修改旁站记录——第二步',
+      })
+    }
   },
   changeDetail(e){
     this.setData({
       detail:e.detail.value
     })
   },
-  onLoad: function (options) {
-    if(options.default){
-      this.setData({
-        detail:JSON.parse(options.default),
-        reset:true
-      })
-    }
-  },
   nextStep(){
-    util.nextStepCommon(this,'xianchang','/pages/xunshi/xunshiThird/xunshiThird')
-    
+    util.nextStepCommon(this,'arr','/pages/xunshi/xunshiThird/xunshiThird','arr')
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

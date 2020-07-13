@@ -1,9 +1,5 @@
 // pages/projectDetail/projectDetail.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     item:{
       name:'白沙洲变电枢纽二期项目',

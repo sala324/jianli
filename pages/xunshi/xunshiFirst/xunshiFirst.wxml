@@ -1,24 +1,24 @@
 <navs navInfo="{{navInfo}}"></navs>
 <view class="lineItem">
   <text class="name">工程名称</text>
-  <text class="detail">白沙洲变电枢纽二期项目</text>
+  <text class="detail">{{info.name}}</text>
 </view>
 <view class="lineItem">
   <text class="name">编号</text>
-  <text class="detail">0098654</text>
+  <text class="detail">{{info.id}}</text>
 </view>
 <view class="lineItem">
   <text class="name">巡视时间</text>
-  <picker mode="date" class="detail" value="{{date}}" start="2015-09-01" end="{{dateEnd}}" bindchange="bindDateChange">
-    <view class="picker" wx:if="{{!date}}">
+  <picker mode="date" class="detail" value="{{info.date}}" start="2015-09-01" end="{{dateEnd}}" bindchange="bindDateChange">
+    <view class="picker" wx:if="{{!info.date}}">
       请选择 >
     </view>
-    <view wx:else>{{date}}</view>
+    <view wx:else>{{info.date}}</view>
   </picker>
 </view>
 <view class="jilu">
   <text class="name">巡视部位</text>
-  <textarea value="{{detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
+  <textarea value="{{info.position}}" bindinput="changeDetail" placeholder="请输入"></textarea>
 </view>
 <view class="voiceWrap">
 <voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>

@@ -1,29 +1,35 @@
 .info{
-  padding:0 20rpx;
+  /* padding:0 20rpx; */
 }
 .info .title{
   color: #191F25;
   font-size: 30rpx;
-  padding: 36rpx 0;
+  padding: 36rpx 30rpx;
+}
+.item{
+  padding: 0 20rpx;
+  margin-bottom: 12rpx;
+}
+.item.active{
+  background: #FFF3E1;
+  padding-bottom: 12rpx;
 }
 .itemDetail{
   background: #F2F4F5;
-  margin-bottom: 12rpx;
-  padding: 24rpx;
+  
+  padding:24rpx;
+  line-height: 1.2;
   border-radius: 20rpx;
   font-size: 30rpx;
   width: 660rpx;
   color: #191F25;
 }
 .itemDetail.active{
-  background: #FFF3E1;
+  background: #FFF;
 }
-.abc{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200rpx;
-  z-index: 2;
-  background: #fff;
+.tips{
+  padding-left: 20rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #191F25;
 }

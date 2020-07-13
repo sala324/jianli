@@ -3,8 +3,4 @@
   <text class="name">{{item.title}}</text>
   <textarea value="{{item.val}}" bindinput="changeDetail" data-index="{{index}}" data-name="{{item.name}}" bindfocus="checkitem" placeholder="请输入"></textarea>
 </view>
-<!-- <view class="jilu {{activeNav=='bianhao'?'active':''}}">
-  <text class="mgtop">检验仪器及编号</text>
-  <textarea value="{{bianhao}}" bindinput="changeDetail" data-name="bianhao" bindfocus="checkitem" placeholder="请输入"></textarea>
-</view> -->
 <voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>

@@ -15,7 +15,7 @@ Page({
   },
   resetDetail(e){
     wx.navigateTo({
-      url: e.currentTarget.dataset.page+'?default='+e.currentTarget.dataset.detail,
+      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail),
     })
   },
   delItem(e){

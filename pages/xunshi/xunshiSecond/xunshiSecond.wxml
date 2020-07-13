@@ -1,7 +1,13 @@
-<navs navInfo="{{navInfo}}"></navs>
-<view class="jilu">
-  <text class="name">施工现场安全文明施工评价</text>
-  <textarea value="{{detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
-</view>
-<voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>
-<!-- <btn title="下一步" bind:myevent="nextStep"></btn> -->
+<scroll-view style="height:100vh-350rpx;overflow:scroll" scroll-y>
+  <navs navInfo="{{navInfo}}"></navs>
+  <view class="info">
+    <view class="title">施工现场安全文明施工评价</view>
+    
+    <view class="item {{index1===index?'active':''}}" wx:for="{{arr}}" wx:key="index">
+      <view class="tips" wx:if="{{index1===index}}">{{item.tips}}</view>
+      <textarea contenteditable="true" auto-height="true" type="text" class="itemDetail {{index1===index?'active':''}}" bindinput="changeValue" bindfocus="changeItem" value="{{item.val}}" data-index="{{index}}" placeholder="{{item.tips}}">
+      </textarea>
+    </view>
+  </view>
+</scroll-view>
+<voice bind:myevent="setGaiyao" bind:myevent2="nextStep" bind:myevent3="addValue"></voice>

@@ -1,11 +1,16 @@
 .item{
   height: 242rpx;
-  border-bottom: 1rpx solid #E1E3E5;
-  margin: 0 30rpx;
+  
+  
   padding: 40rpx 0;
   box-sizing: border-box;
   font-size: 24rpx;
   color: #999;
+  position: relative;
+  border-bottom: 1rpx solid #E1E3E5;
+}
+.content{
+  margin: 0 30rpx;
 }
 .item .title{
   color: #191F25;
@@ -44,4 +49,16 @@
   background: #CAD0D7;
   color: #fff;
   border: none;
+}
+.item .remove{
+  width: 160rpx;  
+  height: 100%;  
+  background-color: red; 
+  color: white; 
+  position: absolute;  
+  top: 0;  
+  right: -160rpx;  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;
 }

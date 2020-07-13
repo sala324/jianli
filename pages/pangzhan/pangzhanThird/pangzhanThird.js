@@ -25,6 +25,9 @@ Page({
         arr:JSON.parse(options.default),
         reset:true
       })
+      wx.setNavigationBarTitle({
+        title: '修改旁站记录——第三步',
+      })
     }
   },
   nextStep(){

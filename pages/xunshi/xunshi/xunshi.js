@@ -2,22 +2,25 @@
 Page({
   data: {
     showCopy:false,
-    title:'旁站监理的部位或工序:电缆管群、电缆井土石方开挖',
-    buwei:'巡视部位2',
-    xianchang:'施工现场2',
-    wenti:'存在的问题2',
-    cuoshi:'措施2',
+    
+    reset:true,
+    arr2:[{title:'现场存在问题',name:'detail',val:'问题111'},{title:'监理有关措施',name:'bianhao',val:'措施22222'}],
+    arr:[{name:'aa',val:'旁站监理的部位或工序:电缆管群1',tips:'输入1'},{name:'bb',val:'旁站监理的部位或工序:电缆管群旁站监理的部位或工序:电缆管群2',tips:'输入2'},{name:'cc',val:'旁站监理的部位或工序:电缆管群33',tips:'输入33333'},{name:'dd',val:'旁站监理的部位或工序:电缆管群44',tips:'输入4444'},{name:'ee',val:'旁站监理的部位或工序:电缆管群55',tips:'输入555555'}],
+    info2:{
+      wenti:'存在的问题2',
+      cuoshi:'措施2',
+    },
     info:{
       name:'白沙洲变电枢纽二期项目',
       id:'0098654',
       date:'2020-05-06 ',
-      reset:true
+      position:'巡视部位1111'
     },
     imgArr:['../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png']
   },
   resetDetail(e){
     wx.navigateTo({
-      url: e.currentTarget.dataset.page+'?default='+e.currentTarget.dataset.detail,
+      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail),
     })
   },
   delItem(e){

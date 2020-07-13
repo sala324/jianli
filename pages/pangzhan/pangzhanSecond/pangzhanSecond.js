@@ -1,55 +1,50 @@
+let plugin = requirePlugin("QCloudAIVoice");
+let manager = plugin.getRecordRecognitionManager()
+plugin.setQCloudSecret(1302214974, 'AKIDvafTyD2uf9O5Wdie4C2gYDYhbFdN799s', 'e2A2eHdttbMrFNE8lIYquze3BNek59xO', true); 
 const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
     itemCheck:'aa',
-    index3:0,
-    index4:0,
+    index1:0,
+    oldValues:'',
     navInfo:{
       type:1,
       step:2
     },
-    arr:[
-      {
-        title:'一、作业必备条件检查',
-        items:[{name:'aa',val:''},{name:'bb',val:''},{name:'cc',val:''}]
-    },
-    {
-      title:'二、作业必备条件检查2',
-      items:[{name:'dd',val:''},{name:'ee',val:''},{name:'ff',val:''}]
-  }
-  ],
+    arr:[{name:'aa',val:'',tips:'输入1'},{name:'bb',val:'',tips:'输入2'},{name:'cc',val:'',tips:'输入33333'},{name:'dd',val:'',tips:'输入4444'},{name:'ee',val:'',tips:'输入555555'}],
     dateEnd:''
   },
   changeItem(e){
-    let index=e.currentTarget.dataset.index3
-    let index2=e.currentTarget.dataset.index4
-    let oldValues=this.data.arr[index].items[index2].val
+    let index=e.currentTarget.dataset.index
+    let oldValues=this.data.arr[index].val
     this.setData({
-      index3:index,
-      index4:index2,
+      index1:index,
       oldValues:oldValues
+    })
+  },
+  addValue(e){
+    this.setData({
+      oldValues:this.data.oldValues+e.detail
     })
   },
   changeValue(e){
     let arr=this.data.arr
-    let index=e.currentTarget.dataset.index3
-    let index2=e.currentTarget.dataset.index4
-    arr[index].items[index2].val=e.detail.value
+    let index=e.currentTarget.dataset.index
+    arr[index].val=e.detail.value
     this.setData({
       arr:arr,
-      index3:index,
-      index4:index2,
+      index1:index,
       oldValues:e.detail.value
     })
   },
   setGaiyao(e){
     let arr=this.data.arr
-    let index=this.data.index3
-    let index2=this.data.index4
-    arr[index].items[index2].val=this.data.oldValues+e.detail
+    let index=this.data.index1
+    arr[index].val=this.data.oldValues+e.detail
     this.setData({
-      arr:arr
+      arr:arr,
+      oldValues:this.data.oldValues+e.detail
     })
   },
   onLoad(options){
@@ -57,6 +52,9 @@ Page({
       this.setData({
         arr:JSON.parse(options.default),
         reset:true
+      })
+      wx.setNavigationBarTitle({
+        title: '修改旁站记录——第二步',
       })
     }
   },

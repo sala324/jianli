@@ -2,6 +2,13 @@ const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
+    oldValues:'',
+    info:{
+      name:'白沙洲变电枢纽二期项目',
+      id:'0098654',
+      date:'2020-05-06 ',
+      position:''
+    },
     dateEnd:'',
     navInfo:{
             type:3,
@@ -10,36 +17,35 @@ Page({
     shuru:false
   },
   setGaiyao(e){
+    let info=this.data.info
+    info.position=this.data.oldValues+e.detail
     this.setData({
-      detail:e.detail
+      info:info,
+      oldValues:this.data.oldValues+e.detail
     })
   },
   onLoad(options){
     if(options.default){
+      let info=JSON.parse(options.default)
       this.setData({
-        detail:JSON.parse(options.default),
+        info:info,
+        oldValues:info.position,
         reset:true
       })
     }
   },
   changeDetail(e){
+    let info=this.data.info
+    info.position=e.detail.value
     this.setData({
-      detail:e.detail.value
+      info:info
     })
   },
   bindDateChange(e){
+    let info=this.data.info
+    info.date=e.detail.value
     this.setData({
-      date: e.detail.value
-    })
-  },
-  bindTimeChange1(e){
-    this.setData({
-      startTime: e.detail.value
-    })
-  },
-  bindTimeChange2(e){
-    this.setData({
-      endTime: e.detail.value
+      info:info
     })
   },
   /**
@@ -49,7 +55,7 @@ Page({
 
   },
   nextStep(){
-    util.nextStepCommon(this,'buwei','/pages/xunshi/xunshiSecond/xunshiSecond')
+    util.nextStepCommon(this,'info','/pages/xunshi/xunshiSecond/xunshiSecond','info')
     
   },
   
@@ -57,15 +63,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if(!this.data.reset){
+      let info=this.data.info
+      info.date=util.formatDate(new Date())
+      info.dateEnd=util.formatDate(new Date())
+      this.setData({
+        info:info,
+        // startTime:util.formatTime(new Date()),
+        // endTime:util.formatTime2(new Date()),
+      })
+    }
     this.setData({
-      startTime:util.formatTime(new Date()),
-      endTime:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
       dateEnd:util.formatDate(new Date())
     })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
   },
 
   /**

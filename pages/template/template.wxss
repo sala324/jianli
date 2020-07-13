@@ -22,7 +22,7 @@
   vertical-align: top;
 }
 .item .info .box.auto{
-  width: auto;
+  width: 100%;
 }
 .item .info image{
   width: 29rpx;

@@ -1,10 +1,13 @@
-<navs navInfo="{{navInfo}}"></navs>
-<view class="info">
-  <view class="item" wx:for="{{arr}}" wx:key="index">
-    <view class="title">{{item.title}}</view>
-    <textarea contenteditable="true" auto-height="true" type="text" placeholder="请输入" class="itemDetail {{index3===index&&index4===index2?'active':''}}" bindinput="changeValue" bindfocus="changeItem" value="{{cell.val}}" data-index3="{{index}}" data-index4="{{index2}}" wx:for="{{item.items}}" wx:for-item="cell" wx:key="index2" wx:for-index='index2'>
-    </textarea>
+<scroll-view style="height:100vh-350rpx;overflow:scroll" scroll-y>
+  <navs navInfo="{{navInfo}}"></navs>
+  <view class="info">
+    <view class="title">一、作业必备条件检查</view>
+    
+    <view class="item {{index1===index?'active':''}}" wx:for="{{arr}}" wx:key="index">
+      <view class="tips" wx:if="{{index1===index}}">{{item.tips}}</view>
+      <textarea contenteditable="true" auto-height="true" type="text" class="itemDetail {{index1===index?'active':''}}" bindinput="changeValue" bindfocus="changeItem" value="{{item.val}}" data-index="{{index}}" placeholder="{{item.tips}}">
+      </textarea>
+    </view>
   </view>
-</view>
-<voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>
-<!-- <view class="abc"></view> -->
+</scroll-view>
+<voice bind:myevent="setGaiyao" bind:myevent2="nextStep" bind:myevent3="addValue"></voice>
