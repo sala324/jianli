@@ -1,25 +1,37 @@
 const util = require('../../../utils/util');
 Page({
   data: {
+    authority:true,
     navInfo:{
       type:4,
       step:1
     },
+    info:{
+      name:'白沙洲变电枢纽二期项目',
+      unit:'第四分队',
+      date:'',
+      detail:''
+    },
+    oldValues:'',
+    reset:false,
     index:0,
-    detail:'',
     dateEnd:'',
     shuru:false,
     array:['第一分队','第二分队','第三分队','第四分队','第五分队']
   },
   setGaiyao(e){
+    let info=this.data.info
+    info.detail=this.data.oldValues+e.detail
     this.setData({
-      detail:e.detail
+      info:info,
+      oldValues:this.data.oldValues+e.detail,
     })
   },
   onLoad(options){
     if(options.default){
       this.setData({
-        detail:JSON.parse(options.default),
+        info:JSON.parse(options.default),
+        oldValues:JSON.parse(options.default).detail,
         reset:true
       })
       wx.setNavigationBarTitle({
@@ -28,31 +40,28 @@ Page({
     }
   },
   bindUnitChange: function(e) {
+    let info=this.data.info
+    info.unit=this.data.array[e.detail.value]
     this.setData({
+      info:info,
       index: e.detail.value
     })
   },
   changeDetail(e){
+    let info=this.data.info
+    info.detail=e.detail.value
     this.setData({
-      detail:e.detail.value
+      info:info
     })
   },
   nextStep(){
-    util.nextStepCommon(this,'shiyou','/pages/lianxidan/lianxidanSecond/lianxidanSecond')
+    util.nextStepCommon(this,'info','/pages/lianxidan/lianxidanSecond/lianxidanSecond','info')
   },
   bindDateChange(e){
+    let info=this.data.info
+    info.date=e.detail.value
     this.setData({
-      date: e.detail.value
-    })
-  },
-  bindTimeChange1(e){
-    this.setData({
-      startTime: e.detail.value
-    })
-  },
-  bindTimeChange2(e){
-    this.setData({
-      endTime: e.detail.value
+      info:info
     })
   },
   /**
@@ -65,15 +74,33 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let that=this
+    wx.getSetting({
+      success(res) {
+        console.log(res)
+        let name='scope.record'
+        if(res.authSetting[name]===false){
+          that.setData({
+            authority:false
+          })
+          
+        } else {
+          that.setData({
+            authority:true
+          })
+        }
+      }
+    })
+    if(!this.data.reset){
+      let info=this.data.info
+      info.date=util.formatDate(new Date())
+      this.setData({
+        info:info
+      })
+    }
     this.setData({
-      startTime:util.formatTime(new Date()),
-      endTime:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
       dateEnd:util.formatDate(new Date())
     })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
   },
 
   /**

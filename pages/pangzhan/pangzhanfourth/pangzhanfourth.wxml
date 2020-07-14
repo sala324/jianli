@@ -3,4 +3,4 @@
   <text class="name">发现问题及时处理</text>
   <textarea value="{{detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
 </view>
-<voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>
+<voice bind:myevent="setGaiyao" bind:myevent2="nextStep" authority="true"></voice>

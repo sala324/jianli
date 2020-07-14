@@ -21,7 +21,7 @@
   <textarea value="{{info.position}}" bindinput="changeDetail" placeholder="请输入"></textarea>
 </view>
 <view class="voiceWrap">
-<voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>
+<voice bind:myevent="setGaiyao" bind:myevent2="nextStep" authority="{{authority}}"></voice>
 </view>
 
 

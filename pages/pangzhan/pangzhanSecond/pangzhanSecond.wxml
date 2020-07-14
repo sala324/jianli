@@ -10,4 +10,4 @@
     </view>
   </view>
 </scroll-view>
-<voice bind:myevent="setGaiyao" bind:myevent2="nextStep" bind:myevent3="addValue"></voice>
+<voice bind:myevent="setGaiyao" bind:myevent2="nextStep" bind:myevent3="addValue" authority="true"></voice>

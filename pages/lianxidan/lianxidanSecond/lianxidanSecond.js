@@ -2,6 +2,7 @@ const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
+    oldValues:'',
     navInfo:{
       type:4,
       step:2
@@ -9,21 +10,26 @@ Page({
     dateEnd:''
   },
   setGaiyao(e){
+    let detail=this.data.oldValues+e.detail
     this.setData({
-      detail:e.detail
+      detail:detail,
+      oldValues:this.data.oldValues+e.detail
     })
   },
   onLoad(options){
+    console.log(options)
     if(options.default){
       this.setData({
         detail:JSON.parse(options.default),
+        oldValues:JSON.parse(options.default),
         reset:true
       })
     }
   },
   changeDetail(e){
     this.setData({
-      detail:e.detail.value
+      detail:e.detail.value,
+      oldValues:e.detail.value
     })
   },
   nextStep(){

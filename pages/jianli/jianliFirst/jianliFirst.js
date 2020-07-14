@@ -1,19 +1,30 @@
 const util = require('../../../utils/util');
 Page({
   data: {
-    detail:'',
+    authority:true,
     dateEnd:'',
+    oldValues:'',
+    info:{
+      name:'白沙洲变电枢纽二期项目',
+      id:'0098654',
+      date:'',
+      detail:''
+    },
     shuru:false
   },
   setGaiyao(e){
+    let info=this.data.info
+    info.detail=this.data.oldValues+e.detail
     this.setData({
-      detail:e.detail
+      info:info,
+      oldValues:this.data.oldValues+e.detail,
     })
   },
   onLoad(options){
     if(options.default){
       this.setData({
-        detail:JSON.parse(options.default),
+        info:JSON.parse(options.default),
+        oldValues:JSON.parse(options.default).detail,
         reset:true
       })
       wx.setNavigationBarTitle({
@@ -22,16 +33,20 @@ Page({
     }
   },
   changeDetail(e){
+    let info=this.data.info
+    info.detail=e.detail.value
     this.setData({
-      detail:e.detail.value
+      info:info
     })
   },
   nextStep(){
-    util.nextStepCommon(this,'detail','/pages/jianli/jianli/jianli')
+    util.nextStepCommon(this,'info','/pages/jianli/jianli/jianli','info')
   },
   bindDateChange(e){
+    let info=this.data.info
+    info.date=e.detail.value
     this.setData({
-      date: e.detail.value
+      info: info
     })
   },
   bindTimeChange1(e){
@@ -54,15 +69,33 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let that=this
+    wx.getSetting({
+      success(res) {
+        console.log(res)
+        let name='scope.record'
+        if(res.authSetting[name]===false){
+          that.setData({
+            authority:false
+          })
+          
+        } else {
+          that.setData({
+            authority:true
+          })
+        }
+      }
+    })
+    if(!this.data.reset){
+      let info=this.data.info
+      info.date=util.formatDate(new Date())
+      this.setData({
+        info:info
+      })
+    }
     this.setData({
-      startTime:util.formatTime(new Date()),
-      endTime:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
       dateEnd:util.formatDate(new Date())
     })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
   },
 
   /**

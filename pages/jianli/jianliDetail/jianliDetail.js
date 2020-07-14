@@ -6,31 +6,15 @@ Page({
       name:'白沙洲变电枢纽二期项目',
       id:'0098654',
       date:'2020-05-06 ',
-      weather:'有雨，28度',
-      danwei:'供电局施工队',
-      title:'旁站监理的部位或工序:电缆管群、电缆井土石方开挖',
-      startTime:'2020-05-06 12:45',
-      endTime:'2020-05-06 13:45',
-      detail:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。施工现场工器具满足施工要求，作业人员安全防护用品佩戴正确齐全。施工现场布置有标识牌、警示牌、夜间警示灯及安全防护栏杆。土方开挖专项方案已审批。检查施工现场作业票填写情况，作业票填写规范并已全员签字，安全交底已落实，施工现场布置符合安全文明施工要求。现场监理人员检查基坑边坡已按设计要求进行支护，机械运土及铲土时，有严禁在基坑周边行走运载车辆的管理措施，上下基坑有安全通道，基坑有良好的排水措施，基',
-      question:'无',
-      date2:'2020-05-06',
+      detail:'日志详情222电枢纽二期项目v,白沙洲变电枢纽二期项目',
       reset:false
     },
+    content:'内容骨康胶囊看过呢你',
     imgArr:['../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png']
   },
   resetDetail(e){
     wx.navigateTo({
-      url: e.currentTarget.dataset.page,
-    })
-  },
-  resetDetail1(){
-    wx.navigateTo({
-      url: '/pages/pangzhanFirst/pangzhanFirst',
-    })
-  },
-  resetDetail1(){
-    wx.navigateTo({
-      url: '/pages/pangzhanFirst/pangzhanFirst',
+      url: e.currentTarget.dataset.page+'?default='+ JSON.stringify(e.currentTarget.dataset.detail),
     })
   },
   delItem(e){

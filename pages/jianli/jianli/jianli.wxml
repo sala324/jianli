@@ -1,5 +1,5 @@
 <import src ="../../template/template.wxml"/>
-<template is="mokuai3" data="{{...info,detail:detail}}"/>
+<template is="mokuai3" data="{{info}}"/>
 <img-upload imgArr="{{imgArr}}" class="uploadImg" bind:delItem="delItem">
 </img-upload>
 <navigator url="/pages/jianli/jianliSign/jianliSign" class="btn">下一步</navigator>

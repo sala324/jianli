@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "查看旁站记录详情",
+  "navigationBarTitleText": "查看监理日志详情",
   "usingComponents": {
     "img-upload": "/components/imgUpload/index",
     "copy-link": "/components/copyLink/index"

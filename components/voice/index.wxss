@@ -45,3 +45,31 @@
   text-align: center;
   margin: 30rpx auto;
 }
+.mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 3;
+}
+.mask .wrap{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 400rpx;
+  height: 200rpx;
+  background: #fff;
+  margin:auto;
+  padding: 30rpx 0;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+}
+.mask .wrap .title{
+  font-size: 30rpx;
+  margin-bottom: 24rpx;
+}

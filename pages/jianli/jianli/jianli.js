@@ -2,18 +2,19 @@
 Page({
   data: {
     showCopy:false,
-    detail:'日志详情222',
     info:{
       name:'白沙洲变电枢纽二期项目',
       id:'0098654',
       date:'2020-05-06 ',
+      detail:'日志详情222电枢纽二期项目v,白沙洲变电枢纽二期项目',
       reset:true
     },
+    content:'内容骨康胶囊看过呢你',
     imgArr:['../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png']
   },
   resetDetail(e){
     wx.navigateTo({
-      url: e.currentTarget.dataset.page+'?default='+e.currentTarget.dataset.detail,
+      url: e.currentTarget.dataset.page+'?default='+ JSON.stringify(e.currentTarget.dataset.detail),
     })
   },
   delItem(e){

@@ -1,52 +1,57 @@
-<navs navInfo="{{navInfo}}"></navs>
-<view class="lineItem">
-  <text class="name">工程名称</text>
-  <text class="detail">{{info.title}}</text>
-</view>
-<view class="lineItem">
-  <text class="name">编号</text>
-  <text class="detail">0098654</text>
-</view>
-<view class="lineItem">
-  <text class="name">日期</text>
-  <picker mode="date" class="detail" value="{{info.date}}" data-name="date" start="2015-09-01" end="{{dateEnd}}" bindchange="changeItem">
-    <view class="picker" wx:if="{{!info.date}}">
-      请选择 >
-    </view>
-    <view wx:else>{{info.date}}</view>
-  </picker>
-</view>
-<view class="lineItem">
-  <text class="name">天气</text>
-  <text class="detail">阴天有雨，35度</text>
-</view>
-<view class="lineItem">
-  <text class="name">施工单位</text>
-  <text class="detail">供电局施工队</text>
-</view>
-<view class="lineItem">
-  <text class="name">开始时间</text>
-  <picker mode="time" value="{{info.startTime}}" data-name="startTime" start="{{info.startTime}}" end="23:59" bindchange="changeItem">
-    <view class="picker">{{info.startTime}}</view>
-  </picker>
-</view>
-<view class="lineItem">
-  <text class="name">结束时间</text>
-  <picker mode="time" value="{{info.endTime}}" data-name="endTime" start="{{info.startTime}}" end="23:59" bindchange="changeItem">
-    <view class="picker">{{info.endTime}}</view>
-  </picker>
-</view>
-<view class="lineItem">
-  <text class="name">旁站监理的工序</text>
-  <picker bindchange="changeItem" value="{{info.index}}" data-name="index" range="{{gongXuArr}}">
-    <view class="picker">{{gongXuArr[info.index]}} >
-    </view>
-  </picker>
-</view>
-<view class="lineItem">
-  <text class="name">旁站监理的部位</text>
-  <input class="detail input" value="{{info.position}}" data-name="position" bindinput="changeItem" placeholder="请输入"></input>
-</view>
-<voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>
+<scroll-view style="height:100vh-350rpx;overflow:scroll" scroll-y>
+  <navs navInfo="{{navInfo}}"></navs>
+  
+  <view class="lineItem">
+    <text class="name">工程名称</text>
+    <text class="detail">{{info.title}}</text>
+  </view>
+  <view class="lineItem">
+    <text class="name">编号</text>
+    <text class="detail">{{info.id}}</text>
+  </view>
+  <view class="lineItem">
+    <text class="name">日期</text>
+    <picker mode="date" class="detail" value="{{info.date}}" data-name="date" start="2015-09-01" end="{{dateEnd}}" bindchange="changeItem">
+      <view class="picker" wx:if="{{!info.date}}">
+        请选择 >
+      </view>
+      <view wx:else>{{info.date}}</view>
+    </picker>
+  </view>
+  <view class="lineItem">
+    <text class="name">天气</text>
+    <text class="detail">{{info.weather}}</text>
+  </view>
+  <view class="lineItem">
+    <text class="name">施工单位</text>
+    <text class="detail">{{info.shigong}}</text>
+  </view>
+  <view class="lineItem">
+    <text class="name">开始时间</text>
+    <picker mode="time" value="{{info.startTime}}" data-name="startTime" start="{{info.startTime}}" end="23:59" bindchange="changeItem">
+      <view class="picker">{{info.startTime}}</view>
+    </picker>
+  </view>
+  <view class="lineItem">
+    <text class="name">结束时间</text>
+    <picker mode="time" value="{{info.endTime}}" data-name="endTime" start="{{info.startTime}}" end="23:59" bindchange="changeItem">
+      <view class="picker">{{info.endTime}}</view>
+    </picker>
+  </view>
+  <view class="lineItem">
+    <text class="name">旁站监理的工序</text>
+    <picker bindchange="changeItem" value="{{info.index}}" data-name="index" range="{{gongXuArr}}">
+      <view class="picker">{{gongXuArr[info.index]}} >
+      </view>
+    </picker>
+  </view>
+  <view class="lineItem">
+    <text class="name">旁站监理的部位</text>
+    <input class="detail input" value="{{info.position}}" data-name="position" bindinput="changeItem" placeholder="请输入"></input>
+  </view>
+</scroll-view>
+<!-- <button open-type="openSetting" type="primary" wx:if="{{!authority}}" size="mini" bindopensetting="callback">打开设置页</button> -->
+<!-- <button open-type="openSetting" type="primary" size="mini" bindopensetting="callback">打开设置页</button> -->
+<voice bind:myevent="setGaiyao" bind:myevent2="nextStep" authority="{{authority}}"></voice>
 
 

@@ -4,6 +4,7 @@ Page({
     detail:'',
     bianhao:'',
     activeNav:0,
+    oldValues:'',
     arr:[{title:'检验结论',name:'detail',val:''},{title:'检验仪器及编号',name:'bianhao',val:''}],
     navInfo:{
       type:2,
@@ -14,15 +15,17 @@ Page({
   setGaiyao(e){
     let index=this.data.activeNav
     let arr=this.data.arr
-    arr[index].val=e.detail.value
+    arr[index].val=this.data.oldValues+e.detail
     this.setData({
-      arr:arr
+      arr:arr,
+      oldValues:this.data.oldValues+e.detail
     })
   },
   onLoad(options){
     if(options.default){
       this.setData({
         arr:JSON.parse(options.default),
+        oldValues:JSON.parse(options.default)[0].val,
         reset:true
       })
       wx.setNavigationBarTitle({
@@ -31,7 +34,9 @@ Page({
     }
   },
   checkitem(e){
+    let oldValues=this.data.arr[e.currentTarget.dataset.index].val
     this.setData({
+      oldValues:oldValues,
       activeNav:e.currentTarget.dataset.index
     })
   },
@@ -42,7 +47,6 @@ Page({
     this.setData({
       arr:arr
     })
-    console.log(this.data.arr)
   },
   nextStep(){
     util.nextStepCommon(this,'arr2','/pages/jingyan/jingyan/jingyan','arr')

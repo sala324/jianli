@@ -106,11 +106,11 @@
   <view class="wrap">
     <view class="item">
       <text class="name">工程名称</text>
-      <view class="info">{{name}}</view>
+      <view class="info">{{info.name}}</view>
     </view>
     <view class="item">
         <text class="name">日期</text>
-        <view class="info">2020-05-06 星期三</view>
+        <view class="info">{{info.date}}</view>
     </view>
     <view class="item">
       <text class="name">天气</text>
@@ -124,7 +124,7 @@
     </view>
     <view class="item">
       <text class="name">日志详情</text>
-      <view class="info"><view class="box {{!reset?'auto':''}}">{{detail}}</view> <image wx:if="{{reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{detail}}"  data-page="/pages/jianli/jianliFirst/jianliFirst"></image> </view>
+      <view class="info"><view class="box {{!info.reset?'auto':''}}">{{info.detail}}</view> <image wx:if="{{info.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{info}}"  data-page="/pages/jianli/jianliFirst/jianliFirst"></image> </view>
     </view>
   </view>
 </template>
@@ -208,23 +208,27 @@
   <view class="wrap">
     <view class="item">
       <text class="name">工程名称</text>
-      <view class="info">{{name}}</view>
+      <view class="info">{{info.name}}</view>
     </view>
     <view class="item">
         <text class="name">编号</text>
-        <view class="info">0098645</view>
+        <view class="info">{{info.id}}</view>
     </view>
     <view class="item">
       <text class="name">联系单位</text>
-      <view class="info">第一分队</view>
+      <view class="info">{{info.unit}}</view>
     </view>
-    <view class="item">
+    <view class="item" >
       <text class="name">事由</text>
-      <view class="info"><view class="box {{!reset?'auto':''}}">{{shiyou}}</view> <image wx:if="{{reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{shiyou}}"  data-page="/pages/lianxidan/lianxidanFirst/lianxidanFirst"></image> </view>
+      <view class="info"><view class="box {{!info.reset?'auto':''}}">{{info.detail}}</view> <image wx:if="{{info.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{info}}"  data-page="/pages/lianxidan/lianxidanFirst/lianxidanFirst"></image></view>
     </view>
+    <!-- <view class="item">
+      <text class="name">事由</text>
+      <view class="info"><view class="box {{!reset?'auto':''}}">{{info.detail}}</view> <image wx:if="{{info.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{info}}"  data-page="/pages/lianxidan/lianxidanFirst/lianxidanFirst"></image> </view>
+    </view> -->
     <view class="item">
       <text class="name">内容</text>
-      <view class="info"><view class="box {{!reset?'auto':''}}">{{content}}</view> <image wx:if="{{reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{content}}"  data-page="/pages/lianxidan/lianxidanSecond/lianxidanSecond"></image> </view>
+      <view class="info"><view class="box {{!info.reset?'auto':''}}">{{content}}</view> <image wx:if="{{info.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{content}}"  data-page="/pages/lianxidan/lianxidanSecond/lianxidanSecond"></image> </view>
     </view>
   </view>
 </template>

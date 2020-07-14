@@ -1,74 +1,76 @@
-<navs navInfo="{{navInfo}}"></navs>
-<view class="lineItem">
-  <text class="name">工程名称</text>
-  <text class="detail">白沙洲变电枢纽二期项目</text>
-</view>
-<view class="lineItem">
-  <text class="name">编号</text>
-  <text class="detail">0098654</text>
-</view>
-<view class="lineItem">
-  <text class="name">日期</text>
-  <picker mode="date" class="detail" value="{{date}}" start="2015-09-01" end="{{dateEnd}}" bindchange="bindDateChange">
-    <view class="picker" wx:if="{{!date}}">
-      请选择 >
-    </view>
-    <view wx:else>{{date}}</view>
-  </picker>
-</view>
-<view class="lineItem">
-  <text class="name">检验对象分类</text>
-  <picker class="detail" bindchange="bindPickerChange" wx:if="{{!reset}}" value="{{index}}" range="{{array}}">
-    <view class="picker">
-      {{array[index]}} >
-    </view>
-  </picker>
-  <text class="detail" wx:else>{{array[index]}}</text>
-</view>
-<block wx:if="{{index==1}}">
+<scroll-view style="height:100vh-350rpx;overflow:scroll" scroll-y>
+  <navs navInfo="{{navInfo}}"></navs>
   <view class="lineItem">
-    <text class="name">工序名称</text>
-    <picker class="detail" bindchange="changeItem" data-index="index2" data-arr="{{array2}}" data-name="processName" value="{{index2}}" range="{{array2}}">
-      <view class="picker">
-        {{array2[index2]}} >
+    <text class="name">工程名称</text>
+    <text class="detail">{{baseInfo.title}}</text>
+  </view>
+  <view class="lineItem">
+    <text class="name">编号</text>
+    <text class="detail">{{baseInfo.id}}</text>
+  </view>
+  <view class="lineItem">
+    <text class="name">日期</text>
+    <picker mode="date" class="detail" value="{{baseInfo.date}}" start="2015-09-01" end="{{dateEnd}}" bindchange="bindDateChange">
+      <view class="picker" wx:if="{{!baseInfo.date}}">
+        请选择 >
       </view>
+      <view wx:else>{{baseInfo.date}}</view>
     </picker>
   </view>
   <view class="lineItem">
-    <text class="name">施工单位</text>
-    <picker class="detail" bindchange="changeItem" data-index="index3" data-arr="{{array3}}" data-name="buildUnits"  value="{{index3}}" range="{{array3}}">
+    <text class="name">检验对象分类</text>
+    <picker class="detail" bindchange="bindPickerChange" wx:if="{{!reset}}" value="{{index}}" range="{{array}}">
       <view class="picker">
-        {{array3[index3]}} >
+        {{array[index]}} >
       </view>
     </picker>
+    <text class="detail" wx:else>{{array[index]}}</text>
   </view>
-</block>
-<block wx:else>
-  <view class="lineItem">
-    <view class="item {{activeNav=='name'?'active':''}}">
-      <text class="name">材料名称</text>
-      <input class="detail" value="{{baseInfo.name}}" bindfocus="chooseItem" bindinput="changeValue" data-name="name" placeholder="单行输入"></input>
+  <block wx:if="{{index==1}}">
+    <view class="lineItem">
+      <text class="name">工序名称</text>
+      <picker class="detail" bindchange="changeItem" data-index="index2" data-arr="{{array2}}" data-name="processName" value="{{index2}}" range="{{array2}}">
+        <view class="picker">
+          {{array2[index2]}} >
+        </view>
+      </picker>
     </view>
-  </view>
-  <view class="lineItem">
-    <view class="item {{activeNav=='actory'?'active':''}}">
-      <text class="name">生产厂家</text>
-      <input class="detail" value="{{baseInfo.actory}}" bindfocus="chooseItem" bindinput="changeValue" data-name="actory" placeholder="单行输入"></input>
+    <view class="lineItem">
+      <text class="name">施工单位</text>
+      <picker class="detail" bindchange="changeItem" data-index="index3" data-arr="{{array3}}" data-name="buildUnits"  value="{{index3}}" range="{{array3}}">
+        <view class="picker">
+          {{array3[index3]}} >
+        </view>
+      </picker>
     </view>
-  </view>
-  <view class="lineItem">
-    <view class="item {{activeNav=='size'?'active':''}}">
-      <text class="name">材料型号规格</text>
-      <input class="detail" value="{{baseInfo.size}}"  bindfocus="chooseItem" bindinput="changeValue" data-name="size" placeholder="单行输入"></input>
+  </block>
+  <block wx:else>
+    <view class="lineItem">
+      <view class="item {{activeNav=='name'?'active':''}}">
+        <text class="name">材料名称</text>
+        <input class="detail" value="{{baseInfo.name}}" bindfocus="chooseItem" bindinput="changeValue" data-name="name" placeholder="单行输入"></input>
+      </view>
     </view>
-  </view>
-  <view class="lineItem">
-    <view class="item {{activeNav=='position'?'active':''}}">
-      <text class="name">使用部位</text>
-      <input class="detail" value="{{baseInfo.position}}"  bindfocus="chooseItem" bindinput="changeValue" data-name="position" placeholder="单行输入"></input>
+    <view class="lineItem">
+      <view class="item {{activeNav=='actory'?'active':''}}">
+        <text class="name">生产厂家</text>
+        <input class="detail" value="{{baseInfo.actory}}" bindfocus="chooseItem" bindinput="changeValue" data-name="actory" placeholder="单行输入"></input>
+      </view>
     </view>
-  </view>
-</block>
-<voice bind:myevent="setGaiyao" bind:myevent2="nextStep"></voice>
+    <view class="lineItem">
+      <view class="item {{activeNav=='size'?'active':''}}">
+        <text class="name">材料型号规格</text>
+        <input class="detail" value="{{baseInfo.size}}"  bindfocus="chooseItem" bindinput="changeValue" data-name="size" placeholder="单行输入"></input>
+      </view>
+    </view>
+    <view class="lineItem">
+      <view class="item {{activeNav=='position'?'active':''}}">
+        <text class="name">使用部位</text>
+        <input class="detail" value="{{baseInfo.position}}"  bindfocus="chooseItem" bindinput="changeValue" data-name="position" placeholder="单行输入"></input>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+<voice bind:myevent="setGaiyao" bind:myevent2="nextStep" authority="{{authority}}"></voice>
 
 

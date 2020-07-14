@@ -1,7 +1,6 @@
 
 <import src ="../../template/template.wxml"/>
 <template is="mokuai" data="{{info,arr,reset,arr2,des,wenti}}"/>
-<img-upload imgArr="{{imgArr}}" class="uploadImg" bind:delItem="delItem">
-</img-upload>
+<template is="imgs" data="{{imgArr:imgArr}}"/>
 <view class="btn" bindtap="showCopyBtn">下载PDF文件</view>
 <copy-link wx:if="{{showCopy}}" bind:myevent="hideCopy"></copy-link>

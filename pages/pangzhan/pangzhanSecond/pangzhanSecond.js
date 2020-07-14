@@ -60,7 +60,8 @@ Page({
   },
   changeDetail(e){
     this.setData({
-      detail:e.detail.value
+      detail:e.detail.value,
+      oldValues:e.detail.value
     })
   },
   nextStep(){

@@ -4,11 +4,13 @@ Page({
     showCopy:false,
     detail:'日志详情222',
     shiyou:'shiyou',
-    content:'content',
+    content:'内容香香你赶快来',
     info:{
       name:'白沙洲变电枢纽二期项目',
-      id:'0098654',
-      date:'2020-05-06 ',
+      id:'0087690',
+      unit:'第四分队',
+      date:'2020-7-14',
+      detail:'详情请看卡公开',
       reset:true
     },
     imgArr:['../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png']

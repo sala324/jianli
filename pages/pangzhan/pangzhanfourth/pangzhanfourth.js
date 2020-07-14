@@ -2,6 +2,7 @@ const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
+    oldValues:'',
     navInfo:{
       type:1,
       step:4
@@ -9,14 +10,17 @@ Page({
     dateEnd:''
   },
   setGaiyao(e){
+    let detail=this.data.oldValues+e.detail
     this.setData({
-      detail:e.detail
+      detail:detail,
+      oldValues:this.data.oldValues+e.detail
     })
   },
   onLoad(options){
     if(options.default){
       this.setData({
         detail:JSON.parse(options.default),
+        oldValues:JSON.parse(options.default),
         reset:true
       })
       wx.setNavigationBarTitle({
@@ -26,7 +30,8 @@ Page({
   },
   changeDetail(e){
     this.setData({
-      detail:e.detail.value
+      detail:e.detail.value,
+      oldValues:e.detail.value
     })
   },
   nextStep(){

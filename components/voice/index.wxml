@@ -12,3 +12,9 @@
   </view>
 </view>
 <view class="voiceBtnBox"></view>
+<view class="mask" wx:if="{{showDialog}}">
+  <view class="wrap">
+    <view class="title">话筒功能必须开启麦克风</view>
+    <button open-type="openSetting" type="primary" size="mini" bindopensetting="callback">打开设置页</button>
+  </view>
+</view>

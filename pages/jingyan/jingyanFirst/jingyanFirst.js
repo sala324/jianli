@@ -4,6 +4,7 @@ Page({
     detail:'',
     dateEnd:'',
     index:0,
+    authority:true,
     activeNav:'name',
     array:['材料','工序'],
     array2:['桩基工程1','桩基工程2','桩基工程部位2','桩基工程部位3'],
@@ -12,6 +13,10 @@ Page({
     index3:0,
     reset:false,
     baseInfo:{
+      title:'白沙洲变电枢纽二期项目',
+      id:'0098564',
+      date:'',
+      type:0,
       name:'',
       actory:'',
       size:'',
@@ -37,7 +42,6 @@ Page({
       baseInfo:info,
       activeNav:name
     })
-    console.log(this.data.activeNav)
   },
   setGaiyao(e){
     let name=this.data.activeNav
@@ -80,17 +84,14 @@ Page({
       })
     }
   },
-  changeDetail(e){
-    this.setData({
-      detail:e.detail.value
-    })
-  },
   nextStep(){
     util.nextStepCommon(this,'baseInfo','/pages/jingyan/jingyanSecond/jingyanSecond','baseInfo')
   },
   bindDateChange(e){
+    let info=this.data.baseInfo
+    info.date=e.detail.value
     this.setData({
-      date: e.detail.value
+      baseInfo: info
     })
   },
   /**
@@ -103,15 +104,33 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let that=this
+    wx.getSetting({
+      success(res) {
+        console.log(res)
+        let name='scope.record'
+        if(res.authSetting[name]===false){
+          that.setData({
+            authority:false
+          })
+          
+        } else {
+          that.setData({
+            authority:true
+          })
+        }
+      }
+    })
+    if(!this.data.reset){
+      let info=this.data.baseInfo
+      info.date=util.formatDate(new Date())
+      this.setData({
+        baseInfo:info
+      })
+    }
     this.setData({
-      startTime:util.formatTime(new Date()),
-      endTime:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
       dateEnd:util.formatDate(new Date())
     })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
   },
 
   /**

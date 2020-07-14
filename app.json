@@ -1,13 +1,13 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/xunshi/xunshi/xunshi",
     "pages/pangzhan/pangzhanFirst/pangzhanFirst",
+    "pages/jingyan/jingyanFirst/jingyanFirst",
+    "pages/xunshi/xunshi/xunshi",
     "pages/pangzhan/pangzhanSecond/pangzhanSecond",
     "pages/jingyan/jingyan/jingyan",
     "pages/jingyan/jingyanThird/jingyanThird",
     "pages/jingyan/jingyanSecond/jingyanSecond",
-    "pages/jingyan/jingyanFirst/jingyanFirst",
     "pages/jingyan/jingyanList/jingyanList",
     "pages/pangzhan/pangzhan/pangzhan",
     "pages/pangzhan/pangzhanThird/pangzhanThird",
