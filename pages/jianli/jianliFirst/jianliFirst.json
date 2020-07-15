@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "新增监理日志详情",
   "usingComponents": {
-    "voice": "/components/voice/index",
+    "voice": "/components/voice2/index",
     "btn": "/components/btn/index"
   }
 }

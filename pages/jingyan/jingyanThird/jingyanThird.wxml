@@ -1,4 +1,4 @@
-<navs navInfo="{{navInfo}}"></navs>
+<navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
 <view class="jilu {{activeNav==index?'active':''}}" wx:for="{{arr}}" wx:key="index">
   <text class="name">{{item.title}}</text>
   <textarea value="{{item.val}}" bindinput="changeDetail" data-index="{{index}}" data-name="{{item.name}}" bindfocus="checkitem" placeholder="请输入"></textarea>

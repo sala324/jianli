@@ -5,21 +5,19 @@
   right: 0;
   background: #fff;
   z-index: 1;
-  height: 150rpx;
+  height: 300rpx;
   box-sizing: border-box;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .voiceBtnBox{
-  height: 150rpx;
+  height: 300rpx;
 }
-.voice{
+.voice,.nextBtn{
   width: 400rpx;
   border-radius: 20rpx;
   background:#3197FB;
   color: #fff;
+  margin: 40rpx auto;
   padding: 20rpx;
   font-size: 32rpx;
 }

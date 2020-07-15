@@ -5,6 +5,7 @@
     class="voice {{talking?'talking':''}}"
     >{{title}}
   </cover-view>
+  <cover-view class="nextBtn" bindtap="clickBtn">下一步</cover-view>
 </cover-view>
 <view class="voiceBtnBox"></view>
 <view class="mask" wx:if="{{showDialog}}">

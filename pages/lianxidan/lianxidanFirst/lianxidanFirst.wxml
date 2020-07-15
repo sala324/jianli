@@ -1,4 +1,4 @@
-<navs navInfo="{{navInfo}}"></navs>
+<navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
 <view class="lineItem">
   <text class="name">工程名称</text>
   <text class="detail">{{info.name}}</text>
@@ -25,6 +25,6 @@
   <text class="name">事由</text>
   <textarea value="{{info.detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
 </view>
-<voice bind:myevent="setGaiyao" bind:myevent2="nextStep" authority="{{authority}}"></voice>
+<voice bind:myevent="setGaiyao" authority="{{authority}}"></voice>
 
 

@@ -1,11 +1,7 @@
 <scroll-view style="height:100vh-350rpx;overflow:scroll" scroll-y>
-  <navs navInfo="{{navInfo}}"></navs>
+  <navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
   <view class="lineItem">
-    <text class="name">工程名称</text>
-    <text class="detail">{{baseInfo.title}}</text>
-  </view>
-  <view class="lineItem">
-    <text class="name">编号</text>
+    <text class="name">{{baseInfo.title}}</text>
     <text class="detail">{{baseInfo.id}}</text>
   </view>
   <view class="lineItem">
@@ -71,6 +67,6 @@
     </view>
   </block>
 </scroll-view>
-<voice bind:myevent="setGaiyao" bind:myevent2="nextStep" authority="{{authority}}"></voice>
+<voice bind:myevent="setGaiyao" authority="{{authority}}"></voice>
 
 

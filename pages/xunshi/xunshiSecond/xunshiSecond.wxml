@@ -1,5 +1,5 @@
 <scroll-view style="height:100vh-350rpx;overflow:scroll" scroll-y>
-  <navs navInfo="{{navInfo}}"></navs>
+  <navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
   <view class="info">
     <view class="title">施工现场安全文明施工评价</view>
     
@@ -10,4 +10,4 @@
     </view>
   </view>
 </scroll-view>
-<voice bind:myevent="setGaiyao" bind:myevent2="nextStep" bind:myevent3="addValue" authority="true"></voice>
+<voice bind:myevent="setGaiyao" bind:myevent3="addValue" authority="true"></voice>

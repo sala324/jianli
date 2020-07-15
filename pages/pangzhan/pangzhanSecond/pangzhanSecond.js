@@ -12,7 +12,7 @@ Page({
       type:1,
       step:2
     },
-    arr:[{name:'aa',val:'',tips:'输入1'},{name:'bb',val:'',tips:'输入2'},{name:'cc',val:'',tips:'输入33333'},{name:'dd',val:'',tips:'输入4444'},{name:'ee',val:'',tips:'输入555555'}],
+    arr:[{name:'aa',val:'',tips:'输入1'},{name:'bb',val:'',tips:'输入2'},{name:'cc',val:'',tips:'输入33333'},{name:'dd',val:'',tips:'输入4444'},{name:'ee',val:'',tips:'输入555555'},{name:'ff',val:'',tips:'输入33333'},{name:'gg',val:'',tips:'输入4444'},{name:'11',val:'',tips:'输入555555'}],
     dateEnd:''
   },
   changeItem(e){

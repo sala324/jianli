@@ -1,22 +1,26 @@
-<view class="navWrap" >
-  <block wx:if="{{navInfo.type==1}}">
-    <view class="navItem {{navInfo.step>=1?'active':''}}"><text class="num">1</text> 基础信息</view>
-    <view class="navItem {{navInfo.step>=2?'active':''}}"><text class="num">2</text> 必备检查</view>
-    <view class="navItem {{navInfo.step>=3?'active':''}}"><text class="num">3</text> 风控检查</view>
-    <view class="navItem {{navInfo.step>=4?'active':''}}"><text class="num">4</text> 问题</view>
-  </block>
-  <block wx:elif="{{navInfo.type==2}}">
-    <view class="navItem {{navInfo.step>=1?'active':''}}"><text class="num">1</text> 基础信息</view>
-    <view class="navItem {{navInfo.step>=2?'active':''}}"><text class="num">2</text> 质检结果</view>
-    <view class="navItem {{navInfo.step>=3?'active':''}}"><text class="num">3</text> 质检结论</view>
-  </block>
-  <block wx:elif="{{navInfo.type==3}}">
-    <view class="navItem {{navInfo.step>=1?'active':''}}"><text class="num">1</text> 基础信息</view>
-    <view class="navItem {{navInfo.step>=2?'active':''}}"><text class="num">2</text> 施工评价</view>
-    <view class="navItem {{navInfo.step>=3?'active':''}}"><text class="num">3</text> 存在问题</view>
-  </block>
-  <block wx:elif="{{navInfo.type==4}}">
-    <view class="navItem {{navInfo.step>=1?'active':''}}"><text class="num">1</text> 基础信息</view>
-    <view class="navItem {{navInfo.step>=2?'active':''}}"><text class="num">2</text> 内容</view>
-  </block>
+<view class="wrap" >
+  <view class="navWrap">
+    <block wx:if="{{navInfo.type==1}}">
+      <view class="navItem {{navInfo.step>=1?'active':''}}"><text class="num">1</text> 基础信息</view>
+      <view class="navItem {{navInfo.step>=2?'active':''}}"><text class="num">2</text> 必备检查</view>
+      <view class="navItem {{navInfo.step>=3?'active':''}}"><text class="num">3</text> 风控检查</view>
+      <view class="navItem {{navInfo.step>=4?'active':''}}"><text class="num">4</text> 问题</view>
+    </block>
+    <block wx:elif="{{navInfo.type==2}}">
+      <view class="navItem {{navInfo.step>=1?'active':''}}"><text class="num">1</text> 基础信息</view>
+      <view class="navItem {{navInfo.step>=2?'active':''}}"><text class="num">2</text> 质检结果</view>
+      <view class="navItem {{navInfo.step>=3?'active':''}}"><text class="num">3</text> 质检结论</view>
+    </block>
+    <block wx:elif="{{navInfo.type==3}}">
+      <view class="navItem {{navInfo.step>=1?'active':''}}"><text class="num">1</text> 基础信息</view>
+      <view class="navItem {{navInfo.step>=2?'active':''}}"><text class="num">2</text> 施工评价</view>
+      <view class="navItem {{navInfo.step>=3?'active':''}}"><text class="num">3</text> 存在问题</view>
+    </block>
+    <block wx:elif="{{navInfo.type==4}}">
+      <view class="navItem {{navInfo.step>=1?'active':''}}"><text class="num">1</text> 基础信息</view>
+      <view class="navItem {{navInfo.step>=2?'active':''}}"><text class="num">2</text> 内容</view>
+    </block>
+  </view>
+  
+  <view class="nextStep" bindtap="nextStep">下一步</view>
 </view>

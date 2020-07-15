@@ -7,6 +7,8 @@ Component({
    
   },
   methods: {
-    
+    nextStep(){
+      this.triggerEvent('myevent2', '')
+    }
   }
 })

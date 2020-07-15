@@ -1,9 +1,5 @@
 <view class="lineItem">
-  <text class="name">工程名称</text>
-  <text class="detail">{{info.name}}</text>
-</view>
-<view class="lineItem">
-  <text class="name">编号</text>
+  <text class="name">{{info.name}}</text>
   <text class="detail">{{info.id}}</text>
 </view>
 <view class="lineItem">
@@ -21,5 +17,6 @@
   <textarea value="{{info.detail}}" bindinput="changeDetail" placeholder="请输入"></textarea>
 </view>
 <voice bind:myevent="setGaiyao" bind:myevent2="nextStep" authority="{{authority}}"></voice>
+
 
 

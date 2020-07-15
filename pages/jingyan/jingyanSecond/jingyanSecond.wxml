@@ -1,4 +1,4 @@
-<navs navInfo="{{navInfo}}"></navs>
+<navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
 <view class="info">
   <view class="itemBox" wx:for="{{arr}}" wx:key="index">
     <view class="item">
@@ -19,4 +19,3 @@
     </view>
   </view>
 </view>
-<btn bind:myevent="nextStep" title="下一步"></btn>

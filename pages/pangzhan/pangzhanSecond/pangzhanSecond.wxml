@@ -1,5 +1,5 @@
 <scroll-view style="height:100vh-350rpx;overflow:scroll" scroll-y>
-  <navs navInfo="{{navInfo}}"></navs>
+  <navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
   <view class="info">
     <view class="title">一、作业必备条件检查</view>
     
@@ -10,4 +10,6 @@
     </view>
   </view>
 </scroll-view>
-<voice bind:myevent="setGaiyao" bind:myevent2="nextStep" bind:myevent3="addValue" authority="true"></voice>
+<!-- <import src ="../../template/template.wxml"/>
+<template is="voiceWrap" data="{{info,arr,reset,arr2,des,wenti}}"/> -->
+<voice bind:myevent="setGaiyao" bind:myevent3="addValue" authority="true"></voice>
