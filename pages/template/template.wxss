@@ -62,8 +62,29 @@
   background: #F2F4F5;
   border-radius: 20rpx;
   margin-bottom: 11rpx;
-  padding: 20rpx;
+  padding: 20rpx 40rpx 20rpx 20rpx;
   line-height: 26rpx;
+  position: relative;
+}
+.item .info .detailItem2 .state{
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  border-radius: 50%;
+  padding: 0;
+}
+.item .info .detailItem2 .state.unChecked{
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 8rpx;
+  background: #fff;
+}
+.item .info .detailItem2 .state.checked{
+  width: 44rpx;
+  height: 44rpx;
+  background: transparent;
 }
 /* 记录详情 */
 /* 九宫格图片样式 */

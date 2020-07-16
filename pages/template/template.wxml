@@ -47,7 +47,7 @@
       <text class="name">二、作业过程风险控制措施检查或监理情况</text>
       <view class="info">
         <view class="box {{!reset?'auto':''}}">
-          <view class="detailItem2 {{item.checked?'active':''}}" wx:for="{{arr2}}" wx:key="index">{{index+1}}.作业前是否核实是否停电。<text wx:if="{{item.checked}}">选中</text></view>
+          <view class="detailItem2 {{item.checked?'active':''}}" wx:for="{{arr2}}" wx:key="index"> {{index+1}}.作业前是否核实是否停电。<text class="state unChecked" wx:if="{{!item.checked}}"></text><image class="state checked" wx:else src="../../../images/gou.png"></image></view>
         </view>
         <image src="../../../images/reset.png"  wx:if="{{reset}}" bindtap="resetDetail" data-detail="{{arr2}}" data-page="/pages/pangzhan/pangzhanThird/pangzhanThird"></image>
       </view>

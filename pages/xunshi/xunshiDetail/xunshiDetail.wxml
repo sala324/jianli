@@ -2,5 +2,7 @@
 <import src ="../../template/template.wxml"/>
 <template is="mokuai2" data="{{info,arr,arr2,reset}}"/>
 <template is="imgs" data="{{imgArr:imgArr}}"/>
-<view class="btn" bindtap="showCopyBtn">下载PDF文件</view>
+<view class="btnBox">
+  <view class="btn" bindtap="showCopyBtn">下载PDF文件</view>
+</view>
 <copy-link wx:if="{{showCopy}}" bind:myevent="hideCopy"></copy-link>

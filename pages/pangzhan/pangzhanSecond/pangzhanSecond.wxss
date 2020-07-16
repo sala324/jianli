@@ -15,16 +15,15 @@
   padding-bottom: 12rpx;
 }
 .itemDetail{
-  background: #F2F4F5;
-  
   padding:24rpx;
   line-height: 1.2;
   border-radius: 20rpx;
   font-size: 30rpx;
-  width: 660rpx;
+  width: 560rpx;
+  /* box-sizing: border-box; */
   color: #191F25;
 }
-.itemDetail.active{
+.textWrap.active{
   background: #FFF;
 }
 .tips{
@@ -32,4 +31,24 @@
   line-height: 100rpx;
   font-size: 30rpx;
   color: #191F25;
+}
+.textWrap{
+  position: relative;
+  background: #F2F4F5;
+  /* padding:24rpx; */
+  line-height: 1.2;
+  border-radius: 20rpx;
+  font-size: 30rpx;
+  width: 710rpx;
+  color: #191F25;
+}
+.textWrap .del{
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 30rpx;
+  height: 30rpx;
+  margin: auto 0;
+  padding: 25rpx 15rpx;
 }

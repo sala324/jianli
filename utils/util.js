@@ -1,3 +1,4 @@
+const app = getApp();
 const formatDate = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -20,13 +21,6 @@ const formatTime2 = date => {
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
-}
-const toasts = (title,time=2000) => {
-  wx.showToast({
-    title: title,
-    icon: 'none',
-    duration: time
-  })
 }
 const nextStepCommon=(that,val,path,val2)=>{
   // that指传过来页面的this
@@ -56,7 +50,123 @@ const nextStepCommon=(that,val,path,val2)=>{
     })
   }
 }
+//获取token
+const getToken = n => {
+  let hearderToken = '';
+  try {
+    hearderToken = wx.getStorageSync('token');
+  } catch (e) {
+    console.log('获取本地存储失败！')
+  }
+  return hearderToken;
+}
+const dialog = n => {
+  wx.showModal({
+    title: n,
+    content: '',
+    showCancel: false,
+    success: function (res) {
+      if (res.confirm) {
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    }
+  })
+}
+//去登陆
+const login = () => {
+  wx.navigateTo({
+    url: '/pages/public/login/login',
+  })
+}
+//错误处理
+const err = (title) => {
+  wx.showModal({
+    title: title,
+    showCancel: false
+  });
+}
+const toasts = (title,time=2000) => {
+  wx.showToast({
+    title: title,
+    icon: 'none',
+    duration: time
+  })
+}
+const toasts2 = (title, time = 2000) => {
+  wx.showToast({
+    title: title,
+    duration: time
+  })
+}
+const request = (url, data, method)=>{
+  wx.showLoading({
+    title: '加载中',
+  })
+  let token = getToken();
+  let apiHost = app.globalData.apiHost;
+  // let apiHost = 'https://api.dxiahome.com/api';
+  method = method||'GET';
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: app.globalData.apiHost+url,
+      data: data,
+      method: method,
+      header: {
+        'X-Token': token // 默认值
+      },
+      success(res){
+        resolve(res)
+        wx.hideLoading();
+      },
+      fail(res){
+        reject(res);
+      },
+      complete: function () {
+        
+      }
+    });
+  });
+}
+const requests = (url, data, method, hideToast) => {
+  let hearderToken = getToken();
+  let apiHost = app.globalData.apiHost;
+  method = method || 'GET';
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: app.globalData.apiHost + url,
+      data: data,
+      method: method,
+      header: {
+        'X-Token': hearderToken // 默认值
+      },
+      success(res) {
+        if(res.data.code==0){
+          resolve(res)
+        } else {
+          !hideToast && toasts(res.data.msg)
+        }
+        
+      },
+      fail(res) {
+        toasts('网络超时请稍后再试')
+      },
+      complete: function () {
+
+      }
+    });
+  });
+}
 module.exports = {
+  request,
+  requests,
+  getToken,
+  login,
+  err,
+  toasts,
+  toasts2,
+  dialog,
   formatTime,
   formatDate,
   formatTime2,

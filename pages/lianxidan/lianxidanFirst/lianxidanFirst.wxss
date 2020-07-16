@@ -8,31 +8,11 @@ page{
   padding: 20rpx;
   background: #fff;
   height: 300rpx;
+  background: #FFF3E1;
 }
 textarea{
+  width: 710rpx;
   padding: 20rpx 0;
   display: block;
   height: 240rpx;
-}
-.voice{
-  border: 3rpx solid #3197FB;
-  height: 180rpx;
-  line-height: 180rpx;
-  width: 180rpx !important;
-  border-radius: 50%;
-  background: rgba(0,0,0,0);
-  padding: 0;
-}
-.voice.talking{
-  background:#3197FB;
-}
-.voiceWrap{
-  background: #fff;
-  padding: 80rpx 0 60rpx;
-}
-.voice image{
-  width: 58rpx;
-  height: 98rpx;
-  vertical-align: middle;
-  pointer-events: none;
 }

@@ -42,8 +42,10 @@
     </picker>
   </view>
   <view class="lineItem">
-    <text class="name">旁站监理的部位</text>
-    <input class="detail input" value="{{info.position}}" data-name="position" bindinput="changeItem" placeholder="请输入"></input>
+    <view class="item active">
+      <text class="name">旁站监理的部位</text>
+      <input class="detail" value="{{info.position}}" data-name="position" bindinput="changeItem" placeholder="单行输入"></input>
+    </view>
   </view>
 </scroll-view>
 <!-- <button open-type="openSetting" type="primary" wx:if="{{!authority}}" size="mini" bindopensetting="callback">打开设置页</button> -->

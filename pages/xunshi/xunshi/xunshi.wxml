@@ -2,4 +2,7 @@
 <template is="mokuai2" data="{{info,arr,arr2,reset}}"/>
 <img-upload imgArr="{{imgArr}}" class="uploadImg" bind:delItem="delItem">
 </img-upload>
-<navigator url="/pages/xunshi/xunshiSign/xunshiSign" class="btn">下一步</navigator>
+<view class="btnBox">
+  <navigator url="/pages/xunshi/xunshiSign/xunshiSign" class="btn">下一步</navigator>
+</view>
+

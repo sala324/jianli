@@ -1,4 +1,12 @@
-.btn{
+.btnBox{
+  height: 120rpx;
+}
+.btnBox .btn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin:21rpx auto ;
   width:400rpx;
   height:78rpx;
   line-height: 78rpx;
@@ -7,10 +15,9 @@
   font-size: 32rpx;
   color: #fff;
   text-align: center;
-  margin: 60rpx auto 40rpx;
 }
 .lineItem{
-  margin-bottom:28rpx;
+  margin-bottom:10rpx;
   background: #fff;
   height: 90rpx;
   line-height: 90rpx;
@@ -33,14 +40,14 @@
 }
 .lineItem .item .name{
   padding-left:12rpx;
-  width: 180rpx;
+  width: 220rpx;
   vertical-align: middle;
   height: 74rpx;
   line-height: 74rpx;
 }
 .lineItem .item input{
   vertical-align: middle;
-  width: 530rpx;
+  width: 490rpx;
   text-align: right;
   height: 74rpx;
   line-height: 74rpx;

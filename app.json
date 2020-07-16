@@ -1,16 +1,17 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/pangzhan/pangzhan/pangzhan",
+    "pages/xunshi/xunshiSecond/xunshiSecond",
+    "pages/pangzhan/pangzhanSecond/pangzhanSecond",
     "pages/jingyan/jingyanFirst/jingyanFirst",
     "pages/xunshi/xunshiFirst/xunshiFirst",
     "pages/jingyan/jingyanSecond/jingyanSecond",
-    "pages/pangzhan/pangzhanSecond/pangzhanSecond",
     "pages/pangzhan/pangzhanFirst/pangzhanFirst",
     "pages/xunshi/xunshi/xunshi",
     "pages/jingyan/jingyan/jingyan",
     "pages/jingyan/jingyanThird/jingyanThird",
     "pages/jingyan/jingyanList/jingyanList",
-    "pages/pangzhan/pangzhan/pangzhan",
     "pages/pangzhan/pangzhanThird/pangzhanThird",
     "pages/xunshi/xunshiThird/xunshiThird",
     "pages/lianxidan/lianxidanFirst/lianxidanFirst",
@@ -23,7 +24,6 @@
     "pages/jianli/jianliFirst/jianliFirst",
     "pages/jianli/jianliDetail/jianliDetail",
     "pages/jianli/jianli/jianli",
-    "pages/xunshi/xunshiSecond/xunshiSecond",
     "pages/xunshi/xunshiForth/xunshiForth",
     
     "pages/projectDetail/projectDetail",

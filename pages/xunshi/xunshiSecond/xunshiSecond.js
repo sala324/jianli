@@ -15,6 +15,16 @@ Page({
     arr:[{name:'aa',val:'',tips:'输入1'},{name:'bb',val:'',tips:'输入2'},{name:'cc',val:'',tips:'输入33333'},{name:'dd',val:'',tips:'输入4444'},{name:'ee',val:'',tips:'输入555555'}],
     dateEnd:''
   },
+  delItem(e){
+    let arr=this.data.arr
+    let index=e.currentTarget.dataset.index
+    arr[index].val=''
+    this.setData({
+      index1:index,
+      arr:arr,
+      oldValues:''
+    })
+  },
   changeItem(e){
     let index=e.currentTarget.dataset.index
     let oldValues=this.data.arr[index].val

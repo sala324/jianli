@@ -6,4 +6,9 @@ page{
   height: 90rpx;
   line-height: 90rpx;
   text-align: right;
+  
+}
+.active{
+  background:#FFF3E1;
+  border-radius: 20rpx;
 }

@@ -17,7 +17,7 @@
 }
 .voice{
   width: 400rpx;
-  border-radius: 20rpx;
+  border-radius: 80rpx;
   background:#3197FB;
   color: #fff;
   padding: 20rpx;
