@@ -8,6 +8,26 @@ App({
   },
   onLaunch: function (options) {
     let me = this;
+    // wx.login({
+    //   success: res => {
+    //     console.log(res.code)
+    //     wx.request({
+    //       url: this.globalData.apiHost+'/getWxLogin',
+    //       data: {
+    //         code:res.code
+    //       },
+    //       method: 'post',
+    //       success: function(res) {
+    //         if(res.data.code===10101){
+              
+    //         }
+    //       }
+    //     })
+    //     // util.requests('/getWxLogin',{code:res.code},'post').then(res=>{
+    //     //   console.log(res)
+    //     // })
+    //   }
+    // })
     const updateManager = wx.getUpdateManager()
     updateManager.onCheckForUpdate(function (res) {
       // 请求完新版本信息的回调

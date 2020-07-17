@@ -8,7 +8,7 @@
       <view class="state gray" wx:else>已签名</view>
     </view>
   </view>
-  <view class="remove" bindtap="delItem">删除 </view>
+  <view class="remove" catchtap="delItem">删除 </view>
 </view>
 <view class="item" wx:else >
   <view class="content">

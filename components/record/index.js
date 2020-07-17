@@ -44,5 +44,17 @@ Component({
         right:this.data.right
       })
     },
+    delItem(){
+      let that=this
+      wx.showModal({
+        title: "是否删除该项",
+        success: function (res) {
+          if (res.confirm) {
+            that.triggerEvent('delItem', '')
+          }
+        }
+      })
+      
+    }
   }
 })

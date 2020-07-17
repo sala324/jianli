@@ -1,4 +1,4 @@
-// pages/pangzhan/pangzhan.js
+const util = require('../../../utils/util');
 Page({
   data: {
     showCopy:false,

@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/lianxidan/lianxidanList/lianxidanList",
     "pages/pangzhan/pangzhan/pangzhan",
     "pages/xunshi/xunshiSecond/xunshiSecond",
     "pages/pangzhan/pangzhanSecond/pangzhanSecond",
@@ -17,7 +18,6 @@
     "pages/lianxidan/lianxidanFirst/lianxidanFirst",
     "pages/lianxidan/lianxidanDetail/lianxidanDetail",
     "pages/lianxidan/lianxidan/lianxidan",
-    "pages/lianxidan/lianxidanList/lianxidanList",
     "pages/lianxidan/lianxidanSign/lianxidanSign",
     "pages/lianxidan/lianxidanSecond/lianxidanSecond",
     "pages/jianli/jianliList/jianliList",
@@ -48,5 +48,9 @@
     }
   },
   "style": "v2",
+  "enablePullDownRefresh": true,
+  "networkTimeout":{
+    "request":50000
+  },
   "sitemapLocation": "sitemap.json"
 }

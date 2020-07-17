@@ -13,3 +13,16 @@
   background:rgba(201,224,254,1);
   opacity:0.5;
 }
+button::after {
+  border: none;
+}
+button{
+  border-radius: none;
+  font-size: 30rpx;
+  background-color: #3197FB;
+  color: #fff;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

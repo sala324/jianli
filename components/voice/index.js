@@ -69,6 +69,9 @@ Component({
       this.triggerEvent('myevent2', '')
     }
   },
+  detached: function() {
+    manager.stop()
+  },
   ready(){
     manager.onStart((res) => {
       console.log('recorder start', res.msg);

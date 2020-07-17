@@ -3,6 +3,8 @@ const util = require('../../utils/util');
 Page({
   data: {
     showAll:false,
+    size:5,
+    index:1,
     projectArr:[{
       name:'白沙洲变电枢纽二期项目',
       date:'你最近更新: 2020-09-22',
@@ -70,15 +72,37 @@ Page({
       url: '/pages/projectDetail/projectDetail'
     })
   },
-  onLoad: function () {
+  judgeUser(){
+    let that=this
     wx.login({
       success: res => {
-        console.log(res.code)
         util.requests('/getWxLogin',{code:res.code},'post').then(res=>{
-          console.log(res)
+          
+          if(res.data.code===10101){
+            that.setData({
+              login:false
+            })
+            wx.redirectTo({
+              url: '/pages/login/login',
+            })
+          } else {
+            that.setData({
+              login:true
+            })
+          }
         })
       }
     })
-    // util.requests('/getWxLogin')
+  },
+  projectList(){
+    util.requests('/project',{pageSize:this.data.size,pageIndex:this.data.index}).then(res=>{
+      if(res.data.code==0){
+        
+      }
+    })
+  },
+  onLoad: function () {
+    // this.judgeUser()
+    this.projectList()
   },
 })

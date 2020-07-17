@@ -8,18 +8,65 @@ Page({
     code:'',
     authority:true
   },
-  nextStep(){
-    if(this.data.code.length<6){
-      util.toasts('请输入6位数密码')
-    } else if(this.data.authority){
-      wx.reLaunch({
-        url: '/pages/index/index',
+  login(e) {
+    let me = this;
+    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
+      wx.showModal({
+        title: '提示',
+        showCancel: false,
+        content: '未授权您将无法登陆',
+        success: function (res) { }
       })
     } else {
-      wx.navigateTo({
-        url: '/pages/noAuthority/noAuthority',
-      })
+      wx.login({
+        success: res => {
+          if (res.code) {
+            util.request('/login', {
+              code: res.code,
+              iv: e.detail.iv,
+              encryptedData: e.detail.encryptedData,
+              pwd:me.data.code
+            }, 'post').then(res => {
+              if (res.data.code == 0) {
+                try {
+                  wx.setStorageSync('token', res.data.data.token);
+                  wx.setStorageSync('user', res.data.data.user);
+                  wx.setStorageSync('hearderToken', res.header.Authorization);
+                } catch (e) {
+                  console.log('存储失败！')
+                }
+                if (res.data.data.user.real_name) {
+                  wx.setStorageSync('real_name', res.data.data.user.real_name);
+                }
+                wx.navigateBack({
+                  delta: 1
+                })
+              } else if(res.data.code==402){
+                  wx.navigateTo({
+                    url: '/pages/noAuthority/noAuthority',
+                  })
+              } else {
+                util.toasts('网络请求失败，点击重试',2000)
+              }
+            })
+          }
+        }
+      });
     }
+  },
+  nextStep(){
+    util.toasts('请输入6位数密码')
+    // if(this.data.code.length<6){
+    //   util.toasts('请输入6位数密码')
+    // } else if(this.data.authority){
+    //   wx.reLaunch({
+    //     url: '/pages/index/index',
+    //   })
+    // } else {
+    //   wx.navigateTo({
+    //     url: '/pages/noAuthority/noAuthority',
+    //   })
+    // }
   },
   changeCode(e){
     this.setData({

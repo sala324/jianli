@@ -1,4 +1,4 @@
-<view class="wrap">
+<view class="wrap" >
   <view class="userBox">
     <view class="userLeft">
       <view class="userName">网双双</view>

@@ -1,6 +1,12 @@
 <view class="wrap">
   <image src="../../images/login.png"></image>
+  
   <view class="title">请输入激活码</view>
   <input value="{{code}}" maxlength="6" bindinput="changeCode"></input>
-  <btn title="确认" bind:myevent="nextStep"></btn>
+  <view class="btnBox">
+    <!-- <btn title="确认"  bind:myevent="nextStep"></btn> -->
+    <button class="btn" open-type="getPhoneNumber" wx:if="{{code.length==6}}" bindgetphonenumber="login">确认</button>
+    <view class="btn" bindtap="nextStep" wx:else>确认</view>
+  </view>
+  <!-- <btn title="确认" bind:myevent="nextStep"></btn> -->
 </view>

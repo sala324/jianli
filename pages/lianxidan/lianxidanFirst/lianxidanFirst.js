@@ -47,6 +47,13 @@ Page({
       index: e.detail.value
     })
   },
+  bindDateChange(e){
+    let info=this.data.info
+    info.date=e.detail.value
+    this.setData({
+      info:info
+    })
+  },
   changeDetail(e){
     let info=this.data.info
     info.detail=e.detail.value
@@ -55,14 +62,12 @@ Page({
     })
   },
   nextStep(){
-    util.nextStepCommon(this,'info','/pages/lianxidan/lianxidanSecond/lianxidanSecond','info')
-  },
-  bindDateChange(e){
-    let info=this.data.info
-    info.date=e.detail.value
-    this.setData({
-      info:info
-    })
+    if(this.data.info.detail.trim().length>0){
+      util.nextStepCommon(this,'info','/pages/lianxidan/lianxidanSecond/lianxidanSecond?matter='+this.data.info.detail+'&open_date='+this.data.info.date+'&proejct_id='+this.data.id+'&units='+this.data.info.unit,'info')
+    } else {
+      return util.toasts('事由不能为空')
+    }
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

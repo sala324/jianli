@@ -1,4 +1,4 @@
-// pages/pangzhan/pangzhan.js
+const util = require('../../../utils/util');
 Page({
   data: {
     showCopy:false,
@@ -36,8 +36,15 @@ Page({
       showCopy:e.detail
     })
   },
+  jxm8Detail(){
+    util.requests('jxm8/'+'this.data.id').then(res=>{
+      if(res.data.code==0){
+        
+      }
+    })
+  },
   onLoad: function (options) {
-
+    this.jxm8Detail()
   },
 
   /**

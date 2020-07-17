@@ -17,7 +17,14 @@ Page({
     })
   },
   onLoad(options){
-    console.log(options)
+    if(options.matter){
+      this.setData({
+        matter:options.matter,
+        open_date:options.open_date,
+        proejct_id:options.proejct_id,
+        units:options.units
+      })
+    }
     if(options.default){
       this.setData({
         detail:JSON.parse(options.default),
@@ -32,8 +39,29 @@ Page({
       oldValues:e.detail.value
     })
   },
+  setJxm8(){
+    util.requests('/jxm8',{
+      matter:this.data.matter,
+      open_date:this.data.open_date,
+      proejct_id:this.data.proejct_id,
+      units:this.data.units,
+      note:this.data.detail
+    },'post').then(res=>{
+      if(res.data.code==0){
+        util.nextStepCommon(this,'content','/pages/lianxidan/lianxidan/lianxidan?id=1')
+      }
+    })
+  },
   nextStep(){
-    util.nextStepCommon(this,'content','/pages/lianxidan/lianxidan/lianxidan')
+    if(this.data.detail.trim().length>0){
+      this.setJxm8()
+      util.nextStepCommon(this,'content','/pages/lianxidan/lianxidan/lianxidan')
+    } else {
+      return util.toasts('内容不能为空')
+      
+    }
+    
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

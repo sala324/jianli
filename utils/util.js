@@ -139,13 +139,20 @@ const requests = (url, data, method, hideToast) => {
       data: data,
       method: method,
       header: {
-        'X-Token': hearderToken // 默认值
+        'Authorization': hearderToken // 默认值
       },
       success(res) {
         if(res.data.code==0){
           resolve(res)
         } else {
-          !hideToast && toasts(res.data.msg)
+          if(res.data.code==10101){
+            wx.redirectTo({
+              url: '/pages/login/login',
+            })
+          } else {
+            toasts(res.data.msg)
+          }
+          
         }
         
       },

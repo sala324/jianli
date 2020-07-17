@@ -1,4 +1,4 @@
-// pages/projectDetail/projectDetail.js
+const util = require('../../../utils/util');
 Page({
 
   /**
