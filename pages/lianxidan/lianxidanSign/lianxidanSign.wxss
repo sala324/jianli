@@ -18,6 +18,13 @@
 }
 .btnWrap .btn{
   width: 260rpx;
+  height:78rpx;
+  line-height: 78rpx;
+  background:rgba(49,151,251,1);
+  border-radius:39rpx;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: center;
 }
 .btnWrap .btn:nth-child(1){
   margin-right: 140rpx;

@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/test/test",
     "pages/lianxidan/lianxidanList/lianxidanList",
     "pages/pangzhan/pangzhan/pangzhan",
     "pages/xunshi/xunshiSecond/xunshiSecond",
@@ -27,7 +28,6 @@
     "pages/xunshi/xunshiForth/xunshiForth",
     
     "pages/projectDetail/projectDetail",
-    "pages/test/test",
     "pages/xunshi/xunshiList/xunshiList",
     "pages/noAuthority/noAuthority",
     "pages/login/login",

@@ -5,7 +5,7 @@ Page({
     bianhao:'',
     oldValues:'',
     activeNav:0,
-    arr:[{title:'现场存在问题',name:'detail',val:''},{title:'监理有关措施',name:'bianhao',val:''}],
+    arr:[{title:'现场存在问题',name:'matter',val:''},{title:'监理有关措施',name:'measures',val:''}],
     navInfo:{
       type:3,
       step:3
@@ -31,10 +31,21 @@ Page({
     })
   },
   onLoad(options){
-    if(options.default){
+    if(options.position){
       this.setData({
-        arr:JSON.parse(options.default),
-        oldValues:JSON.parse(options.default)[0].val,
+        proejct_id:options.proejct_id,
+        assess:options.assess,
+        position:options.position,
+        open_date:options.open_date
+      })
+    }
+    if(options.default){
+      let arr=JSON.parse(options.default),
+      this.setData({
+        arr:arr,
+        oldValues:arr[0].val,
+        matter:arr[0].val,
+        measures:arr[2].val,
         reset:true
       })
       wx.setNavigationBarTitle({
@@ -46,13 +57,65 @@ Page({
     let arr=this.data.arr
     let index=e.currentTarget.dataset.index
     arr[index].val=e.detail.value
+    let name=arr[index].name
     this.setData({
-      arr:arr
+      arr:arr,
+      [name]:e.detail.value
     })
     console.log(this.data.arr)
   },
+  createJaq(){
+    wx.navigateTo({
+      url: '/pages/xunshi/xunshi/xunshi',
+    })
+    // util.requests('/jaq',{
+    //   position:this.data.position,
+    //   matter:this.data.matter,
+    //   measures:this.data.measures,
+    //   assess:this.data.assess,
+    //   open_date:this.data.open_date,
+    //   proejct_id:this.data.proejct_id,
+    //   log_type_id:1
+    // }).then(res=>{
+    //   if(res.data.code===0){
+    //     wx.navigateTo({
+    //       url: '/pages/xunshi/xunshi/xunshi?id='+res.data.data.id,
+    //     })
+    //   }
+    // })
+  },
+  resetJaq(){
+    wx.navigateBack({
+      complete: (res) => {
+        util.toasts('修改成功')
+      },
+    })
+    // util.requests('/jaq/'+this.data.id,{
+    //   matter:this.data.matter,
+    //   measures:this.data.measures,
+    //   proejct_id:this.data.proejct_id,
+    //   id:this.data.id,
+    // },'put').then(res=>{
+    //   if(res.data.code===0){
+    //     wx.navigateBack({
+    //       complete: (res) => {
+    //         util.toasts('修改成功')
+    //       },
+    //     })
+    //   }
+    // })
+  },
   nextStep(){
-    util.nextStepCommon(this,'arr2','/pages/xunshi/xunshi/xunshi','arr')
+    if(this.data.measures&&this.data.matter){
+      if(this.data.reset){
+        this.resetJaq()
+      } else {
+        this.createJaq()
+      }
+    } else {
+      util.toasts('请填写完整')
+    }
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

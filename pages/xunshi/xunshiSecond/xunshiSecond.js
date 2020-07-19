@@ -57,7 +57,19 @@ Page({
       oldValues:this.data.oldValues+e.detail
     })
   },
+  getmodule(){
+    util.requests('/module',{tid:11}).then(res=>{
+      console.log(res)
+    })
+  },
   onLoad(options){
+    if(options.position){
+      this.setData({ 
+        proejct_id:options.proejct_id,
+        position:options.position,
+        open_date:options.open_date
+      })
+    }
     if(options.default){
       this.setData({
         arr:JSON.parse(options.default),
@@ -68,6 +80,7 @@ Page({
         title: '修改旁站记录——第二步',
       })
     }
+    this.getmodule()
   },
   changeDetail(e){
     this.setData({
@@ -75,7 +88,16 @@ Page({
     })
   },
   nextStep(){
-    util.nextStepCommon(this,'arr','/pages/xunshi/xunshiThird/xunshiThird','arr')
+    let next=true
+    this.data.arr.forEach(item=>{
+      if(!item.val){
+        next=false
+        return util.toasts('请确认全部输入完毕')
+      }
+    })
+    if(next){
+      util.nextStepCommon(this,'arr','/pages/xunshi/xunshiThird/xunshiThird?open_date='+this.data.date+'&position='+this.data.position+'&proejct_id='+this.data.proejct_id+'&assess='+this.data.arr,'arr')
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -83,10 +105,11 @@ Page({
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
+  getmodule(){
+    util.requests('/module',{tid:11}).then(res=>{
+      console.log(res)
+    })
+  },
   onShow: function () {
     this.setData({
       startTime:util.formatTime(new Date()),

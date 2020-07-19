@@ -61,17 +61,43 @@ Page({
       info:info
     })
   },
+  changejaq(){
+    util.requests('/jaq/'+this.data.id,{
+      matter:this.data.matter,
+      open_date:this.data.open_date,
+      proejct_id:this.data.proejct_id,
+      unit_id:this.data.units,
+      log_type_id:3
+    },'put').then(res=>{
+      if(res.data.code==0){
+        wx.navigateBack({
+          complete: (res) => {
+            util.toasts('修改成功')
+          },
+        })
+      }
+    })
+  },
   nextStep(){
     if(this.data.info.detail.trim().length>0){
+      
       util.nextStepCommon(this,'info','/pages/lianxidan/lianxidanSecond/lianxidanSecond?matter='+this.data.info.detail+'&open_date='+this.data.info.date+'&proejct_id='+this.data.id+'&units='+this.data.info.unit,'info')
+      // this.changejaq()
     } else {
       return util.toasts('事由不能为空')
     }
     
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
+  getUnits(){
+    let that=this
+    util.requests('/units').then(res=>{
+      if(res.data.code==0){
+        that.setData({
+
+        })
+      }
+    })
+  },
   onReady: function () {
 
   },

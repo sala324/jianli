@@ -49,38 +49,17 @@ Page({
       info:info
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
   nextStep(){
-    util.nextStepCommon(this,'info','/pages/xunshi/xunshiSecond/xunshiSecond','info')
+    if(this.data.info.position.trim().length>0){
+      util.nextStepCommon(this,'info','/pages/xunshi/xunshiSecond/xunshiSecond?open_date='+this.data.info.date+'&position='+this.data.info.position+'&proejct_id=1','info')
+    } else {
+      return util.toasts('巡视部位不能为空')
+    }
+    
     
   },
-  
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
     let that=this
-    wx.getSetting({
-      success(res) {
-        console.log(res)
-        let name='scope.record'
-        if(res.authSetting[name]===false){
-          that.setData({
-            authority:false
-          })
-          
-        } else {
-          that.setData({
-            authority:true
-          })
-        }
-      }
-    })
     if(!this.data.reset){
       let info=this.data.info
       info.date=util.formatDate(new Date())
@@ -94,40 +73,5 @@ Page({
     this.setData({
       dateEnd:util.formatDate(new Date())
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

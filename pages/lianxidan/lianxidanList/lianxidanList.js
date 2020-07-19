@@ -39,9 +39,15 @@ Page({
     })
   },
   turnDetail(){
-    wx.navigateTo({
-      url: '/pages/lianxidan/lianxidanDetail/lianxidanDetail',
-    })
+    if(e.currentTarget.dataset.state==2){
+      wx.navigateTo({
+        url: '/pages/lianxidan/lianxidanDetail/lianxidanDetail',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/lianxidan/lianxidan/lianxidan',
+      })
+    }
   },
   delete(id){
     util.requests('jaq/'+id,{},'delete').then(res=>{

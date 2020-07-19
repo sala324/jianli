@@ -4,7 +4,7 @@ Page({
     showCopy:false,
     
     reset:true,
-    arr2:[{title:'现场存在问题',name:'detail',val:'问题111'},{title:'监理有关措施',name:'bianhao',val:'措施22222'}],
+    arr2:[{title:'现场存在问题',name:'matter',val:'问题111'},{title:'监理有关措施',name:'measures',val:'措施22222'}],
     arr:[{name:'aa',val:'旁站监理的部位或工序:电缆管群1',tips:'输入1'},{name:'bb',val:'旁站监理的部位或工序:电缆管群旁站监理的部位或工序:电缆管群2',tips:'输入2'},{name:'cc',val:'旁站监理的部位或工序:电缆管群33',tips:'输入33333'},{name:'dd',val:'旁站监理的部位或工序:电缆管群44',tips:'输入4444'},{name:'ee',val:'旁站监理的部位或工序:电缆管群55',tips:'输入555555'}],
     info2:{
       wenti:'存在的问题2',

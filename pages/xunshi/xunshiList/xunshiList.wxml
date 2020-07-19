@@ -1,6 +1,8 @@
-<project-item projectItem="{{item}}" class="topInfo"></project-item>
-<view class="recoreWrap">
-  <record-item wx:for="{{listArr}}" wx:key="index" projectItem="{{item}}" bindtap="turnDetail"></record-item>
-</view>
+<scroll-view style="height:100vh" scroll-y bindscrolltolower="loadMore">
+  <project-item projectItem="{{item}}" class="topInfo"></project-item>
+  <view class="recoreWrap">
+    <record-item wx:for="{{listArr}}" data-state="{{item.state}}" wx:key="index" data-index="{{index}}" bind:delItem="delItem" projectItem="{{item}}" bindtap="turnDetail"></record-item>
+  </view>
+</scroll-view>
 <btn title="新增巡视记录" bind:myevent="addRecord"></btn>
 

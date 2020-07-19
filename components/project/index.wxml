@@ -1,13 +1,12 @@
-<view class="item" bindtouchstart="drawStart" data-index='{{index}}' bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{right}}rpx">
+<view class="item">
   <text class="itemLogo">陈</text>
-  <view class="itemInfo {{projectItem.border=='none'?'nobd':''}}">
+  <view class="itemInfo">
     <view class="itemTop">
       <view class="itemTitle">{{projectItem.name}}</view>
       <text class="itemState" wx:if="{{projectItem.state==1}}">进行中</text>
-      <text class="itemState gray" wx:else>进行中</text>
+      <text class="itemState gray" wx:else>已结束</text>
     </view>
     <view class="itemDate">{{projectItem.date}}</view>
     
   </view>
-  <view class="remove" bindtap="delItem">删除 </view>
 </view>

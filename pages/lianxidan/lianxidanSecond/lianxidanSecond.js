@@ -44,8 +44,9 @@ Page({
       matter:this.data.matter,
       open_date:this.data.open_date,
       proejct_id:this.data.proejct_id,
-      units:this.data.units,
-      note:this.data.detail
+      unit_id:this.data.units,
+      note:this.data.detail,
+      log_type_id:3
     },'post').then(res=>{
       if(res.data.code==0){
         util.nextStepCommon(this,'content','/pages/lianxidan/lianxidan/lianxidan?id=1')
