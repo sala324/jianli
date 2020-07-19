@@ -1,0 +1,17 @@
+<view class="wrap" >
+  <view class="userBox">
+    <view class="userLeft">
+      <view class="userName">{{userInfo.real_name}}</view>
+      <view class="userId">ID:{{userInfo.id}}</view>
+    </view>
+    <open-data type="userAvatarUrl" class="avtor" ></open-data>
+    <!-- <image src="../../images/avtor.png"></image> -->
+  </view>
+  <view class="title">我最近监理的工程</view>
+  <block wx:if="{{showAll}}" >
+  <project-item wx:for="{{projectArr2}}" projectItem="{{item}}" data-id="{{item.id}}" data-index="{{index}}" wx:key="index" bindtap="turnDetail"></project-item>
+  </block>
+  <block wx:else>
+  <project-item wx:for="{{projectArr}}" projectItem="{{item}}" data-index="{{index}}" wx:key="index" bindtap="turnDetail" data-id="{{item.id}}"></project-item>
+  </block>
+</view>

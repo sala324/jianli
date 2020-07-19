@@ -1,0 +1,23 @@
+<view class="item" bindtouchstart="drawStart" data-index='{{index}}' wx:if="{{projectItem.is_post==0}}" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{right}}rpx">
+  <view class="content">
+    <view class="title">{{projectItem.matter}}</view>
+    <view class="des">{{projectItem.note}}</view>
+    <view class="info">
+      <view class="id">编号：{{projectItem.code}}|{{projectItem.open_date}}</view>
+      <view class="state" wx:if="{{projectItem.is_post==0}}">未签名</view>
+      <view class="state gray" wx:else>已签名</view>
+    </view>
+  </view>
+  <view class="remove" catchtap="delItem">删除 </view>
+</view>
+<view class="item" wx:else >
+  <view class="content">
+    <view class="title">{{projectItem.matter}}</view>
+    <view class="des">{{projectItem.note}}</view>
+    <view class="info">
+      <view class="id">编号：{{projectItem.code}}|{{projectItem.open_date}}</view>
+      <view class="state" wx:if="{{projectItem.is_post==0}}">未签名</view>
+      <view class="state gray" wx:else>已签名</view>
+    </view>
+  </view>
+</view>

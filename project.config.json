@@ -1,4 +1,6 @@
 {
+	"miniprogramRoot": "miniprogram/",
+	"cloudfunctionRoot": "cloudfunctions/",
 	"description": "项目配置文件",
 	"packOptions": {
 		"ignore": []
@@ -25,7 +27,6 @@
 		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
-	"compileType": "miniprogram",
 	"libVersion": "2.11.3",
 	"appid": "wx7a3926cb5f8ddd5c",
 	"projectname": "%E6%99%BA%E6%85%A7%E7%94%B5%E5%8A%9B%E7%9B%91%E7%90%86",
@@ -35,6 +36,17 @@
 	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+	"miniprogram": {
+		"current": 0,
+		"list": [
+			{
+				"id": -1,
+				"name": "db guide",
+				"pathName": "pages/databaseGuide/databaseGuide"
+			}
+		]
+	},
 	"condition": {
 		"search": {
 			"current": -1,
