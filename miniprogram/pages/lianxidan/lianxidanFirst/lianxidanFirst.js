@@ -17,7 +17,7 @@ Page({
     index:0,
     dateEnd:'',
     shuru:false,
-    array:['第一分队','第二分队','第三分队','第四分队','第五分队']
+    array:[]
   },
   setGaiyao(e){
     let info=this.data.info
@@ -28,6 +28,7 @@ Page({
     })
   },
   onLoad(options){
+    this.getUnits(options.id)
     if(options.default){
       this.setData({
         info:JSON.parse(options.default),
@@ -38,6 +39,9 @@ Page({
         title: '修改工作联系单',
       })
     }
+    this.setData({
+      id:options.id
+    })
   },
   bindUnitChange: function(e) {
     let info=this.data.info
@@ -79,21 +83,26 @@ Page({
     })
   },
   nextStep(){
+    let unit_id=this.data.arr2[this.data.index].id
     if(this.data.info.detail.trim().length>0){
       
-      util.nextStepCommon(this,'info','/pages/lianxidan/lianxidanSecond/lianxidanSecond?matter='+this.data.info.detail+'&open_date='+this.data.info.date+'&proejct_id='+this.data.id+'&units='+this.data.info.unit,'info')
+      util.nextStepCommon(this,'info','/pages/lianxidan/lianxidanSecond/lianxidanSecond?matter='+this.data.info.detail+'&open_date='+this.data.info.date+'&proejct_id='+this.data.id+'&units='+unit_id,'info')
       // this.changejaq()
     } else {
       return util.toasts('事由不能为空')
     }
     
   },
-  getUnits(){
+  getUnits(id){
     let that=this
-    util.requests('/units').then(res=>{
+    util.requests('/units',{p:id}).then(res=>{
       if(res.data.code==0){
+        let arr=res.data.data.map(item=>{
+          return item.name
+        })
         that.setData({
-
+          array:arr,
+          arr2:res.data.data
         })
       }
     })

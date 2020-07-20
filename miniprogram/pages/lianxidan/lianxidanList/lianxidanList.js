@@ -8,37 +8,12 @@ Page({
   data: {
     size:10,
     index:1,
-    item:{
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'1',
-      border:'none'
-    },
-    listArr:[
-      {title:'旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群',
-      des:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。',
-      id:'编号: 003223 | 2020-02 22',state:1,index:0},
-      {title:'旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群',
-      des:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。',
-      id:'编号: 003223 | 2020-02 22',state:2,index:1},
-      {title:'旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群',
-      des:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。',
-      id:'编号: 003223 | 2020-02 22',state:1,index:2},
-      {title:'旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群',
-      des:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。',
-      id:'编号: 003223 | 2020-02 22',state:2,index:3},
-      {title:'旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群',
-      des:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。',
-      id:'编号: 003223 | 2020-02 22',state:1,index:4},
-      {title:'旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群',
-      des:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。',
-      id:'编号: 003223 | 2020-02 22',state:2,index:5}
-      
-    ]
+    item:{},
+    listArr:[]
   },
   addRecord(e){
     wx.navigateTo({
-      url: '/pages/lianxidan/lianxidanFirst/lianxidanFirst',
+      url: '/pages/lianxidan/lianxidanFirst/lianxidanFirst?id='+this.data.id,
     })
   },
   turnDetail(){
@@ -56,7 +31,7 @@ Page({
     util.requests('jaq/'+id,{},'delete').then(res=>{
       if(res.data.code==0){
         this.setData({
-          listArr:res.data.data
+          listArr:res.data.data.data
         })
       }
     })
@@ -82,11 +57,17 @@ Page({
   },
   onLoad: function (options) {
     commonRequest.projectDetail(options.id,this)
+    this.setData({
+      id:options.id
+    })
   },
   jxm8List(){
     util.requests('/jxm8',{pageSize:this.data.size,pageIndex:this.data.index}).then(res=>{
       if(res.data.code==0){
-        console.log(res.data.data.data)
+        res.data.data.data.forEach(item=>{
+          item.title=item.matter
+          item.des=item.note
+        })
         this.setData({
           listArr:res.data.data.data
         })

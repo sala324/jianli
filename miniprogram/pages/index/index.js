@@ -5,66 +5,8 @@ Page({
     showAll:false,
     size:5,
     index:1,
-    projectArr:[{
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'1'
-    },
-    {
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'2'
-    },
-    {
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'2'
-    },{
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'1'
-    },{
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'1'
-    }],
-    projectArr2:[{
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'1'
-    },
-    {
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'2'
-    },
-    {
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'2'
-    },{
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'1'
-    },
-    {
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'2'
-    },
-    {
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'2'
-    },{
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'1'
-    },{
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'1'
-    }]
+    projectArr:[],
+    projectArr2:[]
   },
   //事件处理函数
   turnDetail(e) {
@@ -118,6 +60,13 @@ Page({
       }
     })
   },
+  onShow(){
+    
+  },
+  async showPage(){
+    await this.judgeUser()
+    this.projectList()
+  },
   onLoad: function () {
     // wx.cloud.callFunction({
     //   name: 'openid',
@@ -125,8 +74,6 @@ Page({
     // }).then(res => {
     //   console.log(res);
     // })
-
-    this.judgeUser()
-    this.projectList()
+    this.showPage()
   },
 })

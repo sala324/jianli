@@ -29,17 +29,17 @@ Page({
             }, 'post').then(res => {
               if (res.data.code == 0) {
                 try {
-                  wx.setStorageSync('token', res.data.data.token);
+                  wx.setStorageSync('token', 'Bearer '+res.data.data.token);
                   wx.setStorageSync('user', res.data.data.user);
-                  wx.setStorageSync('hearderToken', res.header.Authorization);
+                  wx.setStorageSync('hearderToken', 'Bearer '+res.data.data.token);
                 } catch (e) {
                   console.log('存储失败！')
                 }
-                if (res.data.data.user.real_name) {
-                  wx.setStorageSync('real_name', res.data.data.user.real_name);
-                }
-                wx.navigateBack({
-                  delta: 1
+                me.setData({
+                  userInfo:res.data.data.user
+                })
+                wx.redirectTo({
+                  url: '/pages/index/index',
                 })
               } else if(res.data.code==402){
                   wx.navigateTo({

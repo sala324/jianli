@@ -22,7 +22,8 @@ Page({
         matter:options.matter,
         open_date:options.open_date,
         proejct_id:options.proejct_id,
-        units:options.units
+        unit_id:options.units,
+        id:options.id
       })
     }
     if(options.default){
@@ -43,8 +44,8 @@ Page({
     util.requests('/jxm8',{
       matter:this.data.matter,
       open_date:this.data.open_date,
-      proejct_id:this.data.proejct_id,
-      unit_id:this.data.units,
+      project_id:this.data.proejct_id,
+      unit_id:this.data.unit_id,
       note:this.data.detail,
       log_type_id:3
     },'post').then(res=>{
@@ -56,7 +57,7 @@ Page({
   nextStep(){
     if(this.data.detail.trim().length>0){
       this.setJxm8()
-      util.nextStepCommon(this,'content','/pages/lianxidan/lianxidan/lianxidan')
+      // util.nextStepCommon(this,'content','/pages/lianxidan/lianxidan/lianxidan')
     } else {
       return util.toasts('内容不能为空')
       
