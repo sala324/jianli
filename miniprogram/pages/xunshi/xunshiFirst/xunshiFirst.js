@@ -7,7 +7,7 @@ Page({
     info:{
       name:'白沙洲变电枢纽二期项目',
       id:'0098654',
-      date:'2020-05-06 ',
+      open_date:'2020-05-06 ',
       position:''
     },
     dateEnd:'',
@@ -31,6 +31,7 @@ Page({
       this.setData({
         info:info,
         oldValues:info.position,
+        id:options.id,
         reset:true
       })
     }
@@ -44,14 +45,35 @@ Page({
   },
   bindDateChange(e){
     let info=this.data.info
-    info.date=e.detail.value
+    info.open_date=e.detail.value
     this.setData({
       info:info
     })
   },
+  resetInfo(id){
+    util.requests('/jaq/'+id,{
+      open_date:this.data.info.open_date,
+      position:this.data.info.position
+    },'put').then(res=>{
+      if(res.data.code==0){
+        wx.navigateBack({
+          complete: (res) => {
+            util.toasts('修改成功')
+          },
+        })
+      }
+      
+    })
+  },
   nextStep(){
     if(this.data.info.position.trim().length>0){
-      util.nextStepCommon(this,'info','/pages/xunshi/xunshiSecond/xunshiSecond?open_date='+this.data.info.date+'&position='+this.data.info.position+'&proejct_id=1','info')
+      if(this.data.reset){
+        this.resetInfo(this.data.id)
+      } else {
+        wx.navigateTo({
+          url: '/pages/xunshi/xunshiSecond/xunshiSecond?open_date='+this.data.info.open_date+'&position='+this.data.info.position+'&proejct_id='+this.data.proejct_id,
+        })
+      }
     } else {
       return util.toasts('巡视部位不能为空')
     }

@@ -29,6 +29,9 @@ Page({
   },
   onLoad(options){
     this.getUnits(options.id)
+    this.setData({
+      
+    })
     if(options.default){
       this.setData({
         info:JSON.parse(options.default),
@@ -53,14 +56,14 @@ Page({
   },
   bindDateChange(e){
     let info=this.data.info
-    info.date=e.detail.value
+    info.open_date=e.detail.value
     this.setData({
       info:info
     })
   },
   changeDetail(e){
     let info=this.data.info
-    info.detail=e.detail.value
+    info.matter=e.detail.value
     this.setData({
       info:info
     })
@@ -86,7 +89,7 @@ Page({
     let unit_id=this.data.arr2[this.data.index].id
     if(this.data.info.detail.trim().length>0){
       
-      util.nextStepCommon(this,'info','/pages/lianxidan/lianxidanSecond/lianxidanSecond?matter='+this.data.info.detail+'&open_date='+this.data.info.date+'&proejct_id='+this.data.id+'&units='+unit_id,'info')
+      util.nextStepCommon(this,'info','/pages/lianxidan/lianxidanSecond/lianxidanSecond?matter='+this.data.info.detail+'&open_date='+this.data.info.open_date+'&proejct_id='+this.data.id+'&units='+unit_id,'info')
       // this.changejaq()
     } else {
       return util.toasts('事由不能为空')
@@ -133,7 +136,7 @@ Page({
     })
     if(!this.data.reset){
       let info=this.data.info
-      info.date=util.formatDate(new Date())
+      info.open_date=util.formatDate(new Date())
       this.setData({
         info:info
       })

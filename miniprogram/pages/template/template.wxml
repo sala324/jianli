@@ -73,11 +73,11 @@
     </view>
     <view class="item">
         <text class="name">编号</text>
-        <view class="info">{{info.id}}</view>
+        <view class="info">{{info.code}}</view>
     </view>
     <view class="item">
       <text class="name">巡视时间</text>
-      <view class="info">{{info.date}} </view>
+      <view class="info">{{info.open_date}} </view>
     </view>
     <view class="item">
       <text class="name">巡视部位</text>
@@ -87,7 +87,7 @@
       <text class="name">施工现场 安全文明 施工评价</text>
       <view class="info">
         <view class="box {{!reset?'auto':''}}">
-          <view class="detailItem" wx:for="{{arr}}" wx:key="index">{{item.val}}</view>
+          <view class="detailItem" wx:for="{{arr}}" wx:key="index">{{item.values}}</view>
         </view> 
         <image wx:if="{{reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{arr}}"  data-page="/pages/xunshi/xunshiSecond/xunshiSecond"></image>
       </view>
@@ -212,15 +212,15 @@
     </view>
     <view class="item">
         <text class="name">编号</text>
-        <view class="info">{{info.id}}</view>
+        <view class="info">{{info.code}}</view>
     </view>
     <view class="item">
       <text class="name">联系单位</text>
-      <view class="info">{{info.unit}}</view>
+      <view class="info">{{info.unit_id}}</view>
     </view>
     <view class="item" >
       <text class="name">事由</text>
-      <view class="info"><view class="box {{!info.reset?'auto':''}}">{{info.detail}}</view> <image wx:if="{{info.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{info}}"  data-page="/pages/lianxidan/lianxidanFirst/lianxidanFirst"></image></view>
+      <view class="info"><view class="box {{!info.reset?'auto':''}}">{{info.matter}}</view> <image wx:if="{{info.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{info}}"  data-page="/pages/lianxidan/lianxidanFirst/lianxidanFirst"></image></view>
     </view>
     <!-- <view class="item">
       <text class="name">事由</text>
@@ -228,7 +228,7 @@
     </view> -->
     <view class="item">
       <text class="name">内容</text>
-      <view class="info"><view class="box {{!info.reset?'auto':''}}">{{content}}</view> <image wx:if="{{info.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{content}}"  data-page="/pages/lianxidan/lianxidanSecond/lianxidanSecond"></image> </view>
+      <view class="info"><view class="box {{!info.reset?'auto':''}}">{{note}}</view> <image wx:if="{{info.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{note}}"  data-page="/pages/lianxidan/lianxidanSecond/lianxidanSecond"></image> </view>
     </view>
   </view>
 </template>

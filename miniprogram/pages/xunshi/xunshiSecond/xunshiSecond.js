@@ -12,13 +12,13 @@ Page({
       type:3,
       step:2
     },
-    arr:[{name:'aa',val:'',tips:'输入1'},{name:'bb',val:'',tips:'输入2'},{name:'cc',val:'',tips:'输入33333'},{name:'dd',val:'',tips:'输入4444'},{name:'ee',val:'',tips:'输入555555'}],
+    arr:[],
     dateEnd:''
   },
   delItem(e){
     let arr=this.data.arr
     let index=e.currentTarget.dataset.index
-    arr[index].val=''
+    arr[index].values=''
     this.setData({
       index1:index,
       arr:arr,
@@ -27,7 +27,7 @@ Page({
   },
   changeItem(e){
     let index=e.currentTarget.dataset.index
-    let oldValues=this.data.arr[index].val
+    let oldValues=this.data.arr[index].values
     this.setData({
       index1:index,
       oldValues:oldValues
@@ -41,7 +41,7 @@ Page({
   changeValue(e){
     let arr=this.data.arr
     let index=e.currentTarget.dataset.index
-    arr[index].val=e.detail.value
+    arr[index].values=e.detail.value
     this.setData({
       arr:arr,
       index1:index,
@@ -51,19 +51,32 @@ Page({
   setGaiyao(e){
     let arr=this.data.arr
     let index=this.data.index1
-    arr[index].val=this.data.oldValues+e.detail
+    arr[index].values=this.data.oldValues+e.detail
     this.setData({
       arr:arr,
       oldValues:this.data.oldValues+e.detail
     })
   },
   getmodule(){
-    util.requests('/module',{tid:11}).then(res=>{
-      console.log(res)
+    let tid=wx.getStorageSync('logId')
+    util.requests('/module',{tid:tid}).then(res=>{
+      let arr=res.data.data[0].work[0].config
+      let arr1=[]
+      arr.forEach((item,index)=>{
+        let json={}
+        json.configuration_id=item.working_id
+        json.values=''
+        json.about=item.name
+        arr1.push(json)
+      })
+      this.setData({
+        arr:arr1
+      })
     })
   },
   onLoad(options){
     if(options.position){
+      this.getmodule()
       this.setData({ 
         proejct_id:options.proejct_id,
         position:options.position,
@@ -74,29 +87,48 @@ Page({
       this.setData({
         arr:JSON.parse(options.default),
         oldValues:JSON.parse(options.default)[0].val,
-        reset:true
+        reset:true,
+        id:options.id
       })
       wx.setNavigationBarTitle({
         title: '修改旁站记录——第二步',
       })
     }
-    this.getmodule()
+    
   },
   changeDetail(e){
     this.setData({
       detail:e.detail.value
     })
   },
+  resetInfo(id){
+    util.requests('/jaq/'+id,{config:this.data.arr},'put').then(res=>{
+      if(res.data.code==0){
+        wx.navigateBack({
+          complete: (res) => {
+            util.toasts('修改成功')
+          },
+        })
+      }
+      
+    })
+  },
   nextStep(){
     let next=true
     this.data.arr.forEach(item=>{
-      if(!item.val){
+      if(!item.values){
         next=false
         return util.toasts('请确认全部输入完毕')
       }
     })
     if(next){
-      util.nextStepCommon(this,'arr','/pages/xunshi/xunshiThird/xunshiThird?open_date='+this.data.date+'&position='+this.data.position+'&proejct_id='+this.data.proejct_id+'&assess='+this.data.arr,'arr')
+      if(this.data.reset){
+        this.resetInfo(this.data.id)
+      } else {
+        wx.navigateTo({
+          url: '/pages/xunshi/xunshiThird/xunshiThird?open_date='+this.data.open_date+'&position='+this.data.position+'&proejct_id='+this.data.proejct_id+'&config='+JSON.stringify(this.data.arr),
+        })
+      }
     }
   },
   /**
@@ -105,21 +137,8 @@ Page({
   onReady: function () {
 
   },
-  getmodule(){
-    util.requests('/module',{tid:11}).then(res=>{
-      console.log(res)
-    })
-  },
   onShow: function () {
-    this.setData({
-      startTime:util.formatTime(new Date()),
-      endTime:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
-      dateEnd:util.formatDate(new Date())
-    })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
+    
   },
 
   /**

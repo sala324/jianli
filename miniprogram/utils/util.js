@@ -54,7 +54,7 @@ const nextStepCommon=(that,val,path,val2)=>{
 const getToken = n => {
   let hearderToken = '';
   try {
-    hearderToken = wx.getStorageSync('token');
+    hearderToken = wx.getStorageSync('hearderToken');
   } catch (e) {
     console.log('获取本地存储失败！')
   }
@@ -150,7 +150,7 @@ const requests = (url, data, method, hideToast) => {
               url: '/pages/login/login',
             })
           } else {
-            toasts(res.data.msg)
+            toasts(res.data.message)
           }
           
         }

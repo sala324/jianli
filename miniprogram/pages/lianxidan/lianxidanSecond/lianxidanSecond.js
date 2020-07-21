@@ -30,6 +30,7 @@ Page({
       this.setData({
         detail:JSON.parse(options.default),
         oldValues:JSON.parse(options.default),
+        id:options.id,
         reset:true
       })
     }
@@ -39,24 +40,45 @@ Page({
       detail:e.detail.value,
       oldValues:e.detail.value
     })
+    console.log(this.data.detail)
+  },
+  resetJxm8(){
+    util.requests('/jaq/'+this.data.id,{
+      note:this.data.detail,
+      id:this.data.id,
+    },'put').then(res=>{
+      if(res.data.code===0){
+        wx.navigateBack({
+          complete: (res) => {
+            util.toasts('修改成功')
+          },
+        })
+      }
+    })
   },
   setJxm8(){
+    let logId=wx.getStorageSync('logId')
     util.requests('/jxm8',{
       matter:this.data.matter,
       open_date:this.data.open_date,
       project_id:this.data.proejct_id,
       unit_id:this.data.unit_id,
       note:this.data.detail,
-      log_type_id:3
+      log_type_id:logId
     },'post').then(res=>{
       if(res.data.code==0){
-        util.nextStepCommon(this,'content','/pages/lianxidan/lianxidan/lianxidan?id=1')
+        util.nextStepCommon(this,'content','/pages/lianxidan/lianxidan/lianxidan?id='+res.data.data.id)
       }
     })
   },
   nextStep(){
     if(this.data.detail.trim().length>0){
-      this.setJxm8()
+      if(this.data.reset){
+        this.resetJxm8()
+      } else {
+        this.setJxm8()
+      }
+      
       // util.nextStepCommon(this,'content','/pages/lianxidan/lianxidan/lianxidan')
     } else {
       return util.toasts('内容不能为空')
@@ -76,15 +98,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      startTime:util.formatTime(new Date()),
-      endTime:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
-      dateEnd:util.formatDate(new Date())
-    })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
   },
 
   /**

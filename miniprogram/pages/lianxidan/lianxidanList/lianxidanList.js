@@ -16,23 +16,21 @@ Page({
       url: '/pages/lianxidan/lianxidanFirst/lianxidanFirst?id='+this.data.id,
     })
   },
-  turnDetail(){
-    if(e.currentTarget.dataset.state==2){
+  turnDetail(e){
+    if(e.currentTarget.dataset.state==1){
       wx.navigateTo({
-        url: '/pages/lianxidan/lianxidanDetail/lianxidanDetail',
+        url: '/pages/lianxidan/lianxidanDetail/lianxidanDetail?id='+e.currentTarget.dataset.id,
       })
     } else {
       wx.navigateTo({
-        url: '/pages/lianxidan/lianxidan/lianxidan',
+        url: '/pages/lianxidan/lianxidan/lianxidan?id='+e.currentTarget.dataset.id,
       })
     }
   },
   delete(id){
-    util.requests('jaq/'+id,{},'delete').then(res=>{
+    util.requests('/jxm8/'+id,{},'delete').then(res=>{
       if(res.data.code==0){
-        this.setData({
-          listArr:res.data.data.data
-        })
+        this.jxm8List()
       }
     })
   },
@@ -48,10 +46,10 @@ Page({
   },
   loadMore(){
     let that = this;
-    this.setData({
-      index: that.data.index + 1,
-    });
-    if (this.data.index - this.data.totalPages <= 0) {
+    if (this.data.index - this.data.totalPages <0) {
+      this.setData({
+        index: that.data.index + 1,
+      });
       that.jxm8List();
     }
   },
@@ -64,12 +62,14 @@ Page({
   jxm8List(){
     util.requests('/jxm8',{pageSize:this.data.size,pageIndex:this.data.index}).then(res=>{
       if(res.data.code==0){
-        res.data.data.data.forEach(item=>{
+        res.data.data.data.forEach((item,index)=>{
           item.title=item.matter
+          item.index=index
           item.des=item.note
         })
         this.setData({
-          listArr:res.data.data.data
+          listArr:res.data.data.data,
+          totalPages:res.data.data.pageinfo.totalPages
         })
       }
     })

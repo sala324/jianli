@@ -9,17 +9,17 @@ Page({
   },
   addRecord(e){
     wx.navigateTo({
-      url: '/pages/xunshi/xunshiFirst/xunshiFirst',
+      url: '/pages/xunshi/xunshiFirst/xunshiFirst?proejct_id='+this.data.id,
     })
   },
   turnDetail(e){
     if(e.currentTarget.dataset.state==2){
       wx.navigateTo({
-        url: '/pages/xunshi/xunshiDetail/xunshiDetail',
+        url: '/pages/xunshi/xunshiDetail/xunshiDetail?id='+e.currentTarget.dataset.id,
       })
     } else {
       wx.navigateTo({
-        url: '/pages/xunshi/xunshi/xunshi',
+        url: '/pages/xunshi/xunshi/xunshi?id='+e.currentTarget.dataset.id,
       })
     }
     
@@ -60,13 +60,17 @@ Page({
       })
     }
     commonRequest.projectDetail(options.id,this)
+    this.setData({
+      id:options.id
+    })
   },
   jaqList(){
     util.requests('/jaq',{pageSize:this.data.size,pageIndex:this.data.index}).then(res=>{
       if(res.data.code==0){
-        res.data.data.data.forEach(item=>{
+        res.data.data.data.forEach((item,index)=>{
           item.title=item.position+'巡视检查'
           item.des=item.assess
+          item.index=index
         })
         this.setData({
           listArr:res.data.data.data

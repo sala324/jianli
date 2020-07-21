@@ -19,15 +19,65 @@ Page({
       complete: (res) => {},
     })
   },
+  logType(){
+    util.requests('/logType').then(res=>{
+      if(res.data.code==0){
+        res.data.data.forEach(item=>{
+          if(item.name.includes('巡视')){
+            this.setData({
+              id3:item.id,
+              code3:item.code
+            })
+          } else if(item.name.includes('监理')){
+            this.setData({
+              id4:item.id,
+              code4:item.code
+            })
+          } else if(item.name.includes('旁站')){
+            this.setData({
+              id1:item.id,
+              code1:item.code
+            })
+          } else if(item.name.includes('平行')){
+            this.setData({
+              id2:item.id,
+              code2:item.code
+            })
+          }else if(item.name.includes('联系单')){
+            this.setData({
+              id5:item.id,
+              code5:item.code
+            })
+          }      
+        })
+        this.setData({
+          logType:res.data.data
+        })
+      }
+    })
+  },
+  turnLog(e){
+    wx.setStorageSync('logId', e.currentTarget.dataset.id)
+    wx.setStorageSync('logCode', e.currentTarget.dataset.code)
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url,
+    })
+  },
   logList(){
     util.requests('/logList?p='+this.data.id).then(res=>{
       if(res.data.code==0){
-        
+        res.data.data.data.forEach(item=>{
+          item.open_date=item.open_date.slice(0,10)
+        })
+        this.setData({
+          logArr:res.data.data.data
+        })
       }
     })
   },
   onLoad: function (options) {
     commonRequest.projectDetail(options.id,this)
+    this.logType()
     this.setData({
       id:options.id
     })

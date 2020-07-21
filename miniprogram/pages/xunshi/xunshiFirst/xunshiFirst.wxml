@@ -5,11 +5,11 @@
 </view>
 <view class="lineItem">
   <text class="name">巡视时间</text>
-  <picker mode="date" class="detail" value="{{info.date}}" start="2015-09-01" end="{{dateEnd}}" bindchange="bindDateChange">
-    <view class="picker" wx:if="{{!info.date}}">
+  <picker mode="date" class="detail" value="{{info.open_date}}" start="2015-09-01" end="{{dateEnd}}" bindchange="bindDateChange">
+    <view class="picker" wx:if="{{!info.open_date}}">
       请选择 >
     </view>
-    <view wx:else>{{info.date}}</view>
+    <view wx:else>{{info.open_date}}</view>
   </picker>
 </view>
 <view class="jilu">

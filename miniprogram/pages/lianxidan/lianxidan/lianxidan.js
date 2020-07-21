@@ -6,18 +6,13 @@ Page({
     shiyou:'shiyou',
     content:'内容香香你赶快来',
     info:{
-      name:'白沙洲变电枢纽二期项目',
-      id:'0087690',
-      unit:'第四分队',
-      date:'2020-7-14',
-      detail:'详情请看卡公开',
       reset:true
     },
     imgArr:['../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png']
   },
   resetDetail(e){
     wx.navigateTo({
-      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail),
+      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail)+'&id='+this.data.info.id,
     })
   },
   delItem(e){
@@ -38,7 +33,15 @@ Page({
   },
   detailInfo(id){
     util.requests('/jxm8/'+id).then(res=>{
-
+      if(res.data.code==0){
+        let info=JSON.parse(JSON.stringify(res.data.data,['id','code','open_date','matter','unit_id','project_id']))
+        info.reset=true
+        info.name=res.data.data.project.name
+        this.setData({
+          info:info,
+          note:res.data.data.note
+        })
+      }
     })
   },
   onLoad: function (options) {

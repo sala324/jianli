@@ -5,7 +5,6 @@
       <view class="userId">ID:{{userInfo.id}}</view>
     </view>
     <open-data type="userAvatarUrl" class="avtor" ></open-data>
-    <!-- <image src="../../images/avtor.png"></image> -->
   </view>
   <view class="title">我最近监理的工程</view>
   <block wx:if="{{showAll}}" >
