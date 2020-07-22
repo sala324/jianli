@@ -78,7 +78,7 @@ Page({
     if(options.position){
       this.getmodule()
       this.setData({ 
-        proejct_id:options.proejct_id,
+        project_id:options.project_id,
         position:options.position,
         open_date:options.open_date
       })
@@ -98,7 +98,8 @@ Page({
   },
   changeDetail(e){
     this.setData({
-      detail:e.detail.value
+      detail:e.detail.value,
+      oldValues:e.detail.value
     })
   },
   resetInfo(id){
@@ -126,7 +127,7 @@ Page({
         this.resetInfo(this.data.id)
       } else {
         wx.navigateTo({
-          url: '/pages/xunshi/xunshiThird/xunshiThird?open_date='+this.data.open_date+'&position='+this.data.position+'&proejct_id='+this.data.proejct_id+'&config='+JSON.stringify(this.data.arr),
+          url: '/pages/xunshi/xunshiThird/xunshiThird?open_date='+this.data.open_date+'&position='+this.data.position+'&project_id='+this.data.project_id+'&config='+JSON.stringify(this.data.arr),
         })
       }
     }

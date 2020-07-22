@@ -5,20 +5,24 @@ Page({
     detail:'日志详情222',
     shiyou:'shiyou',
     content:'内容香香你赶快来',
-    info:{
-      reset:true
-    },
-    imgArr:['../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png']
+    info:{},
+    idArr:[],
+    imgArr:[]
   },
   resetDetail(e){
     wx.navigateTo({
       url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail)+'&id='+this.data.info.id,
     })
   },
-  delItem(e){
-    this.data.imgArr.splice(e.detail,1)
+  setItem(e){
+    util.requests('/deleteFile/'+e.detail,{},'post').then(res=>{
+      if(res.data.code===0){
+        util.toasts(res.data.message)
+        this.detailInfo(this.data.id)
+      }
+    })
     this.setData({
-      imgArr:this.data.imgArr
+      imagesArr:e.detail
     })
   },
   showCopyBtn(){
@@ -34,11 +38,16 @@ Page({
   detailInfo(id){
     util.requests('/jxm8/'+id).then(res=>{
       if(res.data.code==0){
+        let imgArr=res.data.data.images.map(item=>{return item.url})
+        let idArr=res.data.data.images.map(item=>{return item.id})
         let info=JSON.parse(JSON.stringify(res.data.data,['id','code','open_date','matter','unit_id','project_id']))
         info.reset=true
         info.name=res.data.data.project.name
         this.setData({
           info:info,
+          imgArr:imgArr,
+          project_log_id:res.data.data.project_log_id,
+          idArr:idArr,
           note:res.data.data.note
         })
       }

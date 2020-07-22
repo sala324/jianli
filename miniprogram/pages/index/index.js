@@ -10,6 +10,7 @@ Page({
   },
   //事件处理函数
   turnDetail(e) {
+    wx.setStorageSync('pid', e.currentTarget.dataset.id)
     wx.navigateTo({
       url: '/pages/projectDetail/projectDetail?id='+e.currentTarget.dataset.id
     })

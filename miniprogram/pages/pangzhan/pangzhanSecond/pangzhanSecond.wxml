@@ -4,9 +4,9 @@
     <view class="title">一、作业必备条件检查</view>
     
     <view class="item {{index1===index?'active':''}}" wx:for="{{arr}}" wx:key="index">
-      <view class="tips" wx:if="{{index1===index}}">{{item.tips}}</view>
+      <view class="tips" wx:if="{{index1===index}}">{{item.about}}</view>
       <view class="textWrap {{index1===index?'active':''}}">
-        <textarea contenteditable="true" auto-height="true" type="text" class="itemDetail" bindinput="changeValue" bindfocus="changeItem" value="{{item.val}}" data-index="{{index}}" placeholder="{{item.tips}}">
+        <textarea contenteditable="true" auto-height="true" type="text" class="itemDetail" bindinput="changeValue" bindfocus="changeItem" value="{{item.values}}" data-index="{{index}}" placeholder="{{item.about}}">
       </textarea>
       <image class="del" src="../../../images/del2.png" data-index="{{index}}" bindtap="delItem"></image>
       </view>

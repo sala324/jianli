@@ -2,16 +2,16 @@
   <navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
   
   <view class="lineItem">
-    <text class="name">{{info.title}}</text>
-    <text class="detail">{{info.id}}</text>
+    <text class="name">{{info.name}}</text>
+    <text class="detail">{{info.code}}</text>
   </view>
   <view class="lineItem">
     <text class="name">日期</text>
-    <picker mode="date" class="detail" value="{{info.date}}" data-name="date" start="2015-09-01" end="{{dateEnd}}" bindchange="changeItem">
-      <view class="picker" wx:if="{{!info.date}}">
+    <picker mode="date" class="detail" value="{{info.open_date}}" data-name="open_date" start="2015-09-01" end="{{dateEnd}}" bindchange="changeItem">
+      <view class="picker" wx:if="{{!info.open_date}}">
         请选择 >
       </view>
-      <view wx:else>{{info.date}}</view>
+      <view wx:else>{{info.open_date}}</view>
     </picker>
   </view>
   <view class="lineItem">
@@ -20,18 +20,21 @@
   </view>
   <view class="lineItem">
     <text class="name">施工单位</text>
-    <text class="detail">{{info.shigong}}</text>
+    <picker bindchange="changeItem" value="{{info.index2}}" data-name="index2" range="{{unitsArr}}">
+      <view class="picker">{{unitsArr[info.index2]}} >
+      </view>
+    </picker>
   </view>
   <view class="lineItem">
     <text class="name">开始时间</text>
-    <picker mode="time" value="{{info.startTime}}" data-name="startTime" start="{{info.startTime}}" end="23:59" bindchange="changeItem">
-      <view class="picker">{{info.startTime}}</view>
+    <picker mode="time" value="{{info.start_time}}" data-name="start_time" start="{{info.start_time}}" end="23:59" bindchange="changeItem">
+      <view class="picker">{{info.start_time}}</view>
     </picker>
   </view>
   <view class="lineItem">
     <text class="name">结束时间</text>
-    <picker mode="time" value="{{info.endTime}}" data-name="endTime" start="{{info.startTime}}" end="23:59" bindchange="changeItem">
-      <view class="picker">{{info.endTime}}</view>
+    <picker mode="time" value="{{info.end_time}}" data-name="end_time" start="{{info.start_time}}" end="23:59" bindchange="changeItem">
+      <view class="picker">{{info.end_time}}</view>
     </picker>
   </view>
   <view class="lineItem">

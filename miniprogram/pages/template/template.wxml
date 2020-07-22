@@ -27,11 +27,11 @@
     </view>
     <view class="item">
       <text class="name">开始时间</text>
-      <view class="info">{{info.date}} {{info.startTime}}</view>
+      <view class="info">{{info.date}} {{info.start_time}}</view>
     </view>
     <view class="item">
       <text class="name">结束时间</text>
-      <view class="info">{{info.date}} {{info.endTime}}</view>
+      <view class="info">{{info.date}} {{info.end_time}}</view>
     </view>
     <view class="title">旁站的关键部位、关键工序施工情况</view>
     <view class="item">

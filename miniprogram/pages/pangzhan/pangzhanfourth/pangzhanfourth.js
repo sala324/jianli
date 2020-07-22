@@ -34,8 +34,56 @@ Page({
       oldValues:e.detail.value
     })
   },
+  resetInfo(id){
+    util.requests('jxm9/'+id,{
+      start_time:this.data.info.start_time,
+      end_time:this.data.info.end_time,
+      position:this.data.info.position,
+      weather:this.data.info.weather,
+    },'put').then(res=>{
+      if(res.data.code==0){
+        wx.navigateBack({
+          complete: (res) => {
+            util.toasts('修改成功')
+          },
+        })
+      }
+    })
+  },
+  createLog(){
+    let project_id=wx.getStorageSync('token')
+    util.requests('/jxm9',{
+      start_time:this.data.start_time,
+      end_time:this.data.end_time,
+      position:this.data.position,
+      weather:this.data.weather,
+      describe1:this.data.describe1,
+      describe2:this.data.describe2,
+      outline:this.data.outline,
+      opinion:this.data.opinion,
+      open_date:this.data.open_date,
+      modules_id:this.data.modules_id,
+      working_id:this.data.working_id,
+      unit_id:this.data.unit_id,
+      project_id:project_id,
+      log_type_id:this.data.log_type_id,
+      config:this.data.config
+    },'post').then(res=>{
+      if(res.data.code==0){
+        wx.relaunch({
+          url:'/pages/pangzhan/pangzhan/pangzhan?id='+res.data.data.id
+        })
+      }
+    })
+  },
   nextStep(){
-    util.nextStepCommon(this,'wenti','/pages/pangzhan/pangzhan/pangzhan')
+    if(this.data.reset){
+      this.resetInfo()
+    } else {
+      util.nextStepCommon(this,'wenti','/pages/pangzhan/pangzhan/pangzhan')
+      this.createLog()
+    }
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -49,8 +97,8 @@ Page({
    */
   onShow: function () {
     this.setData({
-      startTime:util.formatTime(new Date()),
-      endTime:util.formatTime2(new Date()),
+      start_time:util.formatTime(new Date()),
+      end_time:util.formatTime2(new Date()),
       date:util.formatDate(new Date()),
       dateEnd:util.formatDate(new Date())
     })

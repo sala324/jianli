@@ -9,7 +9,7 @@ Page({
   },
   addRecord(e){
     wx.navigateTo({
-      url: '/pages/xunshi/xunshiFirst/xunshiFirst?proejct_id='+this.data.id,
+      url: '/pages/xunshi/xunshiFirst/xunshiFirst?project_id='+this.data.id,
     })
   },
   turnDetail(e){
@@ -25,11 +25,10 @@ Page({
     
   },
   delete(id){
-    util.requests('jaq/'+id,{},'delete').then(res=>{
+    console.log(id)
+    util.requests('/jaq/'+id,{},'delete').then(res=>{
       if(res.data.code==0){
-        this.setData({
-          listArr:res.data.data
-        })
+        this.jaqList()
       }
     })
   },
@@ -41,31 +40,25 @@ Page({
     this.setData({
       listArr:arr
     })
-    this.delete(arr[index].id)
+    this.delete(e.currentTarget.dataset.id)
   },
   loadMore(){
     let that = this;
-    this.setData({
-      index: that.data.index + 1,
-    });
-    if (this.data.index - this.data.totalPages <= 0) {
+    if (this.data.index - this.data.totalPages < 0) {
+      this.setData({
+        index: that.data.index + 1,
+      });
       that.jaqList();
     }
   },
   onLoad: function (options) {
-    if(options.open_date){
-      this.setData({
-        open_date:options.open_date,
-        position:options.position
-      })
-    }
     commonRequest.projectDetail(options.id,this)
     this.setData({
       id:options.id
     })
   },
   jaqList(){
-    util.requests('/jaq',{pageSize:this.data.size,pageIndex:this.data.index}).then(res=>{
+    util.requests('/jaq',{pageSize:this.data.size,pageIndex:this.data.index,p:this.data.id}).then(res=>{
       if(res.data.code==0){
         res.data.data.data.forEach((item,index)=>{
           item.title=item.position+'巡视检查'
@@ -73,7 +66,8 @@ Page({
           item.index=index
         })
         this.setData({
-          listArr:res.data.data.data
+          listArr:res.data.data.data,
+          totalPages:res.data.data.pageinfo.totalPages
         })
       }
     })

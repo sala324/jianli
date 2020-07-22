@@ -29,6 +29,12 @@ Page({
         title: '修改旁站记录——第三步',
       })
     }
+    if(options.step1Value){
+      this.setData({
+        step1Value:JSON.parse(options.step1Value),
+        config:JSON.parse(options.config),
+      })
+    }
   },
   nextStep(){
     util.nextStepCommon(this,'arr2','/pages/pangzhan/pangzhanfourth/pangzhanfourth','arr')
@@ -45,8 +51,8 @@ Page({
    */
   onShow: function () {
     this.setData({
-      startTime:util.formatTime(new Date()),
-      endTime:util.formatTime2(new Date()),
+      start_time:util.formatTime(new Date()),
+      end_time:util.formatTime2(new Date()),
       date:util.formatDate(new Date()),
       dateEnd:util.formatDate(new Date())
     })

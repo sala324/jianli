@@ -51,12 +51,12 @@ Page({
   },
   bindTimeChange1(e){
     this.setData({
-      startTime: e.detail.value
+      start_time: e.detail.value
     })
   },
   bindTimeChange2(e){
     this.setData({
-      endTime: e.detail.value
+      end_time: e.detail.value
     })
   },
   /**

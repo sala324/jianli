@@ -71,7 +71,7 @@ Page({
         this.resetInfo(this.data.id)
       } else {
         wx.navigateTo({
-          url: '/pages/xunshi/xunshiSecond/xunshiSecond?open_date='+this.data.info.open_date+'&position='+this.data.info.position+'&proejct_id='+this.data.proejct_id,
+          url: '/pages/xunshi/xunshiSecond/xunshiSecond?open_date='+this.data.info.open_date+'&position='+this.data.info.position+'&project_id='+this.data.id,
         })
       }
     } else {
@@ -88,8 +88,8 @@ Page({
       info.dateEnd=util.formatDate(new Date())
       this.setData({
         info:info,
-        // startTime:util.formatTime(new Date()),
-        // endTime:util.formatTime2(new Date()),
+        // start_time:util.formatTime(new Date()),
+        // end_time:util.formatTime2(new Date()),
       })
     }
     this.setData({

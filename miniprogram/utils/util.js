@@ -129,6 +129,34 @@ const request = (url, data, method)=>{
     });
   });
 }
+const putRequests = (url, data) => {
+  let hearderToken = getToken();
+  let apiHost = app.globalData.apiHost;
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: app.globalData.apiHost + url,
+      data: data,
+      method: 'put',
+      header: {
+        'Authorization': hearderToken,
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+         // 默认值
+      },
+      success(res) {
+        if(res.data.code==0){
+          resolve(res)
+        }
+        
+      },
+      fail(res) {
+        toasts('网络超时请稍后再试')
+      },
+      complete: function () {
+
+      }
+    });
+  });
+}
 const requests = (url, data, method, hideToast) => {
   let hearderToken = getToken();
   let apiHost = app.globalData.apiHost;
@@ -168,6 +196,7 @@ const requests = (url, data, method, hideToast) => {
 module.exports = {
   request,
   requests,
+  putRequests,
   getToken,
   login,
   err,

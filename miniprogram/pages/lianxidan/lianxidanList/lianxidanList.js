@@ -13,7 +13,7 @@ Page({
   },
   addRecord(e){
     wx.navigateTo({
-      url: '/pages/lianxidan/lianxidanFirst/lianxidanFirst?id='+this.data.id,
+      url: '/pages/lianxidan/lianxidanFirst/lianxidanFirst?project_id='+this.data.id,
     })
   },
   turnDetail(e){
@@ -38,11 +38,10 @@ Page({
     let index=e.currentTarget.dataset.index
     let arr=this.data.listArr
     arr.splice(index,1)
-    
     this.setData({
       listArr:arr
     })
-    this.delete(arr[index].id)
+    this.delete(e.currentTarget.dataset.id)
   },
   loadMore(){
     let that = this;
@@ -54,13 +53,13 @@ Page({
     }
   },
   onLoad: function (options) {
-    commonRequest.projectDetail(options.id,this)
     this.setData({
-      id:options.id
+      id:wx.getStorageSync('pid')
     })
+    commonRequest.projectDetail(this.data.id,this)
   },
   jxm8List(){
-    util.requests('/jxm8',{pageSize:this.data.size,pageIndex:this.data.index}).then(res=>{
+    util.requests('/jxm8',{pageSize:this.data.size,pageIndex:this.data.index,p:this.data.id}).then(res=>{
       if(res.data.code==0){
         res.data.data.data.forEach((item,index)=>{
           item.title=item.matter

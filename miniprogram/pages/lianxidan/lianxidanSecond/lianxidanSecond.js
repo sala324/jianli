@@ -21,7 +21,7 @@ Page({
       this.setData({
         matter:options.matter,
         open_date:options.open_date,
-        proejct_id:options.proejct_id,
+        project_id:options.project_id,
         unit_id:options.units,
         id:options.id
       })
@@ -43,7 +43,7 @@ Page({
     console.log(this.data.detail)
   },
   resetJxm8(){
-    util.requests('/jaq/'+this.data.id,{
+    util.putRequests('/jxm8/'+this.data.id,{
       note:this.data.detail,
       id:this.data.id,
     },'put').then(res=>{
@@ -61,7 +61,7 @@ Page({
     util.requests('/jxm8',{
       matter:this.data.matter,
       open_date:this.data.open_date,
-      project_id:this.data.proejct_id,
+      project_id:this.data.project_id,
       unit_id:this.data.unit_id,
       note:this.data.detail,
       log_type_id:logId

@@ -30,8 +30,8 @@ Page({
    */
   onShow: function () {
     this.setData({
-      startTime:util.formatTime(new Date()),
-      endTime:util.formatTime2(new Date()),
+      start_time:util.formatTime(new Date()),
+      end_time:util.formatTime2(new Date()),
       date:util.formatDate(new Date()),
       dateEnd:util.formatDate(new Date())
     })

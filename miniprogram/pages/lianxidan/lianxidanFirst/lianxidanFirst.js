@@ -6,12 +6,7 @@ Page({
       type:4,
       step:1
     },
-    info:{
-      name:'白沙洲变电枢纽二期项目',
-      unit:'第四分队',
-      date:'',
-      detail:''
-    },
+    info:{},
     oldValues:'',
     reset:false,
     index:0,
@@ -21,30 +16,32 @@ Page({
   },
   setGaiyao(e){
     let info=this.data.info
-    info.detail=this.data.oldValues+e.detail
+    info.matter=this.data.oldValues+e.detail
     this.setData({
       info:info,
       oldValues:this.data.oldValues+e.detail,
     })
   },
   onLoad(options){
-    this.getUnits(options.id)
-    this.setData({
-      
-    })
+    if(options.project_id){
+      this.getUnits(options.project_id)
+      this.setData({
+        project_id:options.project_id
+      })
+    }
     if(options.default){
       this.setData({
         info:JSON.parse(options.default),
-        oldValues:JSON.parse(options.default).detail,
+        oldValues:JSON.parse(options.default).matter,
+        unit_id:JSON.parse(options.default).unit_id,
         reset:true
       })
       wx.setNavigationBarTitle({
         title: '修改工作联系单',
       })
+      this.getUnits(JSON.parse(options.default).project_id)
     }
-    this.setData({
-      id:options.id
-    })
+    
   },
   bindUnitChange: function(e) {
     let info=this.data.info
@@ -68,14 +65,11 @@ Page({
       info:info
     })
   },
-  changejaq(){
-    util.requests('/jaq/'+this.data.id,{
-      matter:this.data.matter,
-      open_date:this.data.open_date,
-      proejct_id:this.data.proejct_id,
-      unit_id:this.data.units,
-      log_type_id:3
-    },'put').then(res=>{
+  resetJaq(){
+    util.requests('/jxm8/'+this.data.info.id,{
+      matter:this.data.info.matter,
+      open_date:this.data.info.open_date,
+    }).then(res=>{
       if(res.data.code==0){
         wx.navigateBack({
           complete: (res) => {
@@ -87,10 +81,12 @@ Page({
   },
   nextStep(){
     let unit_id=this.data.arr2[this.data.index].id
-    if(this.data.info.detail.trim().length>0){
-      
-      util.nextStepCommon(this,'info','/pages/lianxidan/lianxidanSecond/lianxidanSecond?matter='+this.data.info.detail+'&open_date='+this.data.info.open_date+'&proejct_id='+this.data.id+'&units='+unit_id,'info')
-      // this.changejaq()
+    if(this.data.info.matter.trim().length>0){
+      if(this.data.reset){
+        this.resetJaq()
+      } else {
+        util.nextStepCommon(this,'info','/pages/lianxidan/lianxidanSecond/lianxidanSecond?matter='+this.data.info.matter+'&open_date='+this.data.info.open_date+'&project_id='+this.data.project_id+'&units='+unit_id,'info')
+      }
     } else {
       return util.toasts('事由不能为空')
     }
@@ -103,6 +99,12 @@ Page({
         let arr=res.data.data.map(item=>{
           return item.name
         })
+        if(this.data.info.unit_id){
+          let index=res.data.data.findIndex((val)=>val.id==this.data.info.unit_id)
+          this.setData({
+            index:index
+          })
+        }
         that.setData({
           array:arr,
           arr2:res.data.data

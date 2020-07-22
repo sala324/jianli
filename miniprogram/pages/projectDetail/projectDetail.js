@@ -76,11 +76,11 @@ Page({
     })
   },
   onLoad: function (options) {
-    commonRequest.projectDetail(options.id,this)
     this.logType()
     this.setData({
-      id:options.id
+      id:wx.getStorageSync('pid')
     })
+    commonRequest.projectDetail(this.data.id,this)
   },
   onShow: function () {
     this.logList()

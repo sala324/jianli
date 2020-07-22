@@ -56,15 +56,16 @@ Page({
         this.data.arr2[1].val=res.data.data.measures
         let imgArr=res.data.data.images.map(item=>{return item.url})
         let idArr=res.data.data.images.map(item=>{return item.id})
+        let info=JSON.parse(JSON.stringify(res.data.data,['id','code','open_date','position']))
+        info.name=res.data.data.project.name
         this.setData({
-          info:JSON.parse(JSON.stringify(res.data.data,['id','code','open_date','position'])),
+          info:info,
           arr:res.data.data.config,
           project_log_id:res.data.data.project_log_id,
           arr2:this.data.arr2,
           imgArr:imgArr,
           idArr:idArr
         })
-        console.log(res.data.data.project_log_id)
       }
     })
   },

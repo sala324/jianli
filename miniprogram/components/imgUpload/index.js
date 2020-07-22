@@ -9,11 +9,8 @@ Component({
   },
   methods: {
     setItem(e){
-      // this.data.imgArr.splice(e.currentTarget.dataset.index,1)
-      // this.data.imgurl.splice(e.currentTarget.dataset.index,1)
-      // this.setData({
-      //   imgArr:this.data.imgArr
-      // })
+      console.log(this.data.idArr)
+      console.log(this.data.idArr[e.currentTarget.dataset.index])
       this.triggerEvent('setItem', this.data.idArr[e.currentTarget.dataset.index])
     },
     imgUpload(){
@@ -24,6 +21,7 @@ Component({
       let arrTmp = me.data.imgArr;
       let idArr = me.data.idArr;
       console.log(me.data.logid)
+      console.log('ceshi')
       wx.chooseImage({
         success(res) {
           const tempFilePaths = res.tempFilePaths

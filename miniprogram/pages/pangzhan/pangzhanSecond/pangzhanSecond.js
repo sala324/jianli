@@ -18,7 +18,7 @@ Page({
   delItem(e){
     let arr=this.data.arr
     let index=e.currentTarget.dataset.index
-    arr[index].val=''
+    arr[index].values=''
     this.setData({
       index1:index,
       arr:arr,
@@ -27,7 +27,7 @@ Page({
   },
   changeItem(e){
     let index=e.currentTarget.dataset.index
-    let oldValues=this.data.arr[index].val
+    let oldValues=this.data.arr[index].values
     this.setData({
       index1:index,
       oldValues:oldValues
@@ -41,7 +41,7 @@ Page({
   changeValue(e){
     let arr=this.data.arr
     let index=e.currentTarget.dataset.index
-    arr[index].val=e.detail.value
+    arr[index].values=e.detail.value
     this.setData({
       arr:arr,
       index1:index,
@@ -51,13 +51,37 @@ Page({
   setGaiyao(e){
     let arr=this.data.arr
     let index=this.data.index1
-    arr[index].val=this.data.oldValues+e.detail
+    arr[index].values=this.data.oldValues+e.detail
     this.setData({
       arr:arr,
       oldValues:this.data.oldValues+e.detail
     })
   },
+  getmodule(){
+    let tid=wx.getStorageSync('logId')
+    util.requests('/module',{tid:1}).then(res=>{
+      let arr=res.data.data[0].work[0].config
+      let arr1=[]
+      arr.forEach((item,index)=>{
+        let json={}
+        json.configuration_id=item.working_id
+        json.values=''
+        json.about=item.name
+        arr1.push(json)
+      })
+      this.setData({
+        arr:arr1
+      })
+    })
+  },
   onLoad(options){
+    if(options.step1Value){
+      console.log(JSON.parse(options.step1Value))
+      this.setData({
+        step1Value:JSON.parse(options.step1Value)
+      })
+      this.getmodule()
+    }
     if(options.default){
       this.setData({
         arr:JSON.parse(options.default),
@@ -74,8 +98,36 @@ Page({
       oldValues:e.detail.value
     })
   },
+  resetInfo(id){
+    util.requests('jxm9/'+id,{
+      config:this.data.arr
+    },'put').then(res=>{
+      if(res.data.code==0){
+        wx.navigateBack({
+          complete: (res) => {
+            util.toasts('修改成功')
+          },
+        })
+      }
+    })
+  },
   nextStep(){
-    util.nextStepCommon(this,'arr','/pages/pangzhan/pangzhanThird/pangzhanThird','arr')
+    let next=true
+    this.data.arr.forEach(item=>{
+      if(!item.values){
+        next=false
+        return util.toasts('请确认全部输入完毕')
+      }
+    })
+    if(next){
+      if(this.data.reset){
+        this.resetInfo(this.data.id)
+      } else {
+        wx.navigateTo({
+          url: '/pages/pangzhan/pangzhanThird/pangzhanThird?step1Value='+JSON.stringify(this.data.step1Value)+'&config='+JSON.stringify(this.data.arr),
+        })
+      }
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -89,8 +141,8 @@ Page({
    */
   onShow: function () {
     this.setData({
-      startTime:util.formatTime(new Date()),
-      endTime:util.formatTime2(new Date()),
+      start_time:util.formatTime(new Date()),
+      end_time:util.formatTime2(new Date()),
       date:util.formatDate(new Date()),
       dateEnd:util.formatDate(new Date())
     })

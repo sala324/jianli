@@ -34,7 +34,7 @@ Page({
     let that=this
     if(options.position){
       that.setData({
-        proejct_id:options.proejct_id,
+        project_id:options.project_id,
         config:JSON.parse(options.config),
         position:options.position,
         open_date:options.open_date
@@ -68,6 +68,8 @@ Page({
   },
   createJaq(){
     let log_type_id=wx.getStorageSync('logId')
+    let project_id=wx.getStorageSync('pid')
+    console.log(this.data.position,this.data.matter,this.data.measures,this.data.config,this.data.open_date,this.data.project_id,log_type_id)
     util.requests('/jaq',{
       position:this.data.position,
       matter:this.data.matter,
@@ -75,7 +77,7 @@ Page({
       measures:this.data.measures,
       config:this.data.config,
       open_date:this.data.open_date,
-      project_id:this.data.proejct_id,
+      project_id:project_id,
       log_type_id:log_type_id
     },'post').then(res=>{
       if(res.data.code===0){
@@ -89,7 +91,7 @@ Page({
     util.requests('/jaq/'+this.data.id,{
       matter:this.data.matter,
       measures:this.data.measures,
-      project_id:this.data.proejct_id,
+      project_id:this.data.project_id,
       id:this.data.id,
     },'put').then(res=>{
       if(res.data.code===0){
