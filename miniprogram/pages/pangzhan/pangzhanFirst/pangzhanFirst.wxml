@@ -38,6 +38,13 @@
     </picker>
   </view>
   <view class="lineItem">
+    <text class="name">旁站监理的类别</text>
+    <picker bindchange="changeItem" value="{{info.index3}}" data-name="index3" range="{{typeArr}}">
+      <view class="picker">{{typeArr[info.index3]}} >
+      </view>
+    </picker>
+  </view>
+  <view class="lineItem">
     <text class="name">旁站监理的工序</text>
     <picker bindchange="changeItem" value="{{info.index}}" data-name="index" range="{{gongXuArr}}">
       <view class="picker">{{gongXuArr[info.index]}} >

@@ -19,7 +19,7 @@
   line-height: 1.2;
   border-radius: 20rpx;
   font-size: 30rpx;
-  width: 560rpx;
+  width: 600rpx;
   /* box-sizing: border-box; */
   color: #191F25;
 }
@@ -28,9 +28,10 @@
 }
 .tips{
   padding-left: 20rpx;
-  line-height: 100rpx;
+  line-height: 40rpx;
   font-size: 30rpx;
   color: #191F25;
+  padding:20rpx
 }
 .textWrap{
   position: relative;

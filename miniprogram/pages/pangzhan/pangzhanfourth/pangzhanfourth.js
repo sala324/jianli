@@ -27,6 +27,16 @@ Page({
         title: '修改旁站记录——第四步',
       })
     }
+    if(options.step1Value){
+      console.log(JSON.parse(options.step1Value))
+      console.log(JSON.parse(options.describe2))
+      this.setData({
+        describe1:options.describe1,
+        describe2:JSON.parse(options.describe2),
+        step1Value:JSON.parse(options.step1Value),
+        config:JSON.parse(options.config)
+      })
+    }
   },
   changeDetail(e){
     this.setData({
@@ -51,22 +61,22 @@ Page({
     })
   },
   createLog(){
-    let project_id=wx.getStorageSync('token')
+    console.log(this.data.step1Value)
     util.requests('/jxm9',{
-      start_time:this.data.start_time,
-      end_time:this.data.end_time,
-      position:this.data.position,
-      weather:this.data.weather,
+      start_time:this.data.step1Value.start_time,
+      end_time:this.data.step1Value.end_time,
+      position:this.data.step1Value.position,
+      weather:this.data.step1Value.weather,
       describe1:this.data.describe1,
       describe2:this.data.describe2,
-      outline:this.data.outline,
-      opinion:this.data.opinion,
-      open_date:this.data.open_date,
-      modules_id:this.data.modules_id,
-      working_id:this.data.working_id,
-      unit_id:this.data.unit_id,
-      project_id:project_id,
-      log_type_id:this.data.log_type_id,
+      outline:this.data.step1Value.outline,
+      opinion:this.data.detail,
+      open_date:this.data.step1Value.open_date,
+      modules_id:this.data.step1Value.modules_id,
+      working_id:this.data.step1Value.working_id,
+      unit_id:this.data.step1Value.unit_id,
+      project_id:wx.getStorageSync('pid'),
+      log_type_id:wx.getStorageSync('logId'),
       config:this.data.config
     },'post').then(res=>{
       if(res.data.code==0){
@@ -80,65 +90,9 @@ Page({
     if(this.data.reset){
       this.resetInfo()
     } else {
-      util.nextStepCommon(this,'wenti','/pages/pangzhan/pangzhan/pangzhan')
+      // util.nextStepCommon(this,'wenti','/pages/pangzhan/pangzhan/pangzhan')
       this.createLog()
     }
     
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.setData({
-      start_time:util.formatTime(new Date()),
-      end_time:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
-      dateEnd:util.formatDate(new Date())
-    })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

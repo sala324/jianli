@@ -12,7 +12,7 @@ Page({
       type:1,
       step:2
     },
-    arr:[{name:'aa',val:'',tips:'输入1'},{name:'bb',val:'',tips:'输入2'},{name:'cc',val:'',tips:'输入33333'},{name:'dd',val:'',tips:'输入4444'},{name:'ee',val:'',tips:'输入555555'},{name:'ff',val:'',tips:'输入33333'},{name:'gg',val:'',tips:'输入4444'},{name:'11',val:'',tips:'输入555555'}],
+    arr:[],
     dateEnd:''
   },
   delItem(e){
@@ -57,20 +57,38 @@ Page({
       oldValues:this.data.oldValues+e.detail
     })
   },
-  getmodule(){
+  getconfiguration(){
     let tid=wx.getStorageSync('logId')
-    util.requests('/module',{tid:1}).then(res=>{
-      let arr=res.data.data[0].work[0].config
-      let arr1=[]
-      arr.forEach((item,index)=>{
+    util.requests('/configuration',{
+      wid:11
+      // wid:this.data.step1Value.working_id
+    }).then(res=>{
+      let arr=res.data.data
+      let idArr=arr.filter(item=>item.classes==-1)
+      let id1=idArr[0].id
+      let id2=idArr[1].id
+      let arr3=arr.filter(item=>item.parent_id==id1)
+      let arr4=arr.filter(item=>item.parent_id==id2)
+      let arr5=[]
+      let arr6=[]
+      arr3.forEach((item,index)=>{
         let json={}
-        json.configuration_id=item.working_id
+        json.configuration_id=item.id
         json.values=''
         json.about=item.name
-        arr1.push(json)
+        console.log(index)
+        arr5.push(json)
+      })
+      arr4.forEach((item,index)=>{
+        let json={}
+        json.id=item.id
+        json.values=0
+        json.name=item.name
+        arr6.push(json)
       })
       this.setData({
-        arr:arr1
+        arr:arr5,
+        nextArr:arr6
       })
     })
   },
@@ -80,7 +98,7 @@ Page({
       this.setData({
         step1Value:JSON.parse(options.step1Value)
       })
-      this.getmodule()
+      this.getconfiguration()
     }
     if(options.default){
       this.setData({
@@ -120,69 +138,17 @@ Page({
       }
     })
     if(next){
+      let describe1=''
+      this.data.arr.forEach((item,index)=>{
+        describe1+=index+1+item.about+':'+item.values+'<br>'
+      })
       if(this.data.reset){
         this.resetInfo(this.data.id)
       } else {
         wx.navigateTo({
-          url: '/pages/pangzhan/pangzhanThird/pangzhanThird?step1Value='+JSON.stringify(this.data.step1Value)+'&config='+JSON.stringify(this.data.arr),
+          url: '/pages/pangzhan/pangzhanThird/pangzhanThird?step1Value='+JSON.stringify(this.data.step1Value)+'&config='+JSON.stringify(this.data.arr)+'&describe1='+describe1+'&nextArr='+JSON.stringify(this.data.nextArr),
         })
       }
     }
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.setData({
-      start_time:util.formatTime(new Date()),
-      end_time:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
-      dateEnd:util.formatDate(new Date())
-    })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

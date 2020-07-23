@@ -9,6 +9,7 @@ Page({
     info:{
       index2:0,
       index:0,
+      index3:0,
     },
     navInfo:{
       type:1,
@@ -85,12 +86,6 @@ Page({
       info:info
     })
   },
-  getModule(){
-    let tid=wx.getStorageSync('logId')
-    util.requests('/module',{tid:5}).then(res=>{
-      console.log(res.data.data)
-    })
-  },
   getUnits(id){
     let that=this
     util.requests('/units',{p:id}).then(res=>{
@@ -103,6 +98,13 @@ Page({
           this.setData({
             index:index
           })
+        } else {
+          let info=this.data.info
+          info.unit_id=res.data.data[0].id
+          info.outline=res.data.data[0].name
+          this.setData({
+            info:info
+          })
         }
         that.setData({
           unitsArr:arr,
@@ -112,8 +114,7 @@ Page({
     })
   },
   onLoad(options){
-    this.getModule()
-    this.getConfiguration()
+    this.getmoduleSi()
     if(options.project_id){
       this.getUnits(options.project_id)
       this.setData({
@@ -150,13 +151,39 @@ Page({
       detail:e.detail.value
     })
   },
-  getConfiguration(){
-    util.requests('/configuration',{wid:wx.getStorageSync('logId')}).then(res=>{
-      console.log(res)
+  getworking(){
+    util.requests('/working',{mid:this.data.modules_id}).then(res=>{
+      if(res.data.code===0){
+        let arr1=res.data.data.map(item=>{return item.name})
+        let info=this.data.info
+        info.working_id=res.data.data[0].id
+        this.setData({
+          gongXuArr:arr1,
+          working_id:res.data.data[0].id,
+          gongXuArrs:res.data.data,
+          info:info
+        })
+      }
+    })
+  },
+  getmoduleSi(){
+    util.requests('/moduleSi',{tid:wx.getStorageSync('logId')}).then(res=>{
+      if(res.data.code===0){
+        let arr1=res.data.data.map(item=>{return item.name})
+        let info=this.data.info
+        info.modules_id=res.data.data[0].id
+        this.setData({
+          typeArr:arr1,
+          modules_id:res.data.data[0].id,
+          typeArrs:res.data.data,
+          info:info
+        })
+        this.getworking()
+      }
     })
   },
   resetInfo(id){
-    util.requests('jxm9/'+id,{
+    util.requests('/jxm9/'+id,{
       start_time:this.data.info.start_time,
       end_time:this.data.info.end_time,
       position:this.data.info.position,
@@ -191,6 +218,21 @@ Page({
     info[name]=e.detail.value
     if(name=='index'){
       info.outline=this.data.gongXuArr[e.detail.value]
+      info.working_id=this.data.gongXuArrs[e.detail.value].id
+      this.setData({
+        working_id:this.data.gongXuArrs[e.detail.value].id
+      })
+    }
+    if(name=='index2'){
+      info.unit_id=this.data.arr2[e.detail.value].id
+    }
+    
+    if(name=='index3'){
+      info.modules_id=this.data.typeArrs[e.detail.value].id
+      this.setData({
+        modules_id:this.data.typeArrs[e.detail.value].id
+      })
+      this.getworking()
     }
     this.setData({
       info: info

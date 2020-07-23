@@ -2,7 +2,7 @@
 <view class="info">
   <view class="title">二、作业过程风险控制措施检查</view>
   <view class="item" wx:for="{{arr}}" wx:key="index">
-    <text class="text">{{index+1}}.核对杆号或停电间隔及回路核对杆号或停电间隔及回路核对杆号或停电间隔及回路</text>
-    <switch checked="{{item.checked}}" bindtap="resetState" data-index="{{index}}"></switch>
+    <text class="text">{{index+1}}.{{item.name}}</text>
+    <switch checked="{{item.values==1}}" bindtap="resetState" data-index="{{index}}"></switch>
   </view>
 </view>

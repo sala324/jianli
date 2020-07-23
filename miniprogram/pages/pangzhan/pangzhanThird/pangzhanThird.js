@@ -11,10 +11,7 @@ Page({
   },
   resetState(e){
     let arr=this.data.arr
-    console.log(arr)
-    console.log(e.currentTarget.dataset.index)
-    console.log(arr[e.currentTarget.dataset.index])
-    arr[e.currentTarget.dataset.index].checked=!arr[e.currentTarget.dataset.index].checked
+    arr[e.currentTarget.dataset.index].values=(arr[e.currentTarget.dataset.index].values==0)?1:0
     this.setData({
       arr:arr
     })
@@ -23,6 +20,7 @@ Page({
     if(options.default){
       this.setData({
         arr:JSON.parse(options.default),
+        id:JSON.parse(options.default).id,
         reset:true
       })
       wx.setNavigationBarTitle({
@@ -30,69 +28,35 @@ Page({
       })
     }
     if(options.step1Value){
+      console.log(options.describe1)
       this.setData({
+        describe1:options.describe1,
         step1Value:JSON.parse(options.step1Value),
         config:JSON.parse(options.config),
+        arr:JSON.parse(options.nextArr),
       })
     }
   },
   nextStep(){
-    util.nextStepCommon(this,'arr2','/pages/pangzhan/pangzhanfourth/pangzhanfourth','arr')
+    if(this.data.reset){
+      this.resetInfo(this.data.id)
+    } else {
+      wx.navigateTo({
+        url: '/pages/pangzhan/pangzhanfourth/pangzhanfourth?step1Value='+JSON.stringify(this.data.step1Value)+'&config='+JSON.stringify(this.data.config)+'&describe1='+this.data.describe1+'&describe2='+JSON.stringify(this.data.arr),
+      })
+    }
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.setData({
-      start_time:util.formatTime(new Date()),
-      end_time:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
-      dateEnd:util.formatDate(new Date())
+  resetInfo(id){
+    util.requests('jxm9/'+id,{
+      config:this.data.arr
+    },'put').then(res=>{
+      if(res.data.code==0){
+        wx.navigateBack({
+          complete: (res) => {
+            util.toasts('修改成功')
+          },
+        })
+      }
     })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
