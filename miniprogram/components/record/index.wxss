@@ -62,3 +62,8 @@
   justify-content: center;  
   align-items: center;
 }
+.code{
+  float:right;
+  color:#999;
+  font-size:24rpx;
+}

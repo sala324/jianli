@@ -15,7 +15,7 @@
   </view>
   <view class="lineItem">
     <text class="name">检验对象分类</text>
-    <picker class="detail" bindchange="changeItem" wx:if="{{!reset}}" value="{{index}}" range="{{array}}">
+    <picker class="detail" bindchange="changeItem" wx:if="{{!reset}}" data-index="index" data-arr="{{array2}}" data-name="modules_id" value="{{index}}" range="{{array}}">
       <view class="picker">
         {{array[index]}} >
       </view>
@@ -25,7 +25,7 @@
   <block wx:if="{{index==1}}">
     <view class="lineItem">
       <text class="name">工序名称</text>
-      <picker class="detail" bindchange="changeItem" data-index="index2" data-arr="{{array2}}" data-name="processName" value="{{index2}}" range="{{array2}}">
+      <picker class="detail" bindchange="changeItem" data-index="index2" data-arr="{{array2}}" data-name="working_id" value="{{index2}}" range="{{array2}}">
         <view class="picker">
           {{array2[index2]}} >
         </view>
@@ -33,7 +33,7 @@
     </view>
     <view class="lineItem">
       <text class="name">施工单位</text>
-      <picker class="detail" bindchange="changeItem" data-index="index3" data-arr="{{array3}}" data-name="buildUnits"  value="{{index3}}" range="{{array3}}">
+      <picker class="detail" bindchange="changeItem" data-index="index3" data-arr="{{array3}}" data-name="unit_id"  value="{{index3}}" range="{{array3}}">
         <view class="picker">
           {{array3[index3]}} >
         </view>

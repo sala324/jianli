@@ -48,63 +48,50 @@ Page({
       arr:arr
     })
   },
-  nextStep(){
-    util.nextStepCommon(this,'arr2','/pages/jingyan/jingyan/jingyan','arr')
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.setData({
-      start_time:util.formatTime(new Date()),
-      end_time:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
-      dateEnd:util.formatDate(new Date())
+  createJzl3(){
+    util.requests('/jzl3',{
+      name:name,
+      specifications:specifications,
+      production:production,
+      position:position,
+      describe:describe,
+      result:result,
+      instrument:instrument,
+      open_date:open_date,
+      modules_id	:modules_id	,
+      working_id:working_id,
+      unit_id:unit_id,
+      project_id:project_id,
+      log_type_id:log_type_id,
+      config:config
+    },'post').then(res=>{
+      if(res.data.code==0){
+        wx.reLaunch({
+          url:'/pages/jingyan/jingyan/jingyan?id='+res.data.data.id
+        })
+      }
     })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  resetJzl3(id){
+    util.requests('/jzl3/'+id,{
+      result:result,
+      instrument:instrument,
+    },'post').then(res=>{
+      if(res.data.code==0){
+        wx.reLaunch({
+          url:'/pages/jingyan/jingyan/jingyan?id='+res.data.data.id
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  nextStep(){
+    if(this.data.reset){
+      this.resetJzl3(this.data.id)
+    } else {
+      this.createJzl3()
+    }
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onShow: function () {
+    
   }
 })

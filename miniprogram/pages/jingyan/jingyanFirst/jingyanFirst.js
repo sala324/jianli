@@ -3,7 +3,7 @@ Page({
   data: {
     detail:'',
     dateEnd:'',
-    index:0,
+    index:1,
     authority:true,
     activeNav:'name',
     array:['材料','工序'],
@@ -53,7 +53,9 @@ Page({
   },
   changeItem(e){
     let info=this.data.baseInfo
-    info[e.currentTarget.dataset.name]=e.currentTarget.dataset.arr[e.detail.value]
+    let arr=e.currentTarget.dataset.arr
+    console.log(info,e)
+    info[e.currentTarget.dataset.name]=arr[e.detail.value]
     this.setData({
       [e.currentTarget.dataset.index]:e.detail.value
     })

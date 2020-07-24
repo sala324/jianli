@@ -63,7 +63,7 @@ Page({
         res.data.data.data.forEach((item,index)=>{
           item.title=item.open_date.slice(0,10)
           item.des=item.note
-          item.is_post=0
+          item.types='jianli'
           item.index=index
         })
         this.setData({

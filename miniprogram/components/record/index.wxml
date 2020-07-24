@@ -1,9 +1,12 @@
 <view class="item" bindtouchstart="drawStart" data-index='{{index}}' wx:if="{{projectItem.is_post==0}}" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{right}}rpx">
   <view class="content">
-    <view class="title">{{projectItem.title}}</view>
+    <view class="title" wx:if="{{projectItem.types=='jianli'}}">{{projectItem.title}} <text class="code">{{projectItem.code}}</text></view>
+    <view class="title" wx:else>{{projectItem.title}}</view>
     <view class="des">{{projectItem.des}}</view>
     <view class="info">
-      <view class="id">编号：{{projectItem.code}}|{{projectItem.open_date}}</view>
+      <view class="id" >
+      <text wx:if="{{!projectItem.types}}">编号：{{projectItem.code}}|{{projectItem.open_date}}</text>
+      </view>
       <view class="state" wx:if="{{projectItem.is_post==0}}">未签名</view>
       <view class="state gray" wx:else>已签名</view>
     </view>
@@ -12,7 +15,8 @@
 </view>
 <view class="item" wx:else >
   <view class="content">
-    <view class="title">{{projectItem.title}}</view>
+    <view class="id" wx:if="{{!projectItem.types}}">编号：{{projectItem.code}}|{{projectItem.open_date}}</view>
+    <view class="state right" wx:if="{{projectItem.is_post==0}}">未签名</view>
     <view class="des">{{projectItem.des}}</view>
     <view class="info">
       <view class="id">编号：{{projectItem.code}}|{{projectItem.open_date}}</view>
