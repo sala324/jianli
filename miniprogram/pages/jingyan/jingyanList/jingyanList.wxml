@@ -1,8 +1,9 @@
-<scroll-view style="height:100vh" scroll-y bindscrolltolower="loadMore">
+<scroll-view style="height:100vh;" scroll-y bindscrolltolower="loadMore">
   <project-item projectItem="{{item}}" class="topInfo"></project-item>
   <view class="recoreWrap">
-    <record-item wx:for="{{listArr}}" data-state="{{item.state}}" wx:key="index" data-index="{{index}}" bind:delItem="delItem" projectItem="{{item}}" bindtap="turnDetail"></record-item>
+    <record-item wx:for="{{listArr}}" data-state="{{item.state}}" data-id="{{item.id}}" wx:key="index" data-index="{{index}}" bind:delItem="delItem" projectItem="{{item}}" bindtap="turnDetail"></record-item>
   </view>
+  <view style="height:120rpx;"></view>
 </scroll-view>
 <btn title="新增平行经验" bind:myevent="addRecord"></btn>
 

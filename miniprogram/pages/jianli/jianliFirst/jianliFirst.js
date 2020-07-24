@@ -4,12 +4,8 @@ Page({
     authority:true,
     dateEnd:'',
     oldValues:'',
-    info:{
-      name:'白沙洲变电枢纽二期项目',
-      id:'0098654',
-      date:'',
-      detail:''
-    },
+    reset:false,
+    info:{},
     shuru:false
   },
   setGaiyao(e){
@@ -24,27 +20,35 @@ Page({
     if(options.default){
       this.setData({
         info:JSON.parse(options.default),
-        oldValues:JSON.parse(options.default).detail,
+        oldValues:JSON.parse(options.default).note,
+        id:options.id,
         reset:true
       })
       wx.setNavigationBarTitle({
         title: '修改监理日志详情',
       })
+    } else {
+      this.loadInfo()
     }
+    
   },
   changeDetail(e){
     let info=this.data.info
-    info.detail=e.detail.value
+    info.note=e.detail.value
     this.setData({
       info:info
     })
   },
   nextStep(){
-    util.nextStepCommon(this,'info','/pages/jianli/jianli/jianli','info')
+    if(!this.data.reset){
+      this.createJxm17()
+    } else {
+      this.resetJxm17(this.data.id)
+    }
   },
   bindDateChange(e){
     let info=this.data.info
-    info.date=e.detail.value
+    info.open_date=e.detail.value
     this.setData({
       info: info
     })
@@ -59,15 +63,69 @@ Page({
       end_time: e.detail.value
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  loadInfo: function () {
+    var page = this;
+    //获取经纬度
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        // success,获取当前的城市信息
+        var latitude = res.latitude
+        var longitude = res.longitude
+        console.log(latitude);
+        page.getCity(latitude, longitude)
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+    })
   },
-  /**
-   * 生命周期函数--监听页面显示
-   */
+  //根据经纬度获取城市
+  getCity: function (latitude, longitude) {
+    var page = this;
+    wx.request({
+      url: 'http://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&key=EFHBZ-WQG6U-WEMVB-4N3DG-KSMGT-5WB2G',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        var city = res.data.result.address_component.city;
+        console.log(city);
+        //把市去掉，下一个接口地址没有模糊处理
+        city = city.replace("市", "");
+        page.setData({ city: city });
+        page.getWeather(city);
+      }
+    })
+  },
+  //根据城市获取天气信息
+  getWeather: function (city) {
+    var page = this;
+    wx.request({
+      url: 'http://wthrcdn.etouch.cn/weather_mini?city=' + city,
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res);
+        var future = res.data.data.forecast;
+        
+        //移除掉数组中当天的天气信息
+        var todayInfo = future.shift();
+        var today = res.data.data;
+        today.todayInfo = todayInfo;
+        let info=page.data.info
+        console.log(todayInfo)
+        info.temperature_high=todayInfo.low
+        info.temperature_low=todayInfo.high
+        info.weather_day=todayInfo.type
+        page.setData({info:info})
+      },
+    })
+  },
   onShow: function () {
     let that=this
     wx.getSetting({
@@ -88,48 +146,59 @@ Page({
     })
     if(!this.data.reset){
       let info=this.data.info
-      info.date=util.formatDate(new Date())
+      info.open_date=util.formatDate(new Date())
       this.setData({
         info:info
       })
+      this.getLogList()
     }
     this.setData({
       dateEnd:util.formatDate(new Date())
     })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  createJxm17(){
+    util.requests('/jxm17',{
+      project_id:wx.getStorageSync('pid'),
+      open_date:this.data.info.open_date,
+      modules_id:0,
+      working_id:0,
+      weather_night:'',
+      weather_day:this.data.info.weather_day,
+      temperature_high:this.data.info.temperature_high,
+      temperature_low:this.data.info.temperature_low,
+      note:this.data.info.note,
+      log_type_id:wx.getStorageSync('logId')
+    },'post').then(res=>{
+      if(res.data.code==0){
+        wx.reLaunch({
+          url:'/pages/jianli/jianli/jianli?id='+res.data.data.id
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  resetJxm17(id){
+    util.requests('/jxm17/'+id,{
+      open_date:this.data.info.open_date,
+      weather_day:this.data.info.weather_day,
+      temperature_high:this.data.info.temperature_high,
+      temperature_low:this.data.info.temperature_low,
+      note:this.data.info.note
+    },'put').then(res=>{
+      if(res.data.code==0){
+        wx.navigateBack({
+          complete: (res) => {
+            util.toasts('修改成功')
+          },
+        })
+      }
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  getLogList(){
+    util.requests('/logList?p='+wx.getStorageSync('pid'),{
+      // d:this.data.info.open_date
+      d:'2020-7-23'
+    }).then(res=>{
+      console.log(res)
+    })
   }
 })

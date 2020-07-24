@@ -95,13 +95,14 @@ Page({
         })
         if(this.data.info.unit_id){
           let index=res.data.data.findIndex((val)=>val.id==this.data.info.unit_id)
+          let info=this.data.info
+          info.index2=index
           this.setData({
-            index:index
+            info:info
           })
         } else {
           let info=this.data.info
           info.unit_id=res.data.data[0].id
-          info.outline=res.data.data[0].name
           this.setData({
             info:info
           })
@@ -122,12 +123,8 @@ Page({
       })
     }
     if(options.default){
-      let info=JSON.parse(options.default)
-      info.index=this.data.gongXuArr.findIndex((item,index,arr)=>{
-        return item==info.outline
-      })
       this.setData({
-        info:info,
+        info:JSON.parse(options.default),
         reset:true
       })
       wx.setNavigationBarTitle({
@@ -142,7 +139,7 @@ Page({
       wx.setNavigationBarTitle({
         title: '修改工作联系单',
       })
-      this.getUnits(JSON.parse(options.default).project_id)
+      this.getUnits(wx.getStorageSync('pid'))
     }
     this.loadInfo()//获取天气信息
   },
@@ -152,15 +149,28 @@ Page({
     })
   },
   getworking(){
-    util.requests('/working',{mid:this.data.modules_id}).then(res=>{
+    util.requests('/working',{mid:this.data.modules_id |this.data.info.modules_id}).then(res=>{
       if(res.data.code===0){
         let arr1=res.data.data.map(item=>{return item.name})
         let info=this.data.info
-        info.working_id=res.data.data[0].id
+        
         this.setData({
           gongXuArr:arr1,
           working_id:res.data.data[0].id,
-          gongXuArrs:res.data.data,
+          gongXuArrs:res.data.data
+        })
+        if(!this.data.reset){
+          info.working_id=res.data.data[0].id
+          info.index=0
+          info.outline=res.data.data[0].name
+          console.log(this.data.info)
+        } else {
+          info.index=this.data.gongXuArr.findIndex((item,index,arr)=>{
+            return item==info.outline
+          })
+          console.log(this.data.info)
+        }
+        this.setData({
           info:info
         })
       }
@@ -170,6 +180,7 @@ Page({
     util.requests('/moduleSi',{tid:wx.getStorageSync('logId')}).then(res=>{
       if(res.data.code===0){
         let arr1=res.data.data.map(item=>{return item.name})
+        
         let info=this.data.info
         info.modules_id=res.data.data[0].id
         this.setData({
@@ -178,14 +189,23 @@ Page({
           typeArrs:res.data.data,
           info:info
         })
+        if(this.data.info.modules_id){
+          let index=res.data.data.findIndex((val)=>val.id==this.data.info.modules_id)
+          let info=this.data.info
+          info.index3=index
+          this.setData({
+            info:info
+          })
+        }
         this.getworking()
       }
     })
   },
   resetInfo(id){
     util.requests('/jxm9/'+id,{
-      start_time:this.data.info.start_time,
-      end_time:this.data.info.end_time,
+      start_time:this.data.info.open_date+' '+this.data.info.start_time,
+      end_time:this.data.info.open_date+' '+this.data.info.end_time,
+      open_date:this.data.info.open_date,
       position:this.data.info.position,
       weather:this.data.info.weather,
     },'put').then(res=>{
@@ -202,7 +222,7 @@ Page({
 
     if(this.data.info.position){
       if(this.data.reset){
-        this.resetInfo(this.data.id)
+        this.resetInfo(this.data.info.id)
       } else {
         wx.navigateTo({
           url: '/pages/pangzhan/pangzhanSecond/pangzhanSecond?step1Value='+JSON.stringify(this.data.info)

@@ -2,7 +2,7 @@ const util = require('../../../utils/util');
 Page({
   data: {
     detail:'',
-    arr:[{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:false},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true}],
+    arr:[],
     navInfo:{
       type:1,
       step:3
@@ -20,7 +20,7 @@ Page({
     if(options.default){
       this.setData({
         arr:JSON.parse(options.default),
-        id:JSON.parse(options.default).id,
+        id:options.id,
         reset:true
       })
       wx.setNavigationBarTitle({
@@ -28,7 +28,6 @@ Page({
       })
     }
     if(options.step1Value){
-      console.log(options.describe1)
       this.setData({
         describe1:options.describe1,
         step1Value:JSON.parse(options.step1Value),
@@ -47,8 +46,8 @@ Page({
     }
   },
   resetInfo(id){
-    util.requests('jxm9/'+id,{
-      config:this.data.arr
+    util.requests('/jxm9/'+id,{
+      describe2:JSON.stringify(this.data.arr)
     },'put').then(res=>{
       if(res.data.code==0){
         wx.navigateBack({

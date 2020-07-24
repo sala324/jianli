@@ -21,6 +21,7 @@ Page({
       this.setData({
         detail:JSON.parse(options.default),
         oldValues:JSON.parse(options.default),
+        id:options.id,
         reset:true
       })
       wx.setNavigationBarTitle({
@@ -45,11 +46,8 @@ Page({
     })
   },
   resetInfo(id){
-    util.requests('jxm9/'+id,{
-      start_time:this.data.info.start_time,
-      end_time:this.data.info.end_time,
-      position:this.data.info.position,
-      weather:this.data.info.weather,
+    util.requests('/jxm9/'+id,{
+      opinion:this.data.detail,
     },'put').then(res=>{
       if(res.data.code==0){
         wx.navigateBack({
@@ -63,12 +61,12 @@ Page({
   createLog(){
     console.log(this.data.step1Value)
     util.requests('/jxm9',{
-      start_time:this.data.step1Value.start_time,
-      end_time:this.data.step1Value.end_time,
+      start_time:this.data.step1Value.open_date+' '+this.data.step1Value.start_time,
+      end_time:this.data.step1Value.open_date+' '+this.data.step1Value.end_time,
       position:this.data.step1Value.position,
       weather:this.data.step1Value.weather,
       describe1:this.data.describe1,
-      describe2:this.data.describe2,
+      describe2:JSON.stringify(this.data.describe2),
       outline:this.data.step1Value.outline,
       opinion:this.data.detail,
       open_date:this.data.step1Value.open_date,
@@ -80,7 +78,7 @@ Page({
       config:this.data.config
     },'post').then(res=>{
       if(res.data.code==0){
-        wx.relaunch({
+        wx.reLaunch({
           url:'/pages/pangzhan/pangzhan/pangzhan?id='+res.data.data.id
         })
       }
@@ -88,7 +86,7 @@ Page({
   },
   nextStep(){
     if(this.data.reset){
-      this.resetInfo()
+      this.resetInfo(this.data.id)
     } else {
       // util.nextStepCommon(this,'wenti','/pages/pangzhan/pangzhan/pangzhan')
       this.createLog()

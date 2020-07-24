@@ -1,61 +1,34 @@
 const util = require('../../../utils/util');
+const commonRequest = require('../../../utils/request');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    item:{
-      name:'白沙洲变电枢纽二期项目',
-      date:'你最近更新: 2020-09-22',
-      state:'1',
-      border:'none'
-    },
-    listArr:[
-      {title:'旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群',
-      des:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。',
-      id:'编号: 003223 | 2020-02 22',state:1,index:0},
-      {title:'旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群',
-      des:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。',
-      id:'编号: 003223 | 2020-02 22',state:2,index:1},
-      {title:'旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群',
-      des:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。',
-      id:'编号: 003223 | 2020-02 22',state:1,index:2},
-      {title:'旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群',
-      des:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。',
-      id:'编号: 003223 | 2020-02 22',state:2,index:3},
-      {title:'旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群',
-      des:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。',
-      id:'编号: 003223 | 2020-02 22',state:1,index:4},
-      {title:'旁站监理的部位或工序:电缆管群电缆管群电缆管群电缆管群',
-      des:'电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。电缆管群、电缆井土石方开挖，施工现场有作业计划，施工现场施工负责人、安全监护人、技术员在现场。',
-      id:'编号: 003223 | 2020-02 22',state:2,index:5}
-      
-    ]
+    size:10,
+    index:1,
+    item:{},
+    listArr:[]
   },
   addRecord(e){
     wx.navigateTo({
-      url: '/pages/jianli/jianliFirst/jianliFirst',
+      url: '/pages/jianli/jianliFirst/jianliFirst?project_id='+this.data.id,
     })
   },
   turnDetail(e){
     if(e.currentTarget.dataset.state==2){
       wx.navigateTo({
-        url: '/pages/jianli/jianliDetail/jianliDetail',
+        url: '/pages/jianli/jianliDetail/jianliDetail?id='+e.currentTarget.dataset.id,
       })
     } else {
       wx.navigateTo({
-        url: '/pages/jianli/jianli/jianli',
+        url: '/pages/jianli/jianli/jianli?id='+e.currentTarget.dataset.id,
       })
     }
     
   },
   delete(id){
-    util.requests('jaq/'+id,{},'delete').then(res=>{
+    console.log(id)
+    util.requests('/jxm17/'+id,{},'delete').then(res=>{
       if(res.data.code==0){
-        this.setData({
-          listArr:res.data.data
-        })
+        this.jxm17List()
       }
     })
   },
@@ -67,33 +40,40 @@ Page({
     this.setData({
       listArr:arr
     })
-    this.delete(arr[index].id)
+    this.delete(e.currentTarget.dataset.id)
   },
   loadMore(){
     let that = this;
-    this.setData({
-      index: that.data.index + 1,
-    });
-    if (this.data.index - this.data.totalPages <= 0) {
-      that.jxm8List();
+    if (this.data.index - this.data.totalPages < 0) {
+      this.setData({
+        index: that.data.index + 1,
+      });
+      that.jxm17List();
     }
   },
   onLoad: function (options) {
-    if(options.open_date){
-      this.setData({
-        open_date:options.open_date,
-        position:options.position
-      })
-    }
+    commonRequest.projectDetail(options.id,this)
+    this.setData({
+      id:options.id
+    })
   },
-  jxm8List(){
-    util.requests('/project',{pageSize:this.data.size,pageIndex:this.data.index}).then(res=>{
+  jxm17List(){
+    util.requests('/jxm17',{pageSize:this.data.size,pageIndex:this.data.index,p:this.data.id}).then(res=>{
       if(res.data.code==0){
-        
+        res.data.data.data.forEach((item,index)=>{
+          item.title=item.open_date.slice(0,10)
+          item.des=item.note
+          item.is_post=0
+          item.index=index
+        })
+        this.setData({
+          listArr:res.data.data.data,
+          totalPages:res.data.data.pageinfo.totalPages
+        })
       }
     })
   },
   onShow(){
-    this.jxm8List
+    this.jxm17List()
   }
 })

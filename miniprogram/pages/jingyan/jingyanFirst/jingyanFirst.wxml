@@ -15,7 +15,7 @@
   </view>
   <view class="lineItem">
     <text class="name">检验对象分类</text>
-    <picker class="detail" bindchange="bindPickerChange" wx:if="{{!reset}}" value="{{index}}" range="{{array}}">
+    <picker class="detail" bindchange="changeItem" wx:if="{{!reset}}" value="{{index}}" range="{{array}}">
       <view class="picker">
         {{array[index]}} >
       </view>

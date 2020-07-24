@@ -2,15 +2,15 @@
   <view class="wrap">
     <view class="item">
       <text class="name">工程名称</text>
-      <view class="info">{{info.title}}</view>
+      <view class="info">{{info.name}}</view>
     </view>
     <view class="item">
         <text class="name">编号</text>
-        <view class="info">{{info.id}}</view>
+        <view class="info">{{info.code}}</view>
     </view>
     <view class="item">
       <text class="name">日期</text>
-      <view class="info">{{info.date}} </view>
+      <view class="info">{{info.open_date}} </view>
     </view>
     <view class="item">
       <text class="name">天气</text>
@@ -18,27 +18,27 @@
     </view>
     <view class="item">
       <text class="name">施工单位</text>
-      <view class="info">{{info.shigong}}</view>
+      <view class="info">{{info.unit_id}}</view>
     </view>
     
     <view class="item">
       <text class="name">旁站监理的部位或工序</text>
-      <view class="info"><view class="box {{!info.reset?'auto':''}}">{{info.process}}:{{info.position}}</view> <image wx:if="{{info.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{info}}"  data-page="/pages/pangzhan/pangzhanFirst/pangzhanFirst"></image> </view>
+      <view class="info"><view class="box {{!info.reset?'auto':''}}">{{info.position}},{{info.outline}}</view> <image wx:if="{{info.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{info}}"  data-page="/pages/pangzhan/pangzhanFirst/pangzhanFirst"></image> </view>
     </view>
     <view class="item">
       <text class="name">开始时间</text>
-      <view class="info">{{info.date}} {{info.start_time}}</view>
+      <view class="info">{{info.open_date}} {{info.start_time}}</view>
     </view>
     <view class="item">
       <text class="name">结束时间</text>
-      <view class="info">{{info.date}} {{info.end_time}}</view>
+      <view class="info">{{info.open_date}} {{info.end_time}}</view>
     </view>
-    <view class="title">旁站的关键部位、关键工序施工情况</view>
+    <view class="title"></view>
     <view class="item">
       <text class="name">一、作业必备条件检查</text>
       <view class="info">
         <view class="box {{!reset?'auto':''}}">
-          <view class="detailItem" wx:for="{{arr}}" wx:key="index">{{item.val}}</view>
+          <view class="detailItem" wx:for="{{arr}}" wx:key="index">{{item.values}}</view>
         </view>
         <image src="../../../images/reset.png" class="reset" wx:if="{{reset}}" data-detail="{{arr}}" bindtap="resetDetail" data-page="/pages/pangzhan/pangzhanSecond/pangzhanSecond"></image> 
       </view>
@@ -47,7 +47,7 @@
       <text class="name">二、作业过程风险控制措施检查或监理情况</text>
       <view class="info">
         <view class="box {{!reset?'auto':''}}">
-          <view class="detailItem2 {{item.checked?'active':''}}" wx:for="{{arr2}}" wx:key="index"> {{index+1}}.作业前是否核实是否停电。<text class="state unChecked" wx:if="{{!item.checked}}"></text><image class="state checked" wx:else src="../../../images/gou.png"></image></view>
+          <view class="detailItem2 {{item.values==1?'active':''}}" wx:for="{{arr2}}" wx:key="index"> {{index+1}}.{{item.name}}<text class="state unChecked" wx:if="{{item.values!=1}}"></text><image class="state checked" wx:else src="../../../images/gou.png"></image></view>
         </view>
         <image src="../../../images/reset.png"  wx:if="{{reset}}" bindtap="resetDetail" data-detail="{{arr2}}" data-page="/pages/pangzhan/pangzhanThird/pangzhanThird"></image>
       </view>
@@ -55,8 +55,8 @@
     <view class="item">
       <text class="name">发现问题及处理</text>
       <view class="info">
-        <view class="box {{!reset?'auto':''}}">{{wenti}}</view>
-        <image src="../../../images/reset.png"  wx:if="{{reset}}" bindtap="resetDetail" data-detail="{{wenti}}" data-page="/pages/pangzhan/pangzhanfourth/pangzhanfourth"></image>
+        <view class="box {{!reset?'auto':''}}">{{opinion}}</view>
+        <image src="../../../images/reset.png"  wx:if="{{reset}}" bindtap="resetDetail" data-detail="{{opinion}}" data-page="/pages/pangzhan/pangzhanfourth/pangzhanfourth"></image>
       </view>
     </view>
     <view class="item">
@@ -110,21 +110,19 @@
     </view>
     <view class="item">
         <text class="name">日期</text>
-        <view class="info">{{info.date}}</view>
+        <view class="info">{{info.open_date}}</view>
     </view>
     <view class="item">
       <text class="name">天气</text>
-      <view class="info">白天：阴天有雨
-    夜晚：阴天有雨 </view>
+      <view class="info">{{info.weather_day}}</view>
     </view>
     <view class="item">
       <text class="name">气温</text>
-      <view class="info">最高 35度
-    最低 15度</view>
+      <view class="info">{{info.temperature_high}} {{info.temperature_low}}</view>
     </view>
     <view class="item">
       <text class="name">日志详情</text>
-      <view class="info"><view class="box {{!info.reset?'auto':''}}">{{info.detail}}</view> <image wx:if="{{info.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{info}}"  data-page="/pages/jianli/jianliFirst/jianliFirst"></image> </view>
+      <view class="info"><view class="box {{!info.reset?'auto':''}}">{{info.note}}</view> <image wx:if="{{info.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{info}}"  data-page="/pages/jianli/jianliFirst/jianliFirst"></image> </view>
     </view>
   </view>
 </template>

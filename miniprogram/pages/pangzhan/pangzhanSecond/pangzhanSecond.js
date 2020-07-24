@@ -75,8 +75,8 @@ Page({
         let json={}
         json.configuration_id=item.id
         json.values=''
+        json.name=item.name
         json.about=item.name
-        console.log(index)
         arr5.push(json)
       })
       arr4.forEach((item,index)=>{
@@ -94,15 +94,16 @@ Page({
   },
   onLoad(options){
     if(options.step1Value){
-      console.log(JSON.parse(options.step1Value))
       this.setData({
         step1Value:JSON.parse(options.step1Value)
       })
       this.getconfiguration()
     }
     if(options.default){
+      console.log(JSON.parse(options.default))
       this.setData({
         arr:JSON.parse(options.default),
+        id:options.id,
         reset:true
       })
       wx.setNavigationBarTitle({
@@ -117,8 +118,13 @@ Page({
     })
   },
   resetInfo(id){
-    util.requests('jxm9/'+id,{
-      config:this.data.arr
+    let describe1=''
+    this.data.arr.forEach((item,index)=>{
+      describe1+=index+1+item.about+':'+item.values+'<br>'
+    })
+    util.requests('/jxm9/'+id,{
+      config:this.data.arr,
+      describe1:describe1
     },'put').then(res=>{
       if(res.data.code==0){
         wx.navigateBack({
