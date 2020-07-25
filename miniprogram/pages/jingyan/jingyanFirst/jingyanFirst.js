@@ -3,24 +3,20 @@ Page({
   data: {
     detail:'',
     dateEnd:'',
-    index:1,
     authority:true,
-    activeNav:'name',
+    activeNav:'production',
     array:['材料','工序'],
     array2:['桩基工程1','桩基工程2','桩基工程部位2','桩基工程部位3'],
     array3:['工程1队','工程2队','工程31队','工程4队'],
-    index2:0,
-    index3:0,
     reset:false,
-    baseInfo:{
-      title:'白沙洲变电枢纽二期项目',
-      id:'0098564',
-      date:'',
-      type:0,
+    info:{
       name:'',
-      actory:'',
-      size:'',
-      position:''
+      specifications:'',
+      production:'',
+      position:'',
+      index:0,
+      index2:0,
+      index3:0,
     },
     navInfo:{
       type:2,
@@ -36,39 +32,136 @@ Page({
   },
   changeValue(e){
     let name=e.currentTarget.dataset.name
-    let info=this.data.baseInfo
+    let info=this.data.info
     info[name]=e.detail.value
     this.setData({
-      baseInfo:info,
+      info:info,
       activeNav:name
     })
   },
   setGaiyao(e){
     let name=this.data.activeNav
-    let info=this.data.baseInfo
+    let info=this.data.info
     info[name]=e.detail
     this.setData({
-      baseInfo:info
+      info:info
     })
   },
   changeItem(e){
-    let info=this.data.baseInfo
-    let arr=e.currentTarget.dataset.arr
-    console.log(info,e)
-    info[e.currentTarget.dataset.name]=arr[e.detail.value]
+    let info=this.data.info
+    let name=e.currentTarget.dataset.name
+    let index=e.currentTarget.dataset.index
+    info[index]=e.detail.value
+    if(index=='index2'){
+      info.working_id=this.data.gongXuArrs[e.detail.value].id
+      info.name=this.data.gongXuArrs[e.detail.value].name
+      this.setData({
+        working_id:this.data.gongXuArrs[e.detail.value].id
+      })
+    }
+    if(index=='index3'){
+      info.unit_id=this.data.arr2[e.detail.value].id
+    }
+    
+    if(index=='index'){
+      info.modules_id=this.data.typeArrs[e.detail.value].id
+      this.setData({
+        modules_id:this.data.typeArrs[e.detail.value].id
+      })
+      this.getworking()
+    }
     this.setData({
-      [e.currentTarget.dataset.index]:e.detail.value
+      info:info
+    })
+  },
+  getUnits(id){
+    let that=this
+    util.requests('/units',{p:id}).then(res=>{
+      if(res.data.code==0){
+        let arr=res.data.data.map(item=>{
+          return item.name
+        })
+        if(this.data.info.unit_id){
+          let index=res.data.data.findIndex((val)=>val.id==this.data.info.unit_id)
+          let info=this.data.info
+          info.index3=index
+          this.setData({
+            info:info
+          })
+        } else {
+          let info=this.data.info
+          info.unit_id=res.data.data[0].id
+          this.setData({
+            info:info
+          })
+        }
+        that.setData({
+          unitsArr:arr,
+          arr2:res.data.data
+        })
+      }
+    })
+  },
+  getworking(){
+    util.requests('/working',{mid:this.data.modules_id |this.data.info.modules_id}).then(res=>{
+      if(res.data.code===0){
+        let arr1=res.data.data.map(item=>{return item.name})
+        let info=this.data.info
+        
+        this.setData({
+          gongXuArr:arr1,
+          working_id:res.data.data[0].id,
+          gongXuArrs:res.data.data
+        })
+        if(!this.data.reset){
+          info.working_id=res.data.data[0].id
+          info.index2=0
+        } else {
+          info.index2=this.data.gongXuArrs.findIndex((item,index,arr)=>{
+            return item.id==info.working_id
+          })
+        }
+        this.setData({
+          info:info
+        })
+      }
+    })
+  },
+  getmoduleSi(){
+    util.requests('/moduleSi',{tid:wx.getStorageSync('logId')}).then(res=>{
+      if(res.data.code===0){
+        let arr1=res.data.data.map(item=>{return item.name})
+        let info=this.data.info
+        if(!this.data.reset){
+          info.modules_id=res.data.data[0].id
+          info.index=0
+        } else {
+          info.index=res.data.data.findIndex((val)=>val.id==this.data.info.modules_id)
+        }
+        
+        this.setData({
+          typeArr:arr1,
+          modules_id:res.data.data[0].id,
+          typeArrs:res.data.data
+        })
+        this.setData({
+          info:info
+        })
+        this.getworking()
+      }
     })
   },
   onLoad(options){
+    this.getmoduleSi()
+    
     if(options.default){
       let info=JSON.parse(options.default)
       if(info.type==1){
         //工序
-        let index=this.data.array3.findIndex((val,index)=>{
+        info.index=this.data.array3.findIndex((val,index)=>{
           return val==info.buildUnits
         })
-        let index2=this.data.array2.findIndex((val,index)=>{
+        info.index2=this.data.array2.findIndex((val,index)=>{
           return val==info.processName
         })
         this.setData({
@@ -77,7 +170,7 @@ Page({
         })
       }
       this.setData({
-        baseInfo:info,
+        info:info,
         reset:true,
         index:Number(info.type)
       })
@@ -85,15 +178,58 @@ Page({
         title: '修改平行经验-第一步',
       })
     }
+    this.getUnits(wx.getStorageSync('pid'))
+  },
+  resetJzl3(id,params){
+    util.requests('/jzl3/'+id,params,'put').then(res=>{
+      if(res.data.code==0){
+        wx.navigateBack({
+          complete: (res) => {
+            util.toasts('修改成功')
+          },
+        })
+      }
+    })
   },
   nextStep(){
-    util.nextStepCommon(this,'baseInfo','/pages/jingyan/jingyanSecond/jingyanSecond','baseInfo')
+    if(this.data.reset){
+      if(this.data.info.index==1){
+        this.resetJzl3(this.data.info.id,{
+          working_id:this.data.info.working_id,
+          unit_id:this.data.info.unit_id,
+          open_date:this.data.info.open_date,
+          modules_id:this.data.info.modules_id
+        })
+      } else {
+        this.resetJzl3(this.data.info.id,{
+          name:this.data.info.name,
+          working_id:this.data.info.working_id,
+          specifications:this.data.info.specifications,
+          production:this.data.info.production,
+          position:this.data.info.position,
+          open_date:this.data.info.open_date,
+          modules_id:this.data.info.modules_id
+        })
+      }
+    } else {
+      if(this.data.info.index==0&& this.data.info.name&& this.data.info.specifications&& this.data.info.production&& this.data.info.position){
+        wx.navigateTo({
+          url: '/pages/jingyan/jingyanSecond/jingyanSecond?step1Value='+JSON.stringify(this.data.info)
+        })
+      } else if(this.data.info.index==1){
+        wx.navigateTo({
+          url: '/pages/jingyan/jingyanSecond/jingyanSecond?step1Value='+JSON.stringify(this.data.info)
+        })
+      } else {
+        util.toasts('请全部输入完整')
+      }
+    }
   },
   bindDateChange(e){
-    let info=this.data.baseInfo
+    let info=this.data.info
     info.date=e.detail.value
     this.setData({
-      baseInfo: info
+      info: info
     })
   },
   /**
@@ -109,7 +245,6 @@ Page({
     let that=this
     wx.getSetting({
       success(res) {
-        console.log(res)
         let name='scope.record'
         if(res.authSetting[name]===false){
           that.setData({
@@ -124,10 +259,10 @@ Page({
       }
     })
     if(!this.data.reset){
-      let info=this.data.baseInfo
-      info.date=util.formatDate(new Date())
+      let info=this.data.info
+      info.open_date=util.formatDate(new Date())
       this.setData({
-        baseInfo:info
+        info:info
       })
     }
     this.setData({

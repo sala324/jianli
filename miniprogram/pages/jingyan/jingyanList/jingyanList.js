@@ -61,8 +61,8 @@ Page({
     util.requests('/jzl3',{pageSize:this.data.size,pageIndex:this.data.index,p:this.data.id}).then(res=>{
       if(res.data.code==0){
         res.data.data.data.forEach((item,index)=>{
-          item.title=item.position+'巡视检查'
-          item.des=item.assess
+          item.title=(item.specifications|item.name)+'平行检验记录'
+          item.des= ''
           item.index=index
         })
         this.setData({

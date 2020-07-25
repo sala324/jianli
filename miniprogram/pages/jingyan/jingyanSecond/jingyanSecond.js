@@ -11,16 +11,14 @@ Page({
   changeRemarks(e){
     let index=e.currentTarget.dataset.index
     let arr=this.data.arr
-    arr[index].remarks=e.detail.value
+    arr[index].about=e.detail.value
     this.setData({
       arr:arr
     })
-    console.log(this.data.arr)
   },
   changeState(e){
-    let index=e.currentTarget.dataset.index
     let arr=this.data.arr
-    arr[index].result=!arr[index].result
+    arr[e.currentTarget.dataset.index].values=(arr[e.currentTarget.dataset.index].values==0)?1:0
     this.setData({
       arr:arr
     })
@@ -47,79 +45,85 @@ Page({
     })
   },
   onLoad(options){
+    console.log(options)
     if(options.default){
       this.setData({
         arr:JSON.parse(options.default),
+        id:options.id,
         reset:true
       })
       wx.setNavigationBarTitle({
         title: '修改平行经验-第二步',
       })
     }
-    
+    if(options.step1Value){
+      this.setData({
+        step1Value:JSON.parse(options.step1Value)
+      })
+      this.getconfiguration()
+    }
   },
   changeDetail(e){
     this.setData({
       detail:e.detail.value
     })
   },
-  nextStep(){
-    util.nextStepCommon(this,'arr','/pages/jingyan/jingyanThird/jingyanThird','arr')
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.setData({
-      start_time:util.formatTime(new Date()),
-      end_time:util.formatTime2(new Date()),
-      date:util.formatDate(new Date()),
-      dateEnd:util.formatDate(new Date())
+  resetJzl3(id,params){
+    util.requests('/jzl3/'+id,params,'put').then(res=>{
+      if(res.data.code==0){
+        wx.navigateBack({
+          complete: (res) => {
+            util.toasts('修改成功')
+          },
+        })
+      }
     })
-    console.log(util.formatTime(new Date()))
-    console.log(util.formatTime2(new Date()))
-    console.log(util.formatDate(new Date()))
   },
+  nextStep(){
+    let describe=[]
+    this.data.arr.forEach((item,index)=>{
+      let json={}
+      json.id=item.configuration_id
+      json.values=item.values
+      json.name=item.name
+      describe.push(json)
+    })
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+    if(this.data.reset){
+      this.resetJzl3(this.data.id,{
+        describe:JSON.stringify(describe),
+        config:this.data.arr
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/jingyan/jingyanThird/jingyanThird?step1Value='+JSON.stringify(this.data.step1Value)+'&config='+JSON.stringify(this.data.arr)+'&describe='+JSON.stringify(describe)
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  getconfiguration(){
+    let tid=wx.getStorageSync('logId')
+    util.requests('/configuration',{
+      // wid:15
+      wid:this.data.step1Value.working_id
+    }).then(res=>{
+      let arr=res.data.data
+      let arr3=arr.filter(item=>item.classes!=-1)
+      let arr5=[]
+      arr3.forEach((item,index)=>{
+        let json={}
+        json.configuration_id=item.id
+        json.values=0
+        json.name=item.name
+        json.about=''
+        json.memo=item.memo
+        arr5.push(json)
+      })
+      this.setData({
+        arr:arr5
+      })
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onShow: function () {
+    
   }
 })

@@ -8,6 +8,7 @@
 .itemBox .item{
   font-size: 28rpx;
   padding: 30rpx 25rpx 0;
+  display:flex;
 }
 .itemBox .item .name{
   color: #999999;

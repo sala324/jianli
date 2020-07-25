@@ -36,3 +36,9 @@ textarea{
   vertical-align: middle;
   pointer-events: none;
 }
+.lineItem .item .name{
+  width:270rpx;
+}
+.lineItem .item .detail{
+  width:440rpx;
+} 

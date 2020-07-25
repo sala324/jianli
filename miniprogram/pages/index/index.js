@@ -11,6 +11,7 @@ Page({
   //事件处理函数
   turnDetail(e) {
     wx.setStorageSync('pid', e.currentTarget.dataset.id)
+    wx.setStorageSync('pname', e.currentTarget.dataset.name)
     wx.navigateTo({
       url: '/pages/projectDetail/projectDetail?id='+e.currentTarget.dataset.id
     })
@@ -40,6 +41,7 @@ Page({
               this.setData({
                 userInfo:res.data.data.user
               })
+              this.projectList()
             }
             that.setData({
               login:true
@@ -64,10 +66,6 @@ Page({
   onShow(){
     
   },
-  async showPage(){
-    await this.judgeUser()
-    this.projectList()
-  },
   onLoad: function () {
     // wx.cloud.callFunction({
     //   name: 'openid',
@@ -75,6 +73,6 @@ Page({
     // }).then(res => {
     //   console.log(res);
     // })
-    this.showPage()
+    this.judgeUser()
   },
 })

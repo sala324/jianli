@@ -5,7 +5,7 @@ Page({
     bianhao:'',
     activeNav:0,
     oldValues:'',
-    arr:[{title:'检验结论',name:'detail',val:''},{title:'检验仪器及编号',name:'bianhao',val:''}],
+    arr:[{title:'检验结论',name:'result',val:''},{title:'检验仪器及编号',name:'instrument',val:''}],
     navInfo:{
       type:2,
       step:3
@@ -22,14 +22,23 @@ Page({
     })
   },
   onLoad(options){
+    console.log(options)
     if(options.default){
       this.setData({
         arr:JSON.parse(options.default),
         oldValues:JSON.parse(options.default)[0].val,
+        id:options.id,
         reset:true
       })
       wx.setNavigationBarTitle({
         title: '修改平行经验-第三步',
+      })
+    }
+    if(options.step1Value){
+      this.setData({
+        step1Value:JSON.parse(options.step1Value),
+        config:JSON.parse(options.config),
+        describe:options.describe
       })
     }
   },
@@ -50,20 +59,20 @@ Page({
   },
   createJzl3(){
     util.requests('/jzl3',{
-      name:name,
-      specifications:specifications,
-      production:production,
-      position:position,
-      describe:describe,
-      result:result,
-      instrument:instrument,
-      open_date:open_date,
-      modules_id	:modules_id	,
-      working_id:working_id,
-      unit_id:unit_id,
-      project_id:project_id,
-      log_type_id:log_type_id,
-      config:config
+      name:this.data.step1Value.name,
+      specifications:this.data.step1Value.specifications,
+      production:this.data.step1Value.production,
+      position:this.data.step1Value.position,
+      describe:this.data.describe,
+      result:this.data.arr[0].val,
+      instrument:this.data.arr[1].val,
+      open_date:this.data.step1Value.open_date,
+      modules_id:this.data.step1Value.modules_id	,
+      working_id:this.data.step1Value.working_id,
+      unit_id:this.data.step1Value.unit_id,
+      project_id:wx.getStorageSync('pid'),
+      log_type_id:wx.getStorageSync('logId'),
+      config:this.data.config
     },'post').then(res=>{
       if(res.data.code==0){
         wx.reLaunch({
@@ -73,14 +82,18 @@ Page({
     })
   },
   resetJzl3(id){
+    console.log(this.data.arr[1].val)
     util.requests('/jzl3/'+id,{
-      result:result,
-      instrument:instrument,
-    },'post').then(res=>{
+      result:this.data.arr[0].val,
+      instrument:this.data.arr[1].val,
+    },'put').then(res=>{
       if(res.data.code==0){
-        wx.reLaunch({
-          url:'/pages/jingyan/jingyan/jingyan?id='+res.data.data.id
+        wx.navigateBack({
+          complete: (res) => {
+            util.toasts('修改成功')
+          },
         })
+        
       }
     })
   },

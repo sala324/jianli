@@ -7,15 +7,15 @@
     </view>
     <view class="item">
       <text class="name">质量标准</text>
-      <text class="detail">{{item.standard}}</text>
+      <text class="detail">{{item.memo}}</text>
     </view>
     <view class="item">
       <text class="name">检验结果</text>
-      <switch checked="{{item.result}}" data-index="{{index}}" bindtap="changeState"></switch>
+      <switch checked="{{item.values==1}}" data-index="{{index}}" bindtap="changeState"></switch>
     </view>
-    <view class="item" wx:if="{{!item.result}}">
+    <view class="item" wx:if="{{item.values==0}}">
       <text class="name">备注</text>
-      <input class="input" placeholder="单行输入" data-index="{{index}}" bindinput="changeRemarks" value="{{item.remarks}}"></input>
+      <input class="input" placeholder="单行输入" data-index="{{index}}" bindinput="changeRemarks" value="{{item.about}}"></input>
     </view>
   </view>
 </view>

@@ -134,11 +134,11 @@
     </view>
     <view class="item">
         <text class="name">编号</text>
-        <view class="info">{{baseInfo.id}}</view>
+        <view class="info">{{baseInfo.code}}</view>
     </view>
     <view class="item">
       <text class="name">检验日期</text>
-      <view class="info">{{baseInfo.date}}</view>
+      <view class="info">{{baseInfo.open_date}}</view>
     </view>
     <view class="item">
       <text class="name">检验对象分类</text>
@@ -165,11 +165,11 @@
     <block wx:else>
       <view class="item" >
         <text class="name">工序名称</text>
-        <view class="info"><view class="box {{!baseInfo.reset?'auto':''}}">{{baseInfo.processName}}</view> <image wx:if="{{baseInfo.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{baseInfo}}"  data-page="/pages/jingyan/jingyanFirst/jingyanFirst"></image></view>
+        <view class="info"><view class="box {{!baseInfo.reset?'auto':''}}">{{baseInfo.working_id}}</view> <image wx:if="{{baseInfo.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{baseInfo}}"  data-page="/pages/jingyan/jingyanFirst/jingyanFirst"></image></view>
       </view>
       <view class="item">
         <text class="name">施工单位</text>
-        <view class="info">{{baseInfo.buildUnits}}</view>
+        <view class="info">{{baseInfo.modules_id}}</view>
       </view>
     </block>
     <view class="item">
@@ -186,9 +186,9 @@
       <view class="jyItem" wx:for="{{arr}}" wx:key="index">
         <view class="index">{{index+1}}</view>
         <view class="name">{{item.name}}</view>
-        <view class="size" wx:if="{{item.result}}">合格</view>
+        <view class="size" wx:if="{{item.values==1}}">合格</view>
         <view class="size" wx:else>不合格</view>
-        <view class="size2">{{item.standard}}</view>
+        <view class="size2">{{item.about?item.about:'无'}}</view>
       </view>
 
     </view>

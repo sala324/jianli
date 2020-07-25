@@ -118,13 +118,17 @@ Page({
     })
   },
   resetInfo(id){
-    let describe1=''
+    let describe1=[]
     this.data.arr.forEach((item,index)=>{
-      describe1+=index+1+item.about+':'+item.values+'<br>'
+      let json={}
+      json.id=item.configuration_id
+      json.values=item.values
+      json.name=item.name
+      describe1.push(json)
     })
     util.requests('/jxm9/'+id,{
       config:this.data.arr,
-      describe1:describe1
+      describe1:JSON.stringify(describe1)
     },'put').then(res=>{
       if(res.data.code==0){
         wx.navigateBack({
@@ -144,15 +148,19 @@ Page({
       }
     })
     if(next){
-      let describe1=''
+      let describe1=[]
       this.data.arr.forEach((item,index)=>{
-        describe1+=index+1+item.about+':'+item.values+'<br>'
+        let json={}
+        json.id=item.configuration_id
+        json.values=item.values
+        json.name=item.name
+        describe1.push(json)
       })
       if(this.data.reset){
         this.resetInfo(this.data.id)
       } else {
         wx.navigateTo({
-          url: '/pages/pangzhan/pangzhanThird/pangzhanThird?step1Value='+JSON.stringify(this.data.step1Value)+'&config='+JSON.stringify(this.data.arr)+'&describe1='+describe1+'&nextArr='+JSON.stringify(this.data.nextArr),
+          url: '/pages/pangzhan/pangzhanThird/pangzhanThird?step1Value='+JSON.stringify(this.data.step1Value)+'&config='+JSON.stringify(this.data.arr)+'&describe1='+JSON.stringify(describe1)+'&nextArr='+JSON.stringify(this.data.nextArr),
         })
       }
     }
