@@ -1,6 +1,5 @@
 <scroll-view style="height:100vh-350rpx;overflow:scroll" scroll-y>
   <navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
-  
   <view class="lineItem">
     <text class="name">{{info.name}}</text>
     <text class="detail">{{info.code}}</text>
@@ -20,8 +19,8 @@
   </view>
   <view class="lineItem">
     <text class="name">施工单位</text>
-    <picker bindchange="changeItem" value="{{info.index2}}" data-name="index2" range="{{unitsArr}}">
-      <view class="picker">{{unitsArr[info.index2]}} >
+    <picker bindchange="changeItem" value="{{info.index3}}" data-name="index3" range="{{unitsArr}}">
+      <view class="picker">{{unitsArr[info.index3]}} >
       </view>
     </picker>
   </view>
@@ -39,15 +38,15 @@
   </view>
   <view class="lineItem">
     <text class="name">旁站监理的类别</text>
-    <picker bindchange="changeItem" value="{{info.index3}}" data-name="index3" range="{{typeArr}}">
-      <view class="picker">{{typeArr[info.index3]}} >
+    <picker bindchange="changeItem" value="{{info.index}}" data-name="index" range="{{typeArr}}">
+      <view class="picker">{{typeArr[info.index]}} >
       </view>
     </picker>
   </view>
   <view class="lineItem">
     <text class="name">旁站监理的工序</text>
-    <picker bindchange="changeItem" value="{{info.index}}" data-name="index" range="{{gongXuArr}}">
-      <view class="picker">{{gongXuArr[info.index]}} >
+    <picker bindchange="changeItem" value="{{info.index2}}" data-name="index2" range="{{gongXuArr}}">
+      <view class="picker">{{gongXuArr[info.index2]}} >
       </view>
     </picker>
   </view>

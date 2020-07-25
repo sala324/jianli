@@ -11,6 +11,6 @@
   <project-item wx:for="{{projectArr2}}" projectItem="{{item}}" data-name="{{item.name}}" data-id="{{item.id}}" data-index="{{index}}" wx:key="index" bindtap="turnDetail"></project-item>
   </block>
   <block wx:else>
-  <project-item wx:for="{{projectArr}}" projectItem="{{item}}" data-index="{{index}}" wx:key="index" bindtap="turnDetail" data-id="{{item.id}}"></project-item>
+  <project-item wx:for="{{projectArr}}" projectItem="{{item}}" data-name="{{item.name}}" data-index="{{index}}" wx:key="index" bindtap="turnDetail" data-id="{{item.id}}"></project-item>
   </block>
 </view>
