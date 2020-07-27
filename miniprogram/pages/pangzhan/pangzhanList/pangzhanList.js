@@ -2,7 +2,7 @@ const util = require('../../../utils/util');
 const commonRequest = require('../../../utils/request');
 Page({
   data: {
-    size:10,
+    size:3,
     index:1,
     item:{},
     listArr:[]
@@ -61,8 +61,14 @@ Page({
     util.requests('/jxm9',{pageSize:this.data.size,pageIndex:this.data.index,p:this.data.id}).then(res=>{
       if(res.data.code==0){
         res.data.data.data.forEach((item,index)=>{
+          let des='';
+          let arr=JSON.parse(item.describe1)
+          console.log(arr)
+          arr.forEach(item2=>{
+            des+=item2.values+'。'
+          })
           item.title=item.position+'巡视检查'
-          item.des=item.assess
+          item.des=des
           item.index=index
         })
         this.setData({

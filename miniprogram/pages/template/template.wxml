@@ -18,7 +18,7 @@
     </view>
     <view class="item">
       <text class="name">施工单位</text>
-      <view class="info">{{info.unit_id}}</view>
+      <view class="info">{{info.unitName}}</view>
     </view>
     
     <view class="item">
@@ -165,11 +165,11 @@
     <block wx:else>
       <view class="item" >
         <text class="name">工序名称</text>
-        <view class="info"><view class="box {{!baseInfo.reset?'auto':''}}">{{baseInfo.working_id}}</view> <image wx:if="{{baseInfo.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{baseInfo}}"  data-page="/pages/jingyan/jingyanFirst/jingyanFirst"></image></view>
+        <view class="info"><view class="box {{!baseInfo.reset?'auto':''}}">{{baseInfo.workingName}}</view> <image wx:if="{{baseInfo.reset}}" src="../../../images/reset.png" bindtap="resetDetail" data-detail="{{baseInfo}}"  data-page="/pages/jingyan/jingyanFirst/jingyanFirst"></image></view>
       </view>
       <view class="item">
         <text class="name">施工单位</text>
-        <view class="info">{{baseInfo.modules_id}}</view>
+        <view class="info">{{baseInfo.unitName}}</view>
       </view>
     </block>
     <view class="item">
@@ -214,7 +214,7 @@
     </view>
     <view class="item">
       <text class="name">联系单位</text>
-      <view class="info">{{info.unit_id}}</view>
+      <view class="info">{{info.unitName}}</view>
     </view>
     <view class="item" >
       <text class="name">事由</text>

@@ -1,4 +1,5 @@
 const util = require('../../../utils/util');
+const common = require('../../../utils/common');
 Page({
   data: {
     authority:true,
@@ -30,7 +31,7 @@ Page({
     } else {
       this.loadInfo()
     }
-    
+    common.getProject(this)//获取工程基本信息
   },
   changeDetail(e){
     let info=this.data.info
@@ -194,7 +195,7 @@ Page({
     })
   },
   getLogList(){
-    let str='2020-7-23'
+    let str='2020-7-27'
     util.requests('/logList?p='+wx.getStorageSync('pid'),{
       // d:this.data.info.open_date+''
       d:str

@@ -17,8 +17,12 @@ Page({
   logDetail(id){
     util.requests('/jzl3/'+id).then(res=>{
       if(res.data.code==0){
+        res.data.data.open_date=res.data.data.open_date.slice(0,11)
         let info=JSON.parse(JSON.stringify(res.data.data,['code','open_date','name','specifications','production','position','describe','id','modules_id','unit_id','working_id']))
         info.name=res.data.data.project.name
+        info.modulesName=res.data.data.module.name
+        info.unitName=res.data.data.unit.name
+        info.workingName=res.data.data.working.name
         info.index=1
         info.reset=true
         let arr=this.data.arr2

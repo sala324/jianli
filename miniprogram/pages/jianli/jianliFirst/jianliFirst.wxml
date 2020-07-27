@@ -1,6 +1,6 @@
 <view class="lineItem">
   <text class="name">{{info.name}}</text>
-  <text class="detail">{{info.id}}</text>
+  <text class="detail">{{info.code}}</text>
 </view>
 <view class="lineItem">
   <text class="name">天气</text>

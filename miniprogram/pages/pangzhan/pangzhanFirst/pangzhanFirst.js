@@ -26,8 +26,6 @@ Page({
     })
   },
   onLoad(options){
-    // this.getmoduleSi()
-    
     if(options.default){
       wx.setNavigationBarTitle({
         title: '修改旁站记录——第一步',
@@ -49,56 +47,6 @@ Page({
       detail:e.detail.value
     })
   },
-  // getworking(){
-  //   util.requests('/working',{mid:this.data.modules_id |this.data.info.modules_id}).then(res=>{
-  //     if(res.data.code===0){
-  //       let arr1=res.data.data.map(item=>{return item.name})
-  //       let info=this.data.info
-        
-  //       this.setData({
-  //         gongXuArr:arr1,
-  //         working_id:res.data.data[0].id,
-  //         gongXuArrs:res.data.data
-  //       })
-  //       if(!this.data.reset){
-  //         info.working_id=res.data.data[0].id
-  //         info.index2=0
-  //         info.outline=res.data.data[0].name
-  //         console.log(this.data.info)
-  //       } else {
-  //         info.index2=this.data.gongXuArr.findIndex((item,index,arr)=>{
-  //           return item==info.outline
-  //         })
-  //         console.log(this.data.info)
-  //       }
-  //       this.setData({
-  //         info:info
-  //       })
-  //     }
-  //   })
-  // },
-  // getmoduleSi(){
-  //   util.requests('/moduleSi',{tid:wx.getStorageSync('logId')}).then(res=>{
-  //     if(res.data.code===0){
-  //       let arr1=res.data.data.map(item=>{return item.name})
-        
-  //       let info=this.data.info
-  //       if(!this.data.reset){
-  //         info.modules_id=res.data.data[0].id
-  //       } else {
-  //         let index=res.data.data.findIndex((val)=>val.id==this.data.info.modules_id)
-  //         info.index=index
-  //       }
-  //       this.setData({
-  //         typeArr:arr1,
-  //         modules_id:res.data.data[0].id,
-  //         typeArrs:res.data.data,
-  //         info:info
-  //       })
-  //       this.getworking()
-  //     }
-  //   })
-  // },
   resetInfo(id){
     util.requests('/jxm9/'+id,{
       start_time:this.data.info.open_date+' '+this.data.info.start_time,

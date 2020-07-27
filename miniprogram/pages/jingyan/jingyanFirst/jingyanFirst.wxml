@@ -1,8 +1,8 @@
 <scroll-view style="height:100vh-350rpx;overflow:scroll" scroll-y>
   <navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
   <view class="lineItem">
-    <text class="name">{{info.title}}</text>
-    <text class="detail">{{info.id}}</text>
+    <text class="name">{{info.name}}</text>
+    <text class="detail">{{info.code}}</text>
   </view>
   <view class="lineItem">
     <text class="name">日期</text>
@@ -52,19 +52,19 @@
     <view class="lineItem">
       <view class="item {{activeNav=='production'?'active':''}}">
         <text class="name">生产厂家</text>
-        <input class="detail" value="{{info.production}}" bindfocus="chooseItem" bindinput="changeValue" data-name="production" placeholder="单行输入"></input>
+        <input class="detail" value="{{info.production}}" bindfocus="chooseItem" bindinput="changeValue" data-index="production" placeholder="单行输入"></input>
       </view>
     </view>
     <view class="lineItem">
       <view class="item {{activeNav=='specifications'?'active':''}}">
         <text class="name">设备/材料型号规格</text>
-        <input class="detail" value="{{info.specifications}}"  bindfocus="chooseItem" bindinput="changeValue" data-name="specifications" placeholder="单行输入"></input>
+        <input class="detail" value="{{info.specifications}}"  bindfocus="chooseItem" bindinput="changeValue" data-index="specifications" placeholder="单行输入"></input>
       </view>
     </view>
     <view class="lineItem">
       <view class="item {{activeNav=='position'?'active':''}}">
         <text class="name">使用部位</text>
-        <input class="detail" value="{{info.position}}"  bindfocus="chooseItem" bindinput="changeValue" data-name="position" placeholder="单行输入"></input>
+        <input class="detail" value="{{info.position}}"  bindfocus="chooseItem" bindinput="changeValue" data-index="position" placeholder="单行输入"></input>
       </view>
     </view>
   </block>

@@ -1,4 +1,5 @@
 const util = require('../../../utils/util');
+const common = require('../../../utils/common');
 Page({
   data: {
     authority:true,
@@ -41,7 +42,7 @@ Page({
       })
       this.getUnits(JSON.parse(options.default).project_id)
     }
-    
+    common.getProject(this)//获取工程基本信息
   },
   bindUnitChange: function(e) {
     let info=this.data.info
@@ -112,12 +113,6 @@ Page({
       }
     })
   },
-  onReady: function () {
-
-  },
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
     let that=this
     wx.getSetting({
@@ -146,40 +141,5 @@ Page({
     this.setData({
       dateEnd:util.formatDate(new Date())
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

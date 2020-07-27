@@ -1,7 +1,7 @@
 <navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
 <view class="lineItem">
-  <text class="name">工程名称</text>
-  <text class="detail">{{info.name}}</text>
+  <text class="name">{{info.name}}</text>
+  <text class="detail">{{info.code}}</text>
 </view>
 <view class="lineItem">
   <text class="name">联系单位</text>

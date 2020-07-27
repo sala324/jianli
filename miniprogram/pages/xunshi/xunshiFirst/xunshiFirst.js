@@ -1,4 +1,5 @@
 const util = require('../../../utils/util');
+const common = require('../../../utils/common');
 Page({
   data: {
     authority:true,
@@ -35,6 +36,7 @@ Page({
         reset:true
       })
     }
+    common.getProject(this)//获取工程基本信息
   },
   changeDetail(e){
     let info=this.data.info

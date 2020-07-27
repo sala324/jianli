@@ -13,7 +13,7 @@ Page({
     let pages = getCurrentPages();//当前页面栈
     let prevPage = pages[pages.length - 2];//上一页面
     prevPage.setData({
-        showAll:true
+      size:20
     });
     wx.navigateBack({
       complete: (res) => {},

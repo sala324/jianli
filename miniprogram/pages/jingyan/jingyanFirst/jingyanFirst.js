@@ -1,4 +1,5 @@
 const util = require('../../../utils/util');
+const common = require('../../../utils/common');
 Page({
   data: {
     detail:'',
@@ -6,8 +7,8 @@ Page({
     authority:true,
     activeNav:'production',
     array:['材料','工序'],
-    array2:['桩基工程1','桩基工程2','桩基工程部位2','桩基工程部位3'],
-    array3:['工程1队','工程2队','工程31队','工程4队'],
+    array2:[],
+    array3:[],
     reset:false,
     info:{
       name:'',
@@ -25,13 +26,13 @@ Page({
     shuru:false
   },
   chooseItem(e){
-    let name=e.currentTarget.dataset.name
+    let name=e.currentTarget.dataset.index
     this.setData({
       activeNav:name
     })
   },
   changeValue(e){
-    let name=e.currentTarget.dataset.name
+    let name=e.currentTarget.dataset.index
     let info=this.data.info
     info[name]=e.detail.value
     this.setData({
@@ -48,31 +49,32 @@ Page({
     })
   },
   changeItem(e){
-    let info=this.data.info
-    let name=e.currentTarget.dataset.name
-    let index=e.currentTarget.dataset.index
-    info[index]=e.detail.value
-    if(index=='index2'){
-      info.working_id=this.data.gongXuArrs[e.detail.value].id
-      info.name=this.data.gongXuArrs[e.detail.value].name
-      this.setData({
-        working_id:this.data.gongXuArrs[e.detail.value].id
-      })
-    }
-    if(index=='index3'){
-      info.unit_id=this.data.arr2[e.detail.value].id
-    }
+    common.changeItem(e.currentTarget.dataset.index,e.detail.value,this)
+    // let info=this.data.info
+    // let index=e.currentTarget.dataset.index
+    // info[index]=e.detail.value
+    // console.log(info)
+    // if(index=='index2'){
+    //   info.working_id=this.data.gongXuArrs[e.detail.value].id
+    //   info.name=this.data.gongXuArrs[e.detail.value].name
+    //   this.setData({
+    //     working_id:this.data.gongXuArrs[e.detail.value].id
+    //   })
+    // }
+    // if(index=='index3'){
+    //   info.unit_id=this.data.arr2[e.detail.value].id
+    // }
     
-    if(index=='index'){
-      info.modules_id=this.data.typeArrs[e.detail.value].id
-      this.setData({
-        modules_id:this.data.typeArrs[e.detail.value].id
-      })
-      this.getworking()
-    }
-    this.setData({
-      info:info
-    })
+    // if(index=='index'){
+    //   info.modules_id=this.data.typeArrs[e.detail.value].id
+    //   this.setData({
+    //     modules_id:this.data.typeArrs[e.detail.value].id
+    //   })
+    //   this.getworking()
+    // }
+    // this.setData({
+    //   info:info
+    // })
   },
   getUnits(id){
     let that=this
@@ -153,7 +155,6 @@ Page({
   },
   onLoad(options){
     this.getmoduleSi()
-    
     if(options.default){
       let info=JSON.parse(options.default)
       if(info.type==1){
@@ -179,6 +180,7 @@ Page({
       })
     }
     this.getUnits(wx.getStorageSync('pid'))
+    common.getProject(this)//获取工程基本信息
   },
   resetJzl3(id,params){
     util.requests('/jzl3/'+id,params,'put').then(res=>{
@@ -227,7 +229,7 @@ Page({
   },
   bindDateChange(e){
     let info=this.data.info
-    info.date=e.detail.value
+    info.open_date=e.detail.value
     this.setData({
       info: info
     })
