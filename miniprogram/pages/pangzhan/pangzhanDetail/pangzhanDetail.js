@@ -2,41 +2,46 @@ const util = require('../../../utils/util');
 Page({
   data: {
     showCopy:false,
-    title:'旁站监理的部位或工序:电缆管群、电缆井土石方开挖',
-    arr:[{name:'aa',val:'核对杆号或停电间隔及回路',tips:'输入1'},{name:'bb',val:'核对杆号或停电间隔及回路',tips:'输入2'},{name:'cc',val:'核对杆号或停电间隔及回路',tips:'输入33333'},{name:'dd',val:'核对杆号或停电间隔及回路',tips:'输入4444'},{name:'ee',val:'核对杆号或停电间隔及回路',tips:'输入555555'}],
-    arr2:[{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:false},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},{val:'核对杆号或停电间隔及回路',checked:true},],
-    wenti:'暂无问题',
     reset:false,
-    info:{
-      title:'白沙洲变电枢纽二期项目',
-      id:'0098654',
-      date:'2020-05-06 ',
-      weather:'有雨，28度',
-      shigong:'供电局施工队',
-      start_time:'12:45',
-      end_time:'13:45',
-      process:'桩基工程1',
-      position:'桩基工程部位1',
-      question:'无',
-      date2:'2020-05-06',
-      reset:false
+    arr2:[{title:'现场存在问题',name:'matter',val:''},{title:'监理有关措施',name:'measures',val:''}],
+    arr:[],
+    info2:{
+      wenti:'存在的问题2',
+      cuoshi:'措施2',
     },
-    imgArr:['../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png']
+    info:{},
+    project_log_id:1,
+    imgArr:[]
+  },
+  uploadImg(){
+    this.resetInfo(this.data.id)
+  },
+  resetInfo(id){
+    util.requests('/jxm9/'+id,{
+      images:this.data.imagesArr
+    },'put').then(res=>{
+      if(res.data.code==0){
+        wx.navigateTo({
+          url: '/pages/pangzhan/pangzhanSign/pangzhanSign?id='+this.data.id,
+        })
+      }
+      
+    })
   },
   resetDetail(e){
     wx.navigateTo({
-      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail),
+      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail)+'&id='+this.data.info.id,
     })
   },
-  nextStep(){
-    wx.navigateTo({
-      url: '/pages/pangzhan/pangzhanSign/pangzhanSign',
+  setItem(e){
+    util.requests('/deleteFile/'+e.detail,{},'post').then(res=>{
+      if(res.data.code===0){
+        util.toasts(res.data.message)
+        this.jxm9Detail(this.data.id)
+      }
     })
-  },
-  delItem(e){
-    this.data.imgArr.splice(e.detail,1)
     this.setData({
-      imgArr:this.data.imgArr
+      imagesArr:e.detail
     })
   },
   showCopyBtn(){
@@ -44,61 +49,41 @@ Page({
       showCopy:true
     })
   },
+  jxm9Detail(id){
+    util.requests('/jxm9/'+id).then(res=>{
+      if(res.data.code==0){
+        let imgArr=res.data.data.images.map(item=>{return item.url})
+        let idArr=res.data.data.images.map(item=>{return item.id})
+        res.data.data.start_time=res.data.data.start_time.slice(11,16)
+        res.data.data.end_time=res.data.data.end_time.slice(11,16)
+        res.data.data.open_date=res.data.data.open_date.slice(0,11)
+        let info=JSON.parse(JSON.stringify(res.data.data,['id','code','open_date','position','start_time','end_time','weather','opinion','modules_id','working_id','unit_id','outline']))
+        info.name=res.data.data.project.name
+        info.reset=false
+        this.setData({
+          info:info,
+          arr:res.data.data.config,
+          project_log_id:res.data.data.project_log_id,
+          arr2:JSON.parse(res.data.data.describe2),
+          opinion:res.data.data.opinion,
+          imgArr:imgArr,
+          idArr:idArr
+        })
+      }
+    })
+  },
   hideCopy(e){
     this.setData({
       showCopy:e.detail
     })
   },
+  onShow(){
+    this.jxm9Detail(this.data.id)
+  },
   onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    
+    this.setData({
+      id:options.id
+    })
   }
 })

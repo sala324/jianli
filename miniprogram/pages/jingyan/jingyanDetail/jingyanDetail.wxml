@@ -1,5 +1,5 @@
 <import src ="../../template/template.wxml"/>
-<template is="mokuai5" data="{{baseInfo,title,arr,arr2}}"/>
+<template is="mokuai5" data="{{baseInfo,arr,arr2}}"/>
 <view class="btnBox">
   <view class="btn" bindtap="showCopyBtn">下载PDF文件</view>
 </view>

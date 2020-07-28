@@ -2,20 +2,8 @@ const util = require('../../../utils/util');
 Page({
   data: {
     showCopy:false,
-    baseInfo:{
-      title:'工程名称1',
-      id:'0098645',
-      date:'2020-05-06',
-      type:1,
-      name:'材料名称1',
-      size:'材料部位1',
-      actory:'厂家1',
-      position:'部位1',
-      processName:'桩基工程2',
-      buildUnits:'工程2队',
-      reset:false
-    },
-    arr2:[{title:'检验结论',name:'detail',val:'结论1'},{title:'检验仪器及编号',name:'bianhao',val:'材料编号'}],
+    baseInfo:{},
+    arr2:[{title:'检验结论',name:'result',val:''},{title:'检验仪器及编号',name:'instrument',val:''}],
     title:'旁站监理的部位或工序:电缆管群、电缆井土石方开挖',
     arr:[{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''}],
     wenti:'暂无问题',
@@ -23,7 +11,41 @@ Page({
   },
   resetDetail(e){
     wx.navigateTo({
-      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail),
+      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail)+'&id='+this.data.baseInfo.id,
+    })
+  },
+  logDetail(id){
+    util.requests('/jzl3/'+id).then(res=>{
+      if(res.data.code==0){
+        res.data.data.open_date=res.data.data.open_date.slice(0,11)
+        let info=JSON.parse(JSON.stringify(res.data.data,['code','open_date','name','specifications','production','position','describe','id','modules_id','unit_id','working_id']))
+        info.name=res.data.data.project.name
+        info.modulesName=res.data.data.module.name
+        info.unitName=res.data.data.unit.name
+        info.workingName=res.data.data.working.name
+        info.index=1
+        info.reset=false
+        let arr=this.data.arr2
+        arr[0].val=res.data.data.result
+        arr[1].val=res.data.data.instrument
+        let config=[]
+        res.data.data.config.forEach((item,index)=>{
+          let json={}
+          json.id=item.id
+          json.values=item.values
+          json.name=item.configuration.name
+          json.about=item.about
+          json.memo=item.configuration.memo
+          config.push(json)
+        })
+        this.setData({
+          baseInfo:info,
+          arr2:arr,
+          arr:config
+        })
+        console.log(info)
+        console.log(arr)
+      }
     })
   },
   delItem(e){
@@ -42,56 +64,12 @@ Page({
       showCopy:e.detail
     })
   },
-  onLoad: function (options) {
-
+  onLoad(options){
+    this.setData({
+      id:options.id
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onShow(){
+    this.logDetail(this.data.id)
   }
 })

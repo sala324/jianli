@@ -5,25 +5,24 @@ Page({
     detail:'日志详情222',
     shiyou:'shiyou',
     content:'内容香香你赶快来',
-    info:{
-      name:'白沙洲变电枢纽二期项目',
-      id:'0087690',
-      unit:'第四分队',
-      date:'2020-7-14',
-      detail:'详情请看卡公开',
-      reset:true
-    },
-    imgArr:['../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png']
+    info:{},
+    idArr:[],
+    imgArr:[]
   },
   resetDetail(e){
     wx.navigateTo({
-      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail),
+      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail)+'&id='+this.data.info.id,
     })
   },
-  delItem(e){
-    this.data.imgArr.splice(e.detail,1)
+  setItem(e){
+    util.requests('/deleteFile/'+e.detail,{},'post').then(res=>{
+      if(res.data.code===0){
+        util.toasts(res.data.message)
+        this.detailInfo(this.data.id)
+      }
+    })
     this.setData({
-      imgArr:this.data.imgArr
+      imagesArr:e.detail
     })
   },
   showCopyBtn(){
@@ -36,15 +35,28 @@ Page({
       showCopy:e.detail
     })
   },
-  jxm8Detail(){
-    util.requests('jxm8/'+'this.data.id').then(res=>{
+  detailInfo(id){
+    util.requests('/jxm8/'+id).then(res=>{
       if(res.data.code==0){
-        
+        let imgArr=res.data.data.images.map(item=>{return item.url})
+        let idArr=res.data.data.images.map(item=>{return item.id})
+        let info=JSON.parse(JSON.stringify(res.data.data,['id','code','open_date','matter','unit_id','project_id']))
+        info.reset=false
+        info.name=res.data.data.project.name
+        this.setData({
+          info:info,
+          imgArr:imgArr,
+          project_log_id:res.data.data.project_log_id,
+          idArr:idArr,
+          note:res.data.data.note
+        })
       }
     })
   },
   onLoad: function (options) {
-    this.jxm8Detail()
+    this.setData({
+      id:options.id
+    })
   },
 
   /**
@@ -53,12 +65,8 @@ Page({
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-
+    this.detailInfo(this.data.id)
   },
 
   /**

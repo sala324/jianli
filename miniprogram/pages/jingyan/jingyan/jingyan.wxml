@@ -1,5 +1,5 @@
 <import src ="../../template/template.wxml"/>
 <template is="mokuai5" data="{{baseInfo,arr,arr2}}"/>
 <view class="btnBox">
-  <navigator url="/pages/jingyan/jingyanSign/jingyanSign" class="btn">下一步</navigator>
+  <navigator url="/pages/jingyan/jingyanSign/jingyanSign?id={{id}}" class="btn">下一步</navigator>
 </view>

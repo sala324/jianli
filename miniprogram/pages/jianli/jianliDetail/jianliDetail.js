@@ -2,25 +2,46 @@ const util = require('../../../utils/util');
 Page({
   data: {
     showCopy:false,
-    info:{
-      name:'白沙洲变电枢纽二期项目',
-      id:'0098654',
-      date:'2020-05-06 ',
-      detail:'日志详情222电枢纽二期项目v,白沙洲变电枢纽二期项目',
-      reset:false
+    reset:false,
+    arr2:[{title:'现场存在问题',name:'matter',val:''},{title:'监理有关措施',name:'measures',val:''}],
+    arr:[],
+    info2:{
+      wenti:'存在的问题2',
+      cuoshi:'措施2',
     },
-    content:'内容骨康胶囊看过呢你',
-    imgArr:['../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png']
+    info:{},
+    project_log_id:1,
+    imgArr:[]
+  },
+  uploadImg(){
+    this.resetInfo(this.data.id)
+  },
+  resetInfo(id){
+    util.requests('/jxm17/'+id,{
+      images:this.data.imagesArr
+    },'put').then(res=>{
+      if(res.data.code==0){
+        wx.navigateTo({
+          url: '/pages/jianli/jianliSign/jianliSign?id='+id,
+        })
+      }
+      
+    })
   },
   resetDetail(e){
     wx.navigateTo({
-      url: e.currentTarget.dataset.page+'?default='+ JSON.stringify(e.currentTarget.dataset.detail),
+      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail)+'&id='+this.data.info.id,
     })
   },
-  delItem(e){
-    this.data.imgArr.splice(e.detail,1)
+  setItem(e){
+    util.requests('/deleteFile/'+e.detail,{},'post').then(res=>{
+      if(res.data.code===0){
+        util.toasts(res.data.message)
+        this.jxm17Detail(this.data.id)
+      }
+    })
     this.setData({
-      imgArr:this.data.imgArr
+      imagesArr:e.detail
     })
   },
   showCopyBtn(){
@@ -28,61 +49,36 @@ Page({
       showCopy:true
     })
   },
+  jxm17Detail(id){
+    util.requests('/jxm17/'+id).then(res=>{
+      if(res.data.code==0){
+        let imgArr=res.data.data.images.map(item=>{return item.url})
+        let idArr=res.data.data.images.map(item=>{return item.id})
+        res.data.data.open_date=res.data.data.open_date.slice(0,11)
+        let info=JSON.parse(JSON.stringify(res.data.data,['id','code','open_date','note','temperature_high','temperature_low','weather_day']))
+        info.name=res.data.data.project.name
+        info.reset=false
+        this.setData({
+          info:info,
+          project_log_id:res.data.data.project_log_id,
+          imgArr:imgArr,
+          idArr:idArr
+        })
+      }
+    })
+  },
   hideCopy(e){
     this.setData({
       showCopy:e.detail
     })
   },
+  onShow(){
+    this.jxm17Detail(this.data.id)
+  },
   onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    
+    this.setData({
+      id:options.id
+    })
   }
 })
