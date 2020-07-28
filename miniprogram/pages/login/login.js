@@ -113,7 +113,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that=this
+    wx.getSetting({
+      success(res) {
+        console.log(res)
+        let name='scope.record'
+        if(res.authSetting[name]===false){
+          that.setData({
+            authority:false
+          })
+          
+        } else {
+          that.setData({
+            authority:true
+          })
+        }
+      }
+    })
   },
 
   /**

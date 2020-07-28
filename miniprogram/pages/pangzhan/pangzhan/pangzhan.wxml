@@ -4,6 +4,6 @@
 </img-upload>
 <!-- <btn title="下一步" bind:myevent="nextStep"></btn> -->
 <view class="btnBox">
-  <navigator url="/pages/pangzhan/pangzhanSign/pangzhanSign" class="btn">下一步</navigator>
+  <navigator url="/pages/pangzhan/pangzhanSign/pangzhanSign?id={{id}}" class="btn">下一步</navigator>
 </view>
 <!-- <navigator url="/pages/pangzhan/pangzhanSign/pangzhanSign" class="btn">下一步</navigator> -->

@@ -22,7 +22,7 @@ Page({
     },'put').then(res=>{
       if(res.data.code==0){
         wx.navigateTo({
-          url: '/pages/pangzhan/pangzhanSign/pangzhanSign?id='+id,
+          url: '/pages/pangzhan/pangzhanSign/pangzhanSign?id='+this.data.id,
         })
       }
       

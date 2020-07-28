@@ -1,3 +1,4 @@
+const util = require('../../utils/util');
 var context = null;// 使用 wx.createContext 获取绘图上下文 context
 var isButtonDown = false;
 var arrx = [];
@@ -84,22 +85,33 @@ Page({
       success: function (res) {
         console.log(res.tempFilePath);
         //存入服务器
-        wx.uploadFile({
-          url: 'a.php', //接口地址
-          filePath: res.tempFilePath,
-          name: 'file',
-          formData: {                                 //HTTP 请求中其他额外的 form data 
-            'user': 'test'
-          },
-          success: function (res) {
-            console.log(res);
-          },
-          fail: function (res) {
-            console.log(res);
-          },
-          complete: function (res) {
-          }
-        });
+        // util.requests('/jxm9/'+this.data.id,{
+          util.requests('/jxm9/1',{
+      sign_name:res.tempFilePath
+    },'put').then(res=>{
+      if(res.data.code==0){
+        wx.reLaunch({
+          url: '/pages/pangzhan/pangzhanDetail/pangzhanDetail',
+        })
+      }
+      
+    })
+        // wx.uploadFile({
+        //   url: 'a.php', //接口地址
+        //   filePath: res.tempFilePath,
+        //   name: 'file',
+        //   formData: {                                 //HTTP 请求中其他额外的 form data 
+        //     'user': 'test'
+        //   },
+        //   success: function (res) {
+        //     console.log(res);
+        //   },
+        //   fail: function (res) {
+        //     console.log(res);
+        //   },
+        //   complete: function (res) {
+        //   }
+        // });
       }
     })
 

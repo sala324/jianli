@@ -173,7 +173,7 @@ const requests = (url, data, method, hideToast) => {
         if(res.data.code==0){
           resolve(res)
         } else {
-          if(res.data.code==10101){
+          if(res.data.code==10101 | res.data.code==101011){
             wx.redirectTo({
               url: '/pages/login/login',
             })

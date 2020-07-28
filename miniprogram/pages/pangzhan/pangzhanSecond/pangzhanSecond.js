@@ -60,8 +60,8 @@ Page({
   getconfiguration(){
     let tid=wx.getStorageSync('logId')
     util.requests('/configuration',{
-      wid:11
-      // wid:this.data.step1Value.working_id
+      // wid:11
+      wid:this.data.step1Value.working_id
     }).then(res=>{
       let arr=res.data.data
       let idArr=arr.filter(item=>item.classes==-1)
@@ -94,6 +94,7 @@ Page({
   },
   onLoad(options){
     if(options.step1Value){
+      console.log(JSON.parse(options.step1Value))
       this.setData({
         step1Value:JSON.parse(options.step1Value)
       })

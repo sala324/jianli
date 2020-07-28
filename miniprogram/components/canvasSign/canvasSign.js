@@ -71,6 +71,7 @@ Component({
           },
           //导出图片
           getimg: function () {
+            let that=this
             if (arrx.length == 0) {
               wx.showModal({
                 title: '提示',
@@ -80,31 +81,35 @@ Component({
               return false;
             };
             //生成图片
+            console.log(123);
+            that.triggerEvent('signBtn', '12344')
             wx.canvasToTempFilePath({
               canvasId: 'canvas',
               success: function (res) {
+                console.log(res);
                 console.log(res.tempFilePath);
                 //存入服务器
-                wx.uploadFile({
-                  url: 'a.php', //接口地址
-                  filePath: res.tempFilePath,
-                  name: 'file',
-                  formData: {                                 //HTTP 请求中其他额外的 form data 
-                    'user': 'test'
-                  },
-                  success: function (res) {
-                    console.log(res);
-                  },
-                  fail: function (res) {
-                    console.log(res);
-                  },
-                  complete: function (res) {
-                  }
-                });
+                that.triggerEvent('signBtn', res.tempFilePath)
+                // wx.uploadFile({
+                //   url: 'a.php', //接口地址
+                //   filePath: res.tempFilePath,
+                //   name: 'file',
+                //   formData: {                                 //HTTP 请求中其他额外的 form data 
+                //     'user': 'test'
+                //   },
+                //   success: function (res) {
+                //     console.log(res);
+                //   },
+                //   fail: function (res) {
+                //     console.log(res);
+                //   },
+                //   complete: function (res) {
+                //   }
+                // });
               }
             })
         
-    }
+        }
   
   },
   /**

@@ -1,23 +1,26 @@
-.wrap{
-  padding: 0 50rpx;
-}
-.wrap .title{
-  font-size: 30rpx;
-  color: #191F25;
-  padding: 36rpx 0 26rpx;
-}
-.sign{
-  background: #F1F3F5;
-  width: 650rpx;
-  height: 600rpx;
-  margin-bottom: 160rpx;
+.canvas {
+  width: 100%;
+  min-height: 600rpx;
+  border: 1rpx solid #3197FB; 
+  box-sizing: border-box;
 }
 .btnWrap{
   display: flex;
   justify-content: space-between;
+  margin-top:120rpx;
 }
 .btnWrap .btn{
   width: 260rpx;
+  height:78rpx;
+  line-height: 78rpx;
+  background:rgba(49,151,251,1);
+  border-radius:39rpx;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: center;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
 }
 .btnWrap .btn:nth-child(1){
   margin-right: 140rpx;

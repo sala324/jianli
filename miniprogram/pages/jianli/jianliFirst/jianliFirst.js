@@ -195,7 +195,7 @@ Page({
     })
   },
   getLogList(){
-    let str='2020-7-27'
+    let str='2020-7-28'
     util.requests('/logList?p='+wx.getStorageSync('pid'),{
       // d:this.data.info.open_date+''
       d:str

@@ -60,6 +60,11 @@ Page({
         this.setData({
           projectArr:res.data.data.data
         })
+      } else if(res.data.code==101011){
+        console.log(111)
+        wx.redirectTo({
+          url: '/pages/login/login',
+        })
       }
     })
   },
@@ -74,7 +79,10 @@ Page({
     //   console.log(res);
     // })
     if(wx.getStorageSync('token')){
-
+      this.setData({
+        userInfo:wx.getStorageSync('user')
+      })
+      this.projectList()
     } else {
       this.judgeUser()
     }
