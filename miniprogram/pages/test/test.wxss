@@ -1,19 +1,6 @@
-.order-item {
-  height: 240rpx;
+.canvas {
   width: 100%;
-  display: flex;
-  position: relative;
-}
-
-.remove{  
-  width: 160rpx;  
-  height: 100%;  
-  background-color: red; 
-  color: white; 
-  position: absolute;  
-  top: 0;  
-  right: -160rpx;  
-  display: flex;  
-  justify-content: center;  
-  align-items: center;  
+  min-height: 600rpx;
+  border: 1rpx solid #000; 
+  box-sizing: border-box;
 }

@@ -73,6 +73,11 @@ Page({
     // }).then(res => {
     //   console.log(res);
     // })
-    this.judgeUser()
+    if(wx.getStorageSync('token')){
+
+    } else {
+      this.judgeUser()
+    }
+    
   },
 })
