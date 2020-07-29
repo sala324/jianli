@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "签名",
+  "usingComponents": {
+    "canvas-sign": "/components/canvasSign/canvasSign"
+  }
+}

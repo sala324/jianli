@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "签名",
-  "usingComponents": {
-    "voice": "/components/voice/index",
-    "btn": "/components/btn/index"
-  }
-}

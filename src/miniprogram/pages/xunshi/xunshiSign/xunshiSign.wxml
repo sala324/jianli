@@ -1,0 +1,6 @@
+<canvas class="canvas" id="canvas" canvas-id="canvas" disable-scroll="true" bindtouchstart="canvasStart" bindtouchmove="canvasMove" bindtouchend="canvasEnd" touchcancel="canvasEnd" binderror="canvasIdErrorCallback"></canvas>
+
+<view class="btnWrap">
+    <button class="btn" type="default" bindtap="cleardraw">重新签名</button>
+    <button class="btn" type="default" bindtap="getimg">提交签名</button>
+</view>

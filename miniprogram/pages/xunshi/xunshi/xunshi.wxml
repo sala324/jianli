@@ -1,9 +1,0 @@
-<import src ="../../template/template.wxml"/>
-<template is="mokuai2" data="{{info,arr,arr2,reset}}"/>
-<img-upload imgArr="{{imgArr}}" idArr="{{idArr}}" logid="{{project_log_id}}" class="uploadImg" bind:setItem="setItem">
-</img-upload>
-<view class="btnBox">
-  <view class="btn" bindtap="uploadImg">下一步</view>
-  <!-- <navigator url="/pages/xunshi/xunshiSign/xunshiSign" class="btn">下一步</navigator> -->
-</view>
-

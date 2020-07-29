@@ -1,6 +1,0 @@
-.canvas {
-  width: 100%;
-  min-height: 600rpx;
-  border: 1rpx solid #000; 
-  box-sizing: border-box;
-}
