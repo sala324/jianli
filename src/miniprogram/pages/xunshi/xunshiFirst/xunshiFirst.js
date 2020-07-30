@@ -86,7 +86,7 @@ Page({
     let that=this
     if(!this.data.reset){
       let info=this.data.info
-      info.date=util.formatDate(new Date())
+      info.open_date=util.formatDate(new Date())
       info.dateEnd=util.formatDate(new Date())
       this.setData({
         info:info,

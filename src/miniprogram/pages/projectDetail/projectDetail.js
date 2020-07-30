@@ -66,11 +66,29 @@ Page({
   logList(){
     util.requests('/logList?p='+this.data.id).then(res=>{
       if(res.data.code==0){
+        let arr=[]
+        let arr2=[]
+        let arrs=[]
         res.data.data.data.forEach(item=>{
           item.open_date=item.open_date.slice(0,10)
+          arr.push(item.open_date)
         })
+        arr=Array.from(new Set(arr))
+        arr.forEach(item=>{
+          let arr3=res.data.data.data.filter(item2=>{
+            return item==item2.open_date
+          })
+          arr2.push(arr3)
+        })
+        arr.forEach((item,index)=>{
+          let json={}
+          json.open_date=item
+          json.logArr=arr2[index]
+          arrs.push(json)
+        })
+        console.log(arr2)
         this.setData({
-          logArr:res.data.data.data
+          logArrs:arrs
         })
       }
     })

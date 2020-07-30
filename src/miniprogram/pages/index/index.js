@@ -78,7 +78,7 @@ Page({
     // }).then(res => {
     //   console.log(res);
     // })
-    if(wx.getStorageSync('token')){
+    if(wx.getStorageSync('test')){
       this.setData({
         userInfo:wx.getStorageSync('user')
       })

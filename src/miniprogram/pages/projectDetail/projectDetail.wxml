@@ -1,55 +1,10 @@
 <project-item projectItem="{{item}}" class="topInfo"></project-item>
 <scroll-view style="height:100vh-464rpx" scroll-y class="diaryRecord">
-  <view class="diaryRecordItem" wx:for="{{logArr}}" wx:key="{{index}}">
+  <view class="diaryRecordItem" wx:for="{{logArrs}}" wx:key="{{index}}">
     <text class="itemDate">{{item.open_date}}</text>
     <view class="recordItem">
-      <view class="item">监理日志</view>
-      <view class="item">平行经验记录</view>
-    </view>
-  </view>
-  <view class="diaryRecordItem">
-    <text class="itemDate">2020-06-06</text>
-    <view class="recordItem">
-      <view class="item">监理日志</view>
-      <view class="item">平行经验记录</view>
-      <view class="item">巡视记录</view>
-    </view>
-  </view>
-  <view class="diaryRecordItem">
-    <text class="itemDate">2020-06-06</text>
-    <view class="recordItem">
-      <view class="item">监理日志</view>
-      <view class="item">平行经验记录</view>
-      <view class="item">旁站记录</view>
-      <view class="item">巡视记录</view>
-    </view>
-  </view>
-  <view class="diaryRecordItem">
-    <text class="itemDate">2020-06-06</text>
-    <view class="recordItem">
-      <view class="item">监理日志</view>
-      <view class="item">平行经验记录</view>
-    </view>
-  </view>
-  <view class="diaryRecordItem">
-    <text class="itemDate">2020-06-06</text>
-    <view class="recordItem">
-      <view class="item">监理日志</view>
-      <view class="item">平行经验记录</view>
-    </view>
-  </view>
-  <view class="diaryRecordItem">
-    <text class="itemDate">2020-06-06</text>
-    <view class="recordItem">
-      <view class="item">监理日志</view>
-      <view class="item">平行经验记录</view>
-    </view>
-  </view>
-  <view class="diaryRecordItem">
-    <text class="itemDate">2020-06-06</text>
-    <view class="recordItem">
-      <view class="item">监理日志</view>
-      <view class="item">平行经验记录</view>
+      <view class="item" wx:for="{{item.logArr}}" wx:for-item="cell" wx:key="index2" wx:for-index='index2'>{{cell.name}}</view>
+      
     </view>
   </view>
 </scroll-view>

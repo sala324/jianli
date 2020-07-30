@@ -3,7 +3,7 @@
   <view class="itemInfo">
     <view class="itemTop">
       <view class="itemTitle">{{projectItem.name}}</view>
-      <text class="itemState" wx:if="{{projectItem.state==1}}">进行中</text>
+      <text class="itemState" wx:if="{{projectItem.status==0}}">进行中</text>
       <text class="itemState gray" wx:else>已结束</text>
     </view>
     <view class="itemDate">最近更新：{{projectItem.stop_time}}</view>

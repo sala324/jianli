@@ -14,8 +14,10 @@
     </picker>
   </view>
   <view class="lineItem">
-    <text class="name">天气</text>
-    <text class="detail">{{info.weather}}</text>
+    <view class="item">
+      <text class="name">天气</text>
+      <input class="detail" value="{{info.weather}}" data-name="weather" bindinput="changeItem" placeholder="单行输入"></input>
+    </view>
   </view>
   <view class="lineItem">
     <text class="name">施工单位</text>

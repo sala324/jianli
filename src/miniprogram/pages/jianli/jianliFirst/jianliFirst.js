@@ -33,9 +33,9 @@ Page({
     }
     common.getProject(this)//获取工程基本信息
   },
-  changeDetail(e){
+  changeItem(e){
     let info=this.data.info
-    info.note=e.detail.value
+    info[e.currentTarget.dataset.name]=e.detail.value
     this.setData({
       info:info
     })
@@ -200,7 +200,17 @@ Page({
       // d:this.data.info.open_date+''
       d:str
     }).then(res=>{
-      console.log(res)
+      if(res.data.code==0){
+        let content=''
+        let info=this.data.info
+        res.data.data.data.forEach((item,index)=>{
+          content+= index+1+'.今日进行'+item.name+','+"<<"+item.name+',编号：'+item.code+'>>。 '
+        })
+        info.note=content
+        this.setData({
+          info:info
+        })
+      }
     })
   }
 })
