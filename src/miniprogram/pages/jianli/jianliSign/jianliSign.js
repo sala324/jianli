@@ -86,7 +86,7 @@ Page({
       success: function (res) {
         console.log(res.tempFilePath);
         //存入服务器
-        util.requests('/jxm17/'+that.data.id,{
+        util.requests('/jxm17/postdo/'+that.data.id,{
       sign_name:res.tempFilePath
     },'put').then(res=>{
       if(res.data.code==0){

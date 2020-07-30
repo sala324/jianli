@@ -8,6 +8,7 @@ Page({
       type:1,
       step:3
     },
+    index1:-1,
     dateEnd:''
   },
   resetState(e){
@@ -18,6 +19,7 @@ Page({
     })
   },
   onLoad(options){
+    console.log(options)
     if(options.default){
       this.setData({
         arr:JSON.parse(options.default),
@@ -36,6 +38,21 @@ Page({
         arr:JSON.parse(options.nextArr),
       })
     }
+  },
+  changeItem(e){
+    let index=e.currentTarget.dataset.index
+    this.setData({
+      index1:index
+    })
+  },
+  changeValue(e){
+    let arr=this.data.arr
+    let index=e.currentTarget.dataset.index
+    arr[index].values=e.detail.value
+    this.setData({
+      arr:arr,
+      index1:index
+    })
   },
   nextStep(){
     if(this.data.reset){

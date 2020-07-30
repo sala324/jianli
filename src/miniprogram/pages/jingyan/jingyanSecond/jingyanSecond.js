@@ -20,6 +20,9 @@ Page({
   changeState(e){
     let arr=this.data.arr
     arr[e.currentTarget.dataset.index].values=(arr[e.currentTarget.dataset.index].values==0)?1:0
+    if(arr[e.currentTarget.dataset.index].values==1){
+      arr[e.currentTarget.dataset.index].about=''
+    }
     this.setData({
       arr:arr
     })

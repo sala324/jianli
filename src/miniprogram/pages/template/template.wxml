@@ -47,7 +47,15 @@
       <text class="name">二、作业过程风险控制措施检查或监理情况</text>
       <view class="info">
         <view class="box {{!reset?'auto':''}}">
-          <view class="detailItem2 {{item.values==1?'active':''}}" wx:for="{{arr2}}" wx:key="index"> {{index+1}}.{{item.name}}<text class="state unChecked" wx:if="{{item.values!=1}}"></text><image class="state checked" wx:else src="../../../images/gou.png"></image></view>
+          <view class="detailItem2 {{item.values==1?'active':''}}" wx:for="{{arr2}}" wx:key="index"> 
+            <block wx:if="{{item.classes==1}}">
+            {{index+1}}.{{item.name}}<text class="state unChecked" wx:if="{{item.values!=1}}"></text>
+            <image class="state checked" wx:else src="../../../images/gou.png"></image>
+            </block>
+            <block wx:if="{{item.classes==0}}">
+              <view class="detailItem" wx:key="index">{{item.values}}</view>
+            </block>
+          </view>
         </view>
         <image src="../../../images/reset.png"  wx:if="{{reset}}" bindtap="resetDetail" data-detail="{{arr2}}" data-page="/pages/pangzhan/pangzhanThird/pangzhanThird"></image>
       </view>

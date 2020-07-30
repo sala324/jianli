@@ -26,7 +26,7 @@
 
 <view class="jilu">
   <text class="name">日志详情</text>
-  <textarea value="{{info.note}}" bindinput="changeItem" data-name="note" maxlength="300" placeholder="请输入"></textarea>
+  <textarea value="{{info.note}}" bindinput="changeItem" data-name="note" maxlength="500" placeholder="请输入"></textarea>
 </view>
 <voice bind:myevent="setGaiyao" bind:myevent2="nextStep" authority="{{authority}}"></voice>
 

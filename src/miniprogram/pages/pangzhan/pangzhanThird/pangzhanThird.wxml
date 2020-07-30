@@ -1,8 +1,19 @@
 <navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
 <view class="info">
   <view class="title">二、作业过程风险控制措施检查</view>
-  <view class="item" wx:for="{{arr}}" wx:key="index">
-    <text class="text">{{index+1}}.{{item.name}}</text>
-    <switch checked="{{item.values==1}}" bindtap="resetState" data-index="{{index}}"></switch>
+  <view  wx:for="{{arr}}" wx:key="index">
+    <view class="item" wx:if="{{item.classes==1}}">
+      <text class="text">{{index+1}}.{{item.name}}</text>
+      <switch checked="{{item.values==1}}" bindtap="resetState" data-index="{{index}}"></switch>
+    </view>
+    <view class="item2 {{index1===index?'active':''}}" wx:if="{{item.classes==0}}">
+      <view class="tips" wx:if="{{index1===index}}">{{item.about}}</view>
+      <view class="textWrap {{index1===index?'active':''}}">
+        <textarea contenteditable="true" auto-height="true" type="text" class="itemDetail" bindinput="changeValue" bindfocus="changeItem" value="{{item.values}}" data-index="{{index}}" placeholder="{{item.name}}">
+      </textarea>
+      <image class="del" src="../../../images/del2.png" data-index="{{index}}" bindtap="delItem"></image>
+      </view>
+    </view>
   </view>
+  
 </view>

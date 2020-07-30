@@ -72,14 +72,16 @@ Page({
     })
   },
   nextStep(){
-    if(this.data.reset){
-      common.resetJaq('/jxm9/'+this.data.id,{
-        opinion:this.data.detail,
-      })
+    if(this.data.detail){
+      if(this.data.reset){
+        common.resetJaq('/jxm9/'+this.data.id,{
+          opinion:this.data.detail,
+        })
+      } else {
+        this.createLog()
+      }
     } else {
-      // util.nextStepCommon(this,'wenti','/pages/pangzhan/pangzhan/pangzhan')
-      this.createLog()
+      util.toasts('请输入处理方案')
     }
-    
   }
 })

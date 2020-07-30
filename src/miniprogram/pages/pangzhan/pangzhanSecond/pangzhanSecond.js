@@ -82,9 +82,19 @@ Page({
       })
       arr4.forEach((item,index)=>{
         let json={}
-        json.id=item.id
-        json.values=0
-        json.name=item.name
+        if(item.classes==0){
+          json.id=item.id
+          json.values=''
+          json.classes=item.classes
+          json.name=item.name
+          json.about=item.name
+        } else {
+          json.id=item.id
+          json.values=0
+          json.classes=item.classes
+          json.name=item.name
+        }
+        
         arr6.push(json)
       })
       this.setData({
