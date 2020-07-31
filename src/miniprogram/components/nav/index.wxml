@@ -22,5 +22,5 @@
     </block>
   </view>
   
-  <view class="nextStep" bindtap="nextStep">下一步</view>
+  <view class="nextStep" bindtap="nextStep">完成</view>
 </view>

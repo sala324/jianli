@@ -87,15 +87,15 @@ Page({
         console.log(res.tempFilePath);
         //存入服务器
         util.requests('/jxm17/postdo/'+that.data.id,{
-      sign_name:res.tempFilePath
-    },'put').then(res=>{
-      if(res.data.code==0){
-        wx.reLaunch({
-          url: '/pages/jianli/jianliDetail/jianliDetail?id='+that.data.id,
+          signName:res.tempFilePath
+        },'post').then(res=>{
+          if(res.data.code==0){
+            wx.reLaunch({
+              url: '/pages/jianli/jianliDetail/jianliDetail?id='+that.data.id,
+            })
+          }
+          
         })
-      }
-      
-    })
       }
     })
 

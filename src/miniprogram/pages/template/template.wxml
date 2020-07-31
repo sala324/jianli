@@ -126,7 +126,7 @@
     </view>
     <view class="item">
       <text class="name">气温</text>
-      <view class="info">{{info.temperature_high}} {{info.temperature_low}}</view>
+      <view class="info">最高气温{{info.temperature_high}} 最低气温{{info.temperature_low}}</view>
     </view>
     <view class="item">
       <text class="name">日志详情</text>
@@ -194,9 +194,9 @@
       <view class="jyItem" wx:for="{{arr}}" wx:key="index">
         <view class="index">{{index+1}}</view>
         <view class="name">{{item.name}}</view>
-        <view class="size" wx:if="{{item.values==1}}">合格</view>
-        <view class="size" wx:else>不合格</view>
-        <view class="size2">{{item.about?item.about:'无'}}</view>
+        <view class="size">{{item.memo}}</view>
+        <view class="size2" wx:if="{{item.classes==1}}">{{item.values==0?'不符合标准':'符合标准'}}</view>
+        <view class="size2" wx:if="{{item.classes==0}}">{{item.values}}</view>
       </view>
 
     </view>

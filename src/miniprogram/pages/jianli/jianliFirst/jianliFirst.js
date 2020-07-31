@@ -41,11 +41,16 @@ Page({
     })
   },
   nextStep(){
-    if(!this.data.reset){
-      this.createJxm17()
+    if(this.data.info.weather_day&&this.data.info.temperature_high&&this.data.info.temperature_low&&this.data.info.note){
+      if(!this.data.reset){
+        this.createJxm17()
+      } else {
+        this.resetJxm17(this.data.id)
+      }
     } else {
-      this.resetJxm17(this.data.id)
+      util.toasts('请输入完整')
     }
+    
   },
   bindDateChange(e){
     let info=this.data.info

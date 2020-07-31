@@ -7,7 +7,8 @@ Page({
       step:2
     },
     arr:[{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''}],
-    dateEnd:''
+    dateEnd:'',
+    textValue:true
   },
   changeRemarks(e){
     let index=e.currentTarget.dataset.index
@@ -27,16 +28,12 @@ Page({
       arr:arr
     })
   },
-  changeValue(e){
+  changeValues(e){
+    let index=e.currentTarget.dataset.index
     let arr=this.data.arr
-    let index=e.currentTarget.dataset.index3
-    let index2=e.currentTarget.dataset.index4
-    arr[index].items[index2].val=e.detail.value
+    arr[index].values=e.detail.value
     this.setData({
-      arr:arr,
-      index3:index,
-      index4:index2,
-      oldValues:e.detail.value
+      arr:arr
     })
   },
   setGaiyao(e){
@@ -74,24 +71,47 @@ Page({
   },
   nextStep(){
     let describe=[]
+    this.setData({
+      textValue:true
+    })
+    console.log(this.data.arr)
     this.data.arr.forEach((item,index)=>{
       let json={}
       json.id=item.configuration_id
       json.values=item.values
       json.name=item.name
       describe.push(json)
+      if(item.classes==0){
+        if(!item.values){
+          this.setData({
+            textValue:false
+          })
+          console.log(1)
+        }
+      } else {
+        if(!item.about &&item.values==0){
+          this.setData({
+            textValue:false
+          })
+          console.log(2)
+        }
+      }
     })
-
-    if(this.data.reset){
-      common.resetJaq('/jzl3/'+this.data.id,{
-        describe:JSON.stringify(describe),
-        config:this.data.arr
-      })
+    if(this.data.textValue){
+      if(this.data.reset){
+        common.resetJaq('/jzl3/'+this.data.id,{
+          describe:JSON.stringify(describe),
+          config:this.data.arr
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/jingyan/jingyanThird/jingyanThird?step1Value='+JSON.stringify(this.data.step1Value)+'&config='+JSON.stringify(this.data.arr)+'&describe='+JSON.stringify(describe)
+        })
+      }
     } else {
-      wx.navigateTo({
-        url: '/pages/jingyan/jingyanThird/jingyanThird?step1Value='+JSON.stringify(this.data.step1Value)+'&config='+JSON.stringify(this.data.arr)+'&describe='+JSON.stringify(describe)
-      })
+      util.toasts('请输入完整')
     }
+    
   },
   getconfiguration(){
     let tid=wx.getStorageSync('logId')
@@ -105,9 +125,14 @@ Page({
       arr3.forEach((item,index)=>{
         let json={}
         json.configuration_id=item.id
-        json.values=0
+        if(item.classes==0){
+          json.values=''
+        } else {
+          json.values=0
+        }
         json.name=item.name
         json.about=''
+        json.classes=item.classes
         json.memo=item.memo
         arr5.push(json)
       })

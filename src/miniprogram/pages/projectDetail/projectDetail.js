@@ -71,6 +71,7 @@ Page({
         let arrs=[]
         res.data.data.data.forEach(item=>{
           item.open_date=item.open_date.slice(0,10)
+          item.name=item.name.split('-')[1]
           arr.push(item.open_date)
         })
         arr=Array.from(new Set(arr))

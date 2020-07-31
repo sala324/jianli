@@ -68,7 +68,7 @@ Page({
   },
   nextStep(){
     let unit_id=this.data.arr2[this.data.index].id
-    if(this.data.info.matter.trim().length>0){
+    if(this.data.info.matter&&this.data.info.matter.trim().length>0){
       if(this.data.reset){
         common.resetJaq('/jxm8/'+this.data.info.id,{
           matter:this.data.info.matter,

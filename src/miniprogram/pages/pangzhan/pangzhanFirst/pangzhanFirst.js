@@ -48,7 +48,7 @@ Page({
     })
   },
   nextStep(){
-    if(this.data.info.position){
+    if(this.data.info.position &&this.data.info.weather){
       if(this.data.reset){
         common.resetJaq('/jxm9/'+this.data.info.id,{
           start_time:this.data.info.open_date+' '+this.data.info.start_time,
@@ -63,7 +63,12 @@ Page({
         })
       }
     } else {
-      util.toasts('请输入旁站监理的部位')
+      if(!this.data.info.weather){
+        return util.toasts('请输入天气')
+      }
+      if(!this.data.info.position){
+        return util.toasts('请输入旁站监理的部位')
+      }
     }
   },
   changeItem(e){

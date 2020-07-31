@@ -87,7 +87,7 @@ Page({
         //存入服务器
         util.requests('/jzl3/postdo/'+that.data.id,{
           signName:res.tempFilePath
-        },'put').then(res=>{
+        },'post').then(res=>{
           if(res.data.code==0){
             wx.reLaunch({
               url: '/pages/jingyan/jingyanDetail/jingyanDetail?id='+that.data.id,

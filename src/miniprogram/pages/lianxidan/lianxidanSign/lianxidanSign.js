@@ -88,7 +88,7 @@ Page({
         //存入服务器
         util.requests('/jxm8/postdo/'+that.data.id,{
           signName:res.tempFilePath
-        },'put').then(res=>{
+        },'post').then(res=>{
           if(res.data.code==0){
             wx.reLaunch({
               url: '/pages/lianxidan/lianxidanDetail/lianxidanDetail?id='+that.data.id,

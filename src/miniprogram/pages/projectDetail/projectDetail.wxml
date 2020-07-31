@@ -3,7 +3,7 @@
   <view class="diaryRecordItem" wx:for="{{logArrs}}" wx:key="{{index}}">
     <text class="itemDate">{{item.open_date}}</text>
     <view class="recordItem">
-      <view class="item" wx:for="{{item.logArr}}" wx:for-item="cell" wx:key="index2" wx:for-index='index2'>{{cell.name}}</view>
+      <view class="item" wx:for="{{item.logArr}}" wx:for-item="cell" wx:key="index2" wx:for-index='index2'>{{cell.name}} （{{cell.code}}）</view>
       
     </view>
   </view>
