@@ -55,7 +55,7 @@ Component({
                 });
                 if (index == length-1){
                   wx.hideLoading();
-                  me.triggerEvent('setItem', me.data.imgurl)
+                  me.triggerEvent('addItem', me.data.imgurl)
                 }
                 if (arrTmp.length == 9) {
                   me.setData({

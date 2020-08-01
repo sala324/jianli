@@ -33,6 +33,9 @@ Page({
       url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail)+'&id='+this.data.info.id,
     })
   },
+  addItem(){
+    this.jxm9Detail(this.data.id)
+  },
   setItem(e){
     util.requests('/deleteFile/'+e.detail,{},'post').then(res=>{
       if(res.data.code===0){
@@ -56,6 +59,7 @@ Page({
         let idArr=res.data.data.images.map(item=>{return item.id})
         res.data.data.start_time=res.data.data.start_time.slice(11,16)
         res.data.data.end_time=res.data.data.end_time.slice(11,16)
+        res.data.data.open_date=res.data.data.open_date.slice(0,11)
         res.data.data.open_date=res.data.data.open_date.slice(0,11)
         let info=JSON.parse(JSON.stringify(res.data.data,['id','code','open_date','position','start_time','end_time','weather','opinion','modules_id','working_id','unit_id','outline']))
         info.name=res.data.data.project.name

@@ -35,6 +35,7 @@ Page({
           json.name=item.configuration.name
           json.about=item.about
           json.memo=item.configuration.memo
+          json.classes=item.configuration.classes
           config.push(json)
         })
         this.setData({
