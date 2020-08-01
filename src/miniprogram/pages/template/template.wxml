@@ -69,7 +69,7 @@
     </view>
     <view class="item">
       <text class="name"> 填写日期</text>
-      <view class="info">{{date2}}</view>
+      <view class="info">{{info.created_at}}</view>
     </view>
   </view>
 </template>
