@@ -69,6 +69,32 @@ Page({
     context.clearRect(0, 0, canvasw, canvash);
     context.draw(true);
   },
+  imgUpload(val){
+    let me = this;
+    let hearderToken = wx.getStorageSync('token');
+    let logCode = wx.getStorageSync('logCode');
+    let logId = wx.getStorageSync('logId');
+    wx.uploadFile({
+      url: 'https://api.zkx.leoanrd.com/upload',
+      filePath: val,
+      name: 'file',
+      formData: {
+        'tag': logCode,
+        'project_log_id':me.data.logid
+      },
+      header: {
+        'Authorization': hearderToken // 默认值
+      },
+      success(res) {
+        console.log(res)
+        let resData = JSON.parse(res.data);
+        console.log(resData)
+        
+        
+      }
+    })
+    
+  },
   //导出图片
   getimg: function () {
     let that=this
@@ -85,17 +111,35 @@ Page({
       canvasId: 'canvas',
       success: function (res) {
         console.log(res.tempFilePath);
-        //存入服务器
-        util.requests('/jaq/postdo/'+that.data.id,{
-          signName:res.tempFilePath
-        },'post').then(res=>{
-          if(res.data.code==0){
-            wx.reLaunch({
-              url: '/pages/xunshi/xunshiDetail/xunshiDetail?id='+that.data.id,
+        wx.getFileSystemManager().readFile({   // 文件管理系统按照base64方式读取生成的图片
+          filePath: res.tempFilePath, //选择图片返回的相对路径
+          encoding: 'base64', //编码格式
+          success: res => { //成功的回调
+            // callback('data:image/png;base64,' + res.data)
+            console.log('data:image/png;base64,' + res.data)
+            util.requests('/jaq/postdo/'+that.data.id,{
+              signName:'data:image/png;base64,' + res.data
+            },'post').then(res=>{
+              if(res.data.code==0){
+                wx.reLaunch({
+                  url: '/pages/xunshi/xunshiDetail/xunshiDetail?id='+that.data.id,
+                })
+              }
+              
             })
           }
-          
         })
+        //存入服务器
+        // util.requests('/jaq/postdo/'+that.data.id,{
+        //   signName:res.tempFilePath
+        // },'post').then(res=>{
+        //   if(res.data.code==0){
+        //     wx.reLaunch({
+        //       url: '/pages/xunshi/xunshiDetail/xunshiDetail?id='+that.data.id,
+        //     })
+        //   }
+          
+        // })
       }
     })
 
