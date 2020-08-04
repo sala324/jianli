@@ -29,8 +29,12 @@ Page({
     })
   },
   resetDetail(e){
+    let title=this.data.title1
+    if(e.currentTarget.dataset.index2){
+      title=this.data.title2
+    }
     wx.navigateTo({
-      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail)+'&id='+this.data.info.id,
+      url: e.currentTarget.dataset.page+'?default='+JSON.stringify(e.currentTarget.dataset.detail)+'&id='+this.data.info.id+'&title='+title,
     })
   },
   addItem(){
@@ -60,6 +64,10 @@ Page({
         res.data.data.start_time=res.data.data.start_time.slice(11,16)
         res.data.data.end_time=res.data.data.end_time.slice(11,16)
         res.data.data.open_date=res.data.data.open_date.slice(0,11)
+        let arr2=JSON.parse(res.data.data.describe2)
+        let arr1=JSON.parse(res.data.data.describe1)
+        let title1=arr1[0].pTitle
+        let title2=arr2[0].pTitle
         let info=JSON.parse(JSON.stringify(res.data.data,['id','code','open_date','position','start_time','end_time','weather','opinion','modules_id','working_id','unit_id','outline','created_at']))
         info.name=res.data.data.project.name
         info.unitName=res.data.data.unit.name
@@ -72,7 +80,9 @@ Page({
           arr2:JSON.parse(res.data.data.describe2),
           opinion:res.data.data.opinion,
           imgArr:imgArr,
-          idArr:idArr
+          idArr:idArr,
+          title1:title1,
+          title2:title2
         })
       }
     })

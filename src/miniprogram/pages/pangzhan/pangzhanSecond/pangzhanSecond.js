@@ -67,6 +67,8 @@ Page({
       let arr=res.data.data
       let idArr=arr.filter(item=>item.classes==-1)
       let id1=idArr[0].id
+      let title1=idArr[0].name
+      let title2=idArr[1].name
       let id2=idArr[1].id
       let arr3=arr.filter(item=>item.parent_id==id1)
       let arr4=arr.filter(item=>item.parent_id==id2)
@@ -76,6 +78,7 @@ Page({
         let json={}
         json.configuration_id=item.id
         json.values=''
+        json.pTitle=title1
         json.name=item.name
         json.about=item.name
         arr5.push(json)
@@ -85,6 +88,7 @@ Page({
         if(item.classes==0){
           json.id=item.id
           json.values=''
+          json.pTitle=title2
           json.classes=item.classes
           json.name=item.name
           json.about=item.name
@@ -99,6 +103,8 @@ Page({
       })
       this.setData({
         arr:arr5,
+        title2:title2,
+        title1:title1,
         nextArr:arr6
       })
     })
@@ -116,7 +122,8 @@ Page({
       this.setData({
         arr:JSON.parse(options.default),
         id:options.id,
-        reset:true
+        reset:true,
+        title:options.title
       })
       wx.setNavigationBarTitle({
         title: '修改旁站记录——第二步',
@@ -157,6 +164,7 @@ Page({
         let json={}
         json.id=item.configuration_id
         json.values=item.values
+        json.pTitle=this.data.title1
         json.name=item.name
         describe1.push(json)
       })
@@ -164,7 +172,7 @@ Page({
         this.resetInfo(this.data.id)
       } else {
         wx.navigateTo({
-          url: '/pages/pangzhan/pangzhanThird/pangzhanThird?step1Value='+JSON.stringify(this.data.step1Value)+'&config='+JSON.stringify(this.data.arr)+'&describe1='+JSON.stringify(describe1)+'&nextArr='+JSON.stringify(this.data.nextArr),
+          url: '/pages/pangzhan/pangzhanThird/pangzhanThird?step1Value='+JSON.stringify(this.data.step1Value)+'&config='+JSON.stringify(this.data.arr)+'&describe1='+JSON.stringify(describe1)+'&nextArr='+JSON.stringify(this.data.nextArr)+'&title='+this.data.title2,
         })
       }
     }

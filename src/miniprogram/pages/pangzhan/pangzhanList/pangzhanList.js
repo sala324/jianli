@@ -2,7 +2,7 @@ const util = require('../../../utils/util');
 const commonRequest = require('../../../utils/request');
 Page({
   data: {
-    size:3,
+    size:10,
     index:1,
     item:{},
     listArr:[]

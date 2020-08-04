@@ -19,11 +19,11 @@ Page({
     })
   },
   onLoad(options){
-    console.log(options)
     if(options.default){
       this.setData({
         arr:JSON.parse(options.default),
         id:options.id,
+        title:options.title,
         reset:true
       })
       wx.setNavigationBarTitle({
@@ -36,6 +36,7 @@ Page({
         step1Value:JSON.parse(options.step1Value),
         config:JSON.parse(options.config),
         arr:JSON.parse(options.nextArr),
+        title:options.title
       })
     }
   },

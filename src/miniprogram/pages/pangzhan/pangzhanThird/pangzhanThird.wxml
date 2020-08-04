@@ -1,6 +1,6 @@
 <navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
 <view class="info">
-  <view class="title">二、作业过程风险控制措施检查</view>
+  <view class="title">二、{{title}}</view>
   <view  wx:for="{{arr}}" wx:key="index">
     <view class="item" wx:if="{{item.classes==1}}">
       <text class="text">{{index+1}}.{{item.name}}</text>

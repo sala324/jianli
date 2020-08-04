@@ -118,7 +118,7 @@ Page({
     context = wx.createCanvasContext('canvas');
     context.beginPath()
     context.setStrokeStyle('#000000');
-    context.setLineWidth(4);
+    context.setLineWidth(2);
     context.setLineCap('round');
     context.setLineJoin('round');
     

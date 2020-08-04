@@ -1,7 +1,7 @@
 <scroll-view style="height:100vh-350rpx;overflow:scroll" scroll-y>
   <navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
   <view class="info">
-    <view class="title">一、作业必备条件检查</view>
+    <view class="title">一、{{title}}</view>
     
     <view class="item {{index1===index?'active':''}}" wx:for="{{arr}}" wx:key="index">
       <view class="tips" wx:if="{{index1===index}}">{{item.about}}</view>
