@@ -6,6 +6,7 @@ Page({
     shiyou:'shiyou',
     content:'内容香香你赶快来',
     info:{},
+    unSign:true,
     idArr:[],
     imgArr:[]
   },

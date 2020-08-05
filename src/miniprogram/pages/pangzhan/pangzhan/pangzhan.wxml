@@ -1,9 +1,7 @@
 <import src ="../../template/template.wxml"/>
 <template is="mokuai" data="{{info,arr,reset,arr2,des,opinion,title1,title2}}"/>
-<img-upload imgArr="{{imgArr}}" idArr="{{idArr}}" logid="{{project_log_id}}" class="uploadImg" bind:addItem="addItem" bind:setItem="setItem">
+<img-upload imgArr="{{imgArr}}" idArr="{{idArr}}" unSign="{{unSign}}" logid="{{project_log_id}}" class="uploadImg" bind:setItem="setItem">
 </img-upload>
-<!-- <btn title="下一步" bind:myevent="nextStep"></btn> -->
 <view class="btnBox">
   <navigator url="/pages/pangzhan/pangzhanSign/pangzhanSign?id={{id}}" class="btn">提交签名</navigator>
 </view>
-<!-- <navigator url="/pages/pangzhan/pangzhanSign/pangzhanSign" class="btn">提交签名</navigator> -->

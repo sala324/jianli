@@ -48,6 +48,7 @@ Page({
         this.setData({
           info:info,
           imgArr:imgArr,
+          pdfUrl:res.data.data.pdf_url,
           project_log_id:res.data.data.project_log_id,
           idArr:idArr,
           note:res.data.data.note

@@ -2,12 +2,12 @@
   <view class="title">上传相关图片</view>
   <view class="imgWrap">
     <view class="imgItem" wx:for="{{imgArr}}" wx:key="index">
-      <image src="{{item}}" class="img"></image>
-      <image src="../../images/del.png" class="del" data-index="{{index}}" bindtap="setItem"></image>
+      <image src="{{item}}" class="img" data-src="item" bindtap="bigimage"></image>
+      <image src="../../images/del.png" class="del" data-index="{{index}}" wx:if="{{unSign}}" bindtap="setItem"></image>
     </view>
-    <view class="imgItem gray">
+    <view class="imgItem gray" wx:if="{{unSign && imgArr.length<9}}">
       <image src="../../images/add.png" class="add" bindtap="imgUpload"></image>
     </view>
   </view>
-  <view class="des">支持jpg、png、bmp格式</view>
+  <view class="des" wx:if="{{unSign}}">支持jpg、png、bmp格式</view>
 </view>

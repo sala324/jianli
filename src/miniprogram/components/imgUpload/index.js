@@ -3,6 +3,7 @@ Component({
   properties: {
     imgArr:Array,
     idArr:Array,
+    unSign:Boolean,
     logid:Number
   },
   data: {
@@ -68,6 +69,13 @@ Component({
         }
       });
       
-    }
+    },
+    bigimage(e) {
+      var src = e.currentTarget.dataset.src
+      wx.previewImage({
+        current: src,
+        urls: this.data.imgArr
+      })
+    },
   }
 })

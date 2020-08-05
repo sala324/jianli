@@ -51,7 +51,7 @@ Component({
             context.clearRect(0, 0, canvasw, canvash);
         
             context.setStrokeStyle('#000000');
-            context.setLineWidth(4);
+            context.setLineWidth(2);
             context.setLineCap('round');
             context.setLineJoin('round');
             context.stroke();
@@ -126,7 +126,7 @@ Component({
     context = wx.createCanvasContext('canvas',this);
     context.beginPath()
     context.setStrokeStyle('#000000');
-    context.setLineWidth(4);
+    context.setLineWidth(2);
     context.setLineCap('round');
     context.setLineJoin('round');
   }

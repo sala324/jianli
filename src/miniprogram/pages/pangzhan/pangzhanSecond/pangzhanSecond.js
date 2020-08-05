@@ -80,7 +80,7 @@ Page({
         json.values=''
         json.pTitle=title1
         json.name=item.name
-        json.about=item.name
+        json.about=''
         arr5.push(json)
       })
       arr4.forEach((item,index)=>{
@@ -91,7 +91,6 @@ Page({
           json.pTitle=title2
           json.classes=item.classes
           json.name=item.name
-          json.about=item.name
         } else {
           json.id=item.id
           json.values=0

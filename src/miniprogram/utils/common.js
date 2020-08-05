@@ -86,7 +86,7 @@ const getWeather=(city,page)=> {
         let info=page.data.info
         console.log(todayInfo)
         let fengli=todayInfo.fengli.replace('<![CDATA[','').replace(']]>','')
-        info.weather=todayInfo.type +' '+fengli
+        info.weather=todayInfo.type +'，'+todayInfo.fengxiang +'：'+fengli+'，'+todayInfo.high+'，'+todayInfo.low
         page.setData({info:info})
       },
     })

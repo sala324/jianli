@@ -1,7 +1,7 @@
 
 <import src ="../../template/template.wxml"/>
 <template is="mokuai" data="{{info,arr,reset,arr2,des,opinion}}"/>
-<img-upload imgArr="{{imgArr}}" idArr="{{idArr}}" logid="{{project_log_id}}" class="uploadImg" bind:setItem="setItem">
+<img-upload imgArr="{{imgArr}}" idArr="{{idArr}}" unSign="{{unSign}}" logid="{{project_log_id}}" class="uploadImg" bind:setItem="setItem">
 </img-upload>
 <view class="btnBox">
   <view class="btn" bindtap="showCopyBtn">下载PDF文件</view>

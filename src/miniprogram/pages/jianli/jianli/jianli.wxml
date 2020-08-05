@@ -1,5 +1,5 @@
 <import src ="../../template/template.wxml"/>
 <template is="mokuai3" data="{{info}}"/>
-<img-upload imgArr="{{imgArr}}" idArr="{{idArr}}" logid="{{project_log_id}}" class="uploadImg" bind:setItem="setItem">
+<img-upload imgArr="{{imgArr}}" idArr="{{idArr}}" unSign="{{unSign}}" logid="{{project_log_id}}" class="uploadImg" bind:setItem="setItem">
 </img-upload>
 <navigator url="/pages/jianli/jianliSign/jianliSign?id={{id}}" class="btn">提交签名</navigator>

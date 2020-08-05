@@ -5,6 +5,7 @@ Page({
     reset:true,
     arr2:[{title:'现场存在问题',name:'matter',val:''},{title:'监理有关措施',name:'measures',val:''}],
     arr:[],
+    unSign:true,
     info2:{
       wenti:'存在的问题2',
       cuoshi:'措施2',
