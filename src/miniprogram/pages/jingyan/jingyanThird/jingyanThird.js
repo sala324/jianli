@@ -9,7 +9,8 @@ Page({
     arr:[{title:'检验结论',name:'result',val:''},{title:'检验仪器及编号',name:'instrument',val:''}],
     navInfo:{
       type:2,
-      step:3
+      step:3,
+      lastStep:true
     },
     dateEnd:''
   },

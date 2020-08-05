@@ -6,7 +6,8 @@ Page({
     oldValues:'',
     navInfo:{
       type:4,
-      step:2
+      step:2,
+      lastStep:true
     },
     dateEnd:''
   },

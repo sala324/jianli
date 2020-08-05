@@ -41,6 +41,7 @@ Page({
         let imgArr=res.data.data.images.map(item=>{return item.url})
         let idArr=res.data.data.images.map(item=>{return item.id})
         let info=JSON.parse(JSON.stringify(res.data.data,['id','code','open_date','matter','unit_id','project_id']))
+        
         info.reset=true
         info.name=res.data.data.project.name
         info.unitName=res.data.data.unit.name

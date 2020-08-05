@@ -4,7 +4,8 @@ Page({
     detail:'',
     navInfo:{
             type:3,
-            step:4
+            step:4,
+            lastStep:true
           },
     dateEnd:''
   },

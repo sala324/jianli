@@ -67,6 +67,7 @@
   align-items: center;
 }
 .itemDate{
+  padding-top:3rpx;
   font-size: 24rpx;
   color: #999;
 }
