@@ -1,6 +1,6 @@
 Component({
   properties: {
-    projectItem:Object,
+    pdfUrl:String,
   },
   data: {
    
@@ -9,7 +9,7 @@ Component({
     copyTBL(){
       var self = this;
       wx.setClipboardData({
-        data: '123456',
+        data: self.data.pdfUrl,
         success: function (res) {
           wx.showToast({
             title: '复制成功',

@@ -13,7 +13,7 @@ Page({
     })
   },
   turnDetail(e){
-    if(e.currentTarget.dataset.state==2){
+    if(e.currentTarget.dataset.state==1){
       wx.navigateTo({
         url: '/pages/pangzhan/pangzhanDetail/pangzhanDetail?id='+e.currentTarget.dataset.id,
       })

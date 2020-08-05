@@ -63,6 +63,7 @@ Page({
         this.setData({
           info:info,
           arr:res.data.data.config,
+          pdfUrl:res.data.data.pdf_url,
           project_log_id:res.data.data.project_log_id,
           arr2:JSON.parse(res.data.data.describe2),
           opinion:res.data.data.opinion,

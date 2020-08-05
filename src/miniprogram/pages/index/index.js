@@ -69,15 +69,6 @@ Page({
     })
   },
   onShow(){
-    
-  },
-  onLoad: function () {
-    // wx.cloud.callFunction({
-    //   name: 'openid',
-    //   data: {}
-    // }).then(res => {
-    //   console.log(res);
-    // })
     if(wx.getStorageSync('test')){
       this.setData({
         userInfo:wx.getStorageSync('user')
@@ -86,6 +77,15 @@ Page({
     } else {
       this.judgeUser()
     }
+  },
+  onLoad: function () {
+    // wx.cloud.callFunction({
+    //   name: 'openid',
+    //   data: {}
+    // }).then(res => {
+    //   console.log(res);
+    // })
+    
     
   },
 })

@@ -40,10 +40,9 @@ Page({
         this.setData({
           baseInfo:info,
           arr2:arr,
+          pdfUrl:res.data.data.pdf_url,
           arr:config
         })
-        console.log(info)
-        console.log(arr)
       }
     })
   },

@@ -13,7 +13,7 @@ Page({
     })
   },
   turnDetail(e){
-    if(e.currentTarget.dataset.state==2){
+    if(e.currentTarget.dataset.state==1){
       wx.navigateTo({
         url: '/pages/jianli/jianliDetail/jianliDetail?id='+e.currentTarget.dataset.id,
       })

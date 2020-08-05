@@ -104,7 +104,7 @@ Page({
       this.setData({
         arr:arr5,
         title2:title2,
-        title1:title1,
+        title:title1,
         nextArr:arr6
       })
     })

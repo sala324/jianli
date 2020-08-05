@@ -6,4 +6,4 @@
 <view class="btnBox">
   <view class="btn" bindtap="showCopyBtn">下载PDF文件</view>
 </view>
-<copy-link wx:if="{{showCopy}}" bind:myevent="hideCopy"></copy-link>
+<copy-link wx:if="{{showCopy}}" pdfUrl="{{pdfUrl}}" bind:myevent="hideCopy"></copy-link>

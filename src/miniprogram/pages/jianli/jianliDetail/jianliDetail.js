@@ -60,6 +60,7 @@ Page({
         info.reset=false
         this.setData({
           info:info,
+          pdfUrl:res.data.data.pdf_url,
           project_log_id:res.data.data.project_log_id,
           imgArr:imgArr,
           idArr:idArr
