@@ -68,29 +68,25 @@ const loadWeather=(page)=> {
       }
     })
   }
-  //根据城市获取天气信息
-const getWeather=(city,page)=> {
-    wx.request({
-      url: 'http://wthrcdn.etouch.cn/weather_mini?city=' + city,
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res);
-        var future = res.data.data.forecast;
-        
-        //移除掉数组中当天的天气信息
-        var todayInfo = future.shift();
-        var today = res.data.data;
-        today.todayInfo = todayInfo;
-        let info=page.data.info
-        console.log(todayInfo)
-        let fengli=todayInfo.fengli.replace('<![CDATA[','').replace(']]>','')
-        info.weather=todayInfo.type +'，'+todayInfo.fengxiang +'：'+fengli+'，'+todayInfo.high+'，'+todayInfo.low
-        page.setData({info:info})
-      },
-    })
-  }
+   //根据城市获取天气信息
+const getWeather=(city,page)=> {
+      wx.request({
+        url: 'https://tianqiapi.com/api?version=v6&appid=52453137&appsecret=c9RQRskX&city=' + city,
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          //console.log(res);
+          var today = res.data;
+          //console.log(today)
+          let info=page.data.info
+          //console.log(todayInfo)
+          info.weather = today.week + '，' + today.wea + '，' + today.win + today.win_speed + '，' +today.win_meter, + ',高温：' + today.tem1 + '°C，低温：' + today.tem2 + '°C。'
+          //console.log(info.weater)
+          page.setData({info:info})
+        },
+      })
+    }
 const changeItem=(name,val,that)=>{
     let info=that.data.info
     info[name]=val
