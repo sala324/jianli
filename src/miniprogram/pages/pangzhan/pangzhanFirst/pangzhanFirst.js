@@ -25,9 +25,6 @@ Page({
       info:info
     })
   },
-  fillWeather(){
-    common.loadWeather(this)//获取天气信息
-  },
   onLoad(options){
     if(options.default){
       wx.setNavigationBarTitle({
@@ -39,11 +36,12 @@ Page({
         unit_id:JSON.parse(options.default).unit_id,
         reset:true
       })
+    } else {
+      common.loadWeather(this)//获取天气信息
     }
     common.getmoduleSi(this)//获取模型
     common.getProject(this)//获取工程基本信息
     common.getUnits(wx.getStorageSync('pid'),this)//获取施工单位
-    common.loadWeather(this)//获取天气信息
   },
   changeDetail(e){
     this.setData({

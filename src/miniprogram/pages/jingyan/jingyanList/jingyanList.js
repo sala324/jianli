@@ -61,7 +61,7 @@ Page({
     util.requests('/jzl3',{pageSize:this.data.size,pageIndex:this.data.index,p:this.data.id}).then(res=>{
       if(res.data.code==0){
         res.data.data.data.forEach((item,index)=>{
-          item.title=(item.specifications|item.name)+'平行检验记录'
+          item.title=item.specifications?item.specifications+' 平行检验记录':item.name+' 平行检验记录'
           item.des= ''
           item.index=index
         })

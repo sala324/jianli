@@ -4,9 +4,8 @@ Page({
     showCopy:false,
     baseInfo:{},
     arr2:[{title:'检验结论',name:'result',val:''},{title:'检验仪器及编号',name:'instrument',val:''}],
-    arr:[{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''}],
-    wenti:'暂无问题',
-    imgArr:['../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png','../../images/1.png']
+    arr:[],
+    imgArr:[]
   },
   resetDetail(e){
     wx.navigateTo({
@@ -16,14 +15,17 @@ Page({
   logDetail(id){
     util.requests('/jzl3/'+id).then(res=>{
       if(res.data.code==0){
+        let imgArr=res.data.data.images.map(item=>{return item.url})
+        let idArr=res.data.data.images.map(item=>{return item.id})
         res.data.data.open_date=res.data.data.open_date.slice(0,11)
         let info=JSON.parse(JSON.stringify(res.data.data,['code','open_date','name','specifications','production','position','describe','id','modules_id','unit_id','working_id']))
         info.name=res.data.data.project.name
         info.modulesName=res.data.data.module.name
         info.unitName=res.data.data.unit.name
         info.workingName=res.data.data.working.name
+        info.typeName=res.data.data.module.name
         info.index=1
-        info.reset=false
+        info.reset=true
         let arr=this.data.arr2
         arr[0].val=res.data.data.result
         arr[1].val=res.data.data.instrument
@@ -35,12 +37,15 @@ Page({
           json.name=item.configuration.name
           json.about=item.about
           json.memo=item.configuration.memo
+          json.classes=item.configuration.classes
           config.push(json)
         })
         this.setData({
           baseInfo:info,
           arr2:arr,
-          pdfUrl:res.data.data.pdf_url,
+          imgArr:imgArr,
+          idArr:idArr,
+          project_log_id:res.data.data.project_log_id,
           arr:config
         })
       }

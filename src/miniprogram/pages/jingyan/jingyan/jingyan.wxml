@@ -1,5 +1,7 @@
 <import src ="../../template/template.wxml"/>
 <template is="mokuai5" data="{{baseInfo,arr,arr2}}"/>
+<img-upload imgArr="{{imgArr}}" idArr="{{idArr}}" unSign="{{unSign}}" logid="{{project_log_id}}" class="uploadImg" bind:setItem="setItem">
+</img-upload>
 <view class="btnBox">
   <navigator url="/pages/jingyan/jingyanSign/jingyanSign?id={{id}}" class="btn">提交签名</navigator>
 </view>

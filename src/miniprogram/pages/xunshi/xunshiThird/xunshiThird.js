@@ -8,7 +8,8 @@ Page({
     arr:[{title:'现场存在问题',name:'matter',val:''},{title:'监理有关措施',name:'measures',val:''}],
     navInfo:{
       type:3,
-      step:3
+      step:3,
+      lastStep:true
     },
     dateEnd:''
   },
@@ -81,7 +82,7 @@ Page({
       log_type_id:log_type_id
     },'post').then(res=>{
       if(res.data.code===0){
-        wx.navigateTo({
+        wx.reLaunch({
           url: '/pages/xunshi/xunshi/xunshi?id='+res.data.data.id,
         })
       }

@@ -32,7 +32,7 @@
       </picker>
     </view>
     <view class="lineItem">
-      <text class="name">施工单位</text>
+      <text class="name">实施单位</text>
       <picker class="detail" bindchange="changeItem" data-index="index3" data-arr="{{unitsArr}}" data-name="unit_id"  value="{{info.index3}}" range="{{unitsArr}}">
         <view class="picker">
           {{unitsArr[info.index3]}} >

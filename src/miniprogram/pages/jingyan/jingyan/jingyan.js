@@ -3,6 +3,7 @@ Page({
   data: {
     showCopy:false,
     baseInfo:{},
+    unSign:true,
     arr2:[{title:'检验结论',name:'result',val:''},{title:'检验仪器及编号',name:'instrument',val:''}],
     arr:[],
     imgArr:[]
@@ -15,6 +16,8 @@ Page({
   logDetail(id){
     util.requests('/jzl3/'+id).then(res=>{
       if(res.data.code==0){
+        let imgArr=res.data.data.images.map(item=>{return item.url})
+        let idArr=res.data.data.images.map(item=>{return item.id})
         res.data.data.open_date=res.data.data.open_date.slice(0,11)
         let info=JSON.parse(JSON.stringify(res.data.data,['code','open_date','name','specifications','production','position','describe','id','modules_id','unit_id','working_id']))
         info.name=res.data.data.project.name
@@ -23,7 +26,7 @@ Page({
         info.workingName=res.data.data.working.name
         info.typeName=res.data.data.module.name
         info.index=1
-        info.reset=true
+        info.reset=false
         let arr=this.data.arr2
         arr[0].val=res.data.data.result
         arr[1].val=res.data.data.instrument
@@ -41,6 +44,9 @@ Page({
         this.setData({
           baseInfo:info,
           arr2:arr,
+          imgArr:imgArr,
+          idArr:idArr,
+          project_log_id:res.data.data.project_log_id,
           arr:config
         })
       }
