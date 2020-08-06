@@ -27,6 +27,7 @@
   overflow: hidden;
   width: 690rpx;
   margin: 20rpx 0;
+  height:60rpx;
 }
 .info{
   display: flex;

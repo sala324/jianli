@@ -57,7 +57,7 @@ Page({
         res.data.data.start_time=res.data.data.start_time.slice(11,16)
         res.data.data.end_time=res.data.data.end_time.slice(11,16)
         res.data.data.open_date=res.data.data.open_date.slice(0,11)
-        let info=JSON.parse(JSON.stringify(res.data.data,['id','code','open_date','position','start_time','end_time','weather','opinion','modules_id','working_id','unit_id','outline']))
+        let info=JSON.parse(JSON.stringify(res.data.data,['id','code','open_date','position','start_time','end_time','weather','opinion','modules_id','working_id','unit_id','outline','created_at']))
         info.name=res.data.data.project.name
         info.reset=false
         this.setData({

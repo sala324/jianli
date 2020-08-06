@@ -142,6 +142,7 @@ Page({
       json.id=item.configuration_id
       json.values=item.values
       json.name=item.name
+      json.pTitle=this.data.title
       describe1.push(json)
     })
     common.resetJaq('/jxm9/'+id,{
@@ -163,7 +164,7 @@ Page({
         let json={}
         json.id=item.configuration_id
         json.values=item.values
-        json.pTitle=this.data.title1
+        json.pTitle=this.data.title
         json.name=item.name
         describe1.push(json)
       })

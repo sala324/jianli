@@ -67,7 +67,7 @@ Page({
           arr.forEach(item2=>{
             des+=item2.values+'。'
           })
-          item.title=item.position+'巡视检查'
+          item.title=item.position+' '+item.outline
           item.des=des
           item.index=index
         })
