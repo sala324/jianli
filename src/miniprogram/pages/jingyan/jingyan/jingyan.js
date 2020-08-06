@@ -25,8 +25,9 @@ Page({
         info.unitName=res.data.data.unit.name
         info.workingName=res.data.data.working.name
         info.typeName=res.data.data.module.name
+        info.type=info.typeName.includes('工序')?1:0
         info.index=1
-        info.reset=false
+        info.reset=true
         let arr=this.data.arr2
         arr[0].val=res.data.data.result
         arr[1].val=res.data.data.instrument

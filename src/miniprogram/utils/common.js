@@ -54,7 +54,7 @@ const loadWeather=(page)=> {
   //根据经纬度获取城市
   const getCity=(latitude, longitude,page)=> {
     wx.request({
-      url: 'http://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&key=EFHBZ-WQG6U-WEMVB-4N3DG-KSMGT-5WB2G',
+      url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&key=EFHBZ-WQG6U-WEMVB-4N3DG-KSMGT-5WB2G',
       header: {
         'content-type': 'application/json'
       },
@@ -68,8 +68,8 @@ const loadWeather=(page)=> {
       }
     })
   }
-   //根据城市获取天气信息
-const getWeather=(city,page)=> {
+    //根据城市获取天气信息
+  const getWeather=(city,page)=> {
       wx.request({
         url: 'https://tianqiapi.com/api?version=v6&appid=52453137&appsecret=c9RQRskX&city=' + city,
         header: {

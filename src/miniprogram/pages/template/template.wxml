@@ -159,11 +159,11 @@
       </view>
       <view class="item">
         <text class="name">材料型号规格</text>
-        <view class="info">{{baseInfo.size}}</view>
+        <view class="info">{{baseInfo.specifications}}</view>
       </view>
       <view class="item">
         <text class="name">生产厂家</text>
-        <view class="info">{{baseInfo.actory}}</view>
+        <view class="info">{{baseInfo.production}}</view>
       </view>
       <view class="item">
         <text class="name">使用部位</text>
