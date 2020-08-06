@@ -98,7 +98,7 @@ Page({
   getCity: function (latitude, longitude) {
     var page = this;
     wx.request({
-      url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&key=EFHBZ-WQG6U-WEMVB-4N3DG-KSMGT-5WB2G',
+      url: 'http://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&key=EFHBZ-WQG6U-WEMVB-4N3DG-KSMGT-5WB2G',
       header: {
         'content-type': 'application/json'
       },
@@ -116,7 +116,7 @@ Page({
   getWeather: function (city) {
     var page = this;
     wx.request({
-      url: 'https://tianqiapi.com/api?version=v6&appid=52453137&appsecret=c9RQRskX&city=' + city,
+      url: 'http://wthrcdn.etouch.cn/weather_mini?city=' + city,
       header: {
         'content-type': 'application/json'
       },
