@@ -1,3 +1,4 @@
+<navs navInfo="{{navInfo}}" bind:myevent2="nextStep"></navs>
 <view class="lineItem">
   <text class="name">{{info.name}}</text>
   <text class="detail">{{info.code}}</text>

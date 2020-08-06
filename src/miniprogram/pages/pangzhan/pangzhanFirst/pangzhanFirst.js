@@ -25,6 +25,9 @@ Page({
       info:info
     })
   },
+  fillWeather(){
+    common.loadWeather(this)//获取天气信息
+  },
   onLoad(options){
     if(options.default){
       wx.setNavigationBarTitle({

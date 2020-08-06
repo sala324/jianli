@@ -7,6 +7,11 @@ Page({
     oldValues:'',
     reset:false,
     info:{},
+    navInfo:{
+      type:5,
+      step:2,
+      lastStep:true
+    },
     shuru:false
   },
   setGaiyao(e){
@@ -209,7 +214,7 @@ Page({
         let content=''
         let info=this.data.info
         res.data.data.data.forEach((item,index)=>{
-          content+= index+1+'.今日进行'+item.name+','+"<<"+item.name+',编号：'+item.code+'>>。 '
+          content+= index+1+'.今日进行'+item.name+','+"《"+'编号：'+item.code+'》。| '
         })
         info.note=content
         this.setData({
