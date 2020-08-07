@@ -1,6 +1,6 @@
 
 <import src ="../../template/template.wxml"/>
-<template is="mokuai" data="{{info,arr,reset,arr2,des,opinion}}"/>
+<template is="mokuai" data="{{info,arr,reset,arr2,des,opinion,title1,title2}}"/>
 <img-upload imgArr="{{imgArr}}" idArr="{{idArr}}" logid="{{project_log_id}}" class="uploadImg" bind:setItem="setItem">
 </img-upload>
 <view class="btnBox">

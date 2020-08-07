@@ -54,19 +54,7 @@ Page({
   onLoad(options){
     if(options.default){
       let info=JSON.parse(options.default)
-      if(info.type==1){
-        //工序
-        info.index=this.data.array3.findIndex((val,index)=>{
-          return val==info.buildUnits
-        })
-        info.index2=this.data.array2.findIndex((val,index)=>{
-          return val==info.processName
-        })
-        this.setData({
-          index3:index,
-          index2:index2,
-        })
-      }
+      
       this.setData({
         info:info,
         reset:true,
@@ -74,6 +62,12 @@ Page({
       })
       wx.setNavigationBarTitle({
         title: '修改平行经验-第一步',
+      })
+      //导航按钮改为完成
+      let navInfo=this.data.navInfo
+      navInfo.lastStep=true
+      this.setData({
+        navInfo:navInfo
       })
     }
     common.getUnits(wx.getStorageSync('pid'),this)//获取施工单位

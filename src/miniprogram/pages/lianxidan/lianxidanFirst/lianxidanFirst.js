@@ -40,7 +40,14 @@ Page({
       wx.setNavigationBarTitle({
         title: '修改工作联系单',
       })
+      
       this.getUnits(JSON.parse(options.default).project_id)
+      //导航按钮改为完成
+      let navInfo=this.data.navInfo
+      navInfo.lastStep=true
+      this.setData({
+        navInfo:navInfo
+      })
     }
     common.getProject(this)//获取工程基本信息
   },
