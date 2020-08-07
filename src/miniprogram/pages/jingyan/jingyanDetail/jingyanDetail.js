@@ -45,6 +45,7 @@ Page({
           baseInfo:info,
           arr2:arr,
           imgArr:imgArr,
+          pdfUrl:res.data.data.pdf_url,
           idArr:idArr,
           project_log_id:res.data.data.project_log_id,
           arr:config
