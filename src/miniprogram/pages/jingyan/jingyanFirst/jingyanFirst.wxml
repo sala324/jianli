@@ -25,7 +25,8 @@
   <block wx:if="{{info.index==1}}">
     <view class="lineItem">
       <text class="name">工序名称</text>
-      <picker class="detail" bindchange="changeItem" data-index="index2" data-arr="{{gongXuArr}}" data-name="working_id" value="{{info.index2}}" range="{{gongXuArr}}">
+      <text class="detail" wx:if="{{reset}}">gongXuArr[info.index2]}}</text>
+      <picker wx:else class="detail" bindchange="changeItem" data-index="index2" data-arr="{{gongXuArr}}" data-name="working_id" value="{{info.index2}}" range="{{gongXuArr}}">
         <view class="picker">
           {{gongXuArr[info.index2]}} >
         </view>
@@ -43,7 +44,8 @@
   <block wx:else>
     <view class="lineItem">
       <text class="name">材料名称</text>
-      <picker class="detail" bindchange="changeItem" data-index="index2" data-arr="{{gongXuArr}}" data-name="working_id" value="{{info.index2}}" range="{{gongXuArr}}">
+      <text class="detail" wx:if="{{reset}}">gongXuArr[info.index2]}}</text>
+      <picker class="detail" wx:else bindchange="changeItem" data-index="index2" data-arr="{{gongXuArr}}" data-name="working_id" value="{{info.index2}}" range="{{gongXuArr}}">
         <view class="picker">
           {{gongXuArr[info.index2]}} >
         </view>

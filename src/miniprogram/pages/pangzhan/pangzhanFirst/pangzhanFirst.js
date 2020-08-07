@@ -36,6 +36,12 @@ Page({
         unit_id:JSON.parse(options.default).unit_id,
         reset:true
       })
+      //导航按钮改为完成
+      let navInfo=this.data.navInfo
+      navInfo.lastStep=true
+      this.setData({
+        navInfo:navInfo
+      })
     } else {
       common.loadWeather(this)//获取天气信息
     }

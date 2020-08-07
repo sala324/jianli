@@ -40,14 +40,16 @@
   </view>
   <view class="lineItem">
     <text class="name">旁站监理的类别</text>
-    <picker bindchange="changeItem" value="{{info.index}}" data-name="index" range="{{typeArr}}">
+    <text class="detail" wx:if="{{reset}}">{{typeArr[info.index]}}</text>
+    <picker wx:else bindchange="changeItem" value="{{info.index}}" data-name="index" range="{{typeArr}}">
       <view class="picker">{{typeArr[info.index]}} >
       </view>
     </picker>
   </view>
   <view class="lineItem">
     <text class="name">旁站监理的工序</text>
-    <picker bindchange="changeItem" value="{{info.index2}}" data-name="index2" range="{{gongXuArr}}">
+    <text class="detail" wx:if="{{reset}}">{{gongXuArr[info.index2]}}</text>
+    <picker wx:else bindchange="changeItem" value="{{info.index2}}" data-name="index2" range="{{gongXuArr}}">
       <view class="picker">{{gongXuArr[info.index2]}} >
       </view>
     </picker>

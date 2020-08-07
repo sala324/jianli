@@ -93,6 +93,12 @@ Page({
       wx.setNavigationBarTitle({
         title: '修改旁站记录——第二步',
       })
+      //导航按钮改为完成
+      let navInfo=this.data.navInfo
+      navInfo.lastStep=true
+      this.setData({
+        navInfo:navInfo
+      })
     }
     
   },
