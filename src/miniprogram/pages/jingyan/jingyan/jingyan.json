@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "查看平行检验详情",
   "usingComponents": {
+    "img-upload": "/components/imgUpload/index",
     "copy-link": "/components/copyLink/index"
   }
 }

@@ -67,7 +67,7 @@ Page({
           item.index=index
         })
         this.setData({
-          listArr:res.data.data.data,
+          listArr:this.data.listArr.concat(res.data.data.data),
           totalPages:res.data.data.pageinfo.totalPages
         })
       }

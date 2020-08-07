@@ -61,12 +61,12 @@ Page({
     util.requests('/jzl3',{pageSize:this.data.size,pageIndex:this.data.index,p:this.data.id}).then(res=>{
       if(res.data.code==0){
         res.data.data.data.forEach((item,index)=>{
-          item.title=item.specifications?item.specifications+' 平行检验记录':item.name+' 平行检验记录'
-          item.des= ''
+          item.title=item.module.name.split('-')[1]
+          item.des= item.working.name.split('-')[1]
           item.index=index
         })
         this.setData({
-          listArr:res.data.data.data,
+          listArr:this.data.listArr.concat(res.data.data.data),
           totalPages:res.data.data.pageinfo.totalPages
         })
       }

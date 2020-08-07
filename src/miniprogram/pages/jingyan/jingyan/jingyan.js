@@ -53,10 +53,15 @@ Page({
       }
     })
   },
-  delItem(e){
-    this.data.imgArr.splice(e.detail,1)
+  setItem(e){
+    util.requests('/deleteFile/'+e.detail,{},'post').then(res=>{
+      if(res.data.code===0){
+        util.toasts(res.data.message)
+        this.logDetail(this.data.id)
+      }
+    })
     this.setData({
-      imgArr:this.data.imgArr
+      imagesArr:e.detail
     })
   },
   showCopyBtn(){
