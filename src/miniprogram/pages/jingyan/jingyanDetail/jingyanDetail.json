@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "查看平行经验详情",
+  "navigationBarTitleText": "查看平行检验详情",
   "usingComponents": {
     "copy-link": "/components/copyLink/index"
   }

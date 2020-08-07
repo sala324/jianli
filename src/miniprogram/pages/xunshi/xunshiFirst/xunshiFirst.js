@@ -35,6 +35,15 @@ Page({
         id:options.id,
         reset:true
       })
+      wx.setNavigationBarTitle({
+        title: '修改巡视记录-第一步',
+      })
+      //导航按钮改为完成
+      let navInfo=this.data.navInfo
+      navInfo.lastStep=true
+      this.setData({
+        navInfo:navInfo
+      })
     }
     common.getProject(this)//获取工程基本信息
   },

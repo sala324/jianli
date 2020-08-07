@@ -33,7 +33,7 @@ Page({
         reset:true
       })
       wx.setNavigationBarTitle({
-        title: '修改平行经验-第三步',
+        title: '修改平行检验-第三步',
       })
     }
     if(options.step1Value){

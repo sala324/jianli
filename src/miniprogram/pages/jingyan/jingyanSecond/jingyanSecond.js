@@ -1,15 +1,15 @@
 const util = require('../../../utils/util');
 const common = require('../../../utils/common');
-Page({
-  data: {
-    navInfo:{
+Page({data: {
+  navInfo:{
       type:2,
       step:2
     },
-    arr:[{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''},{name:'白沙洲变电枢纽二期项目 0098654',standard:'直径大于1米',result:true,remarks:''}],
-    dateEnd:'',
-    textValue:true
-  },
+  arr:[],
+  dateEnd:'',
+  textValue:true
+},
+  
   changeRemarks(e){
     let index=e.currentTarget.dataset.index
     let arr=this.data.arr
@@ -54,7 +54,13 @@ Page({
         reset:true
       })
       wx.setNavigationBarTitle({
-        title: '修改平行经验-第二步',
+        title: '修改平行检验-第二步',
+      })
+      //导航按钮改为完成
+      let navInfo=this.data.navInfo
+      navInfo.lastStep=true
+      this.setData({
+        navInfo:navInfo
       })
     }
     if(options.step1Value){

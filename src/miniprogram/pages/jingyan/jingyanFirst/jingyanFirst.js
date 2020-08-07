@@ -61,7 +61,7 @@ Page({
         index:Number(info.type)
       })
       wx.setNavigationBarTitle({
-        title: '修改平行经验-第一步',
+        title: '修改平行检验-第一步',
       })
       //导航按钮改为完成
       let navInfo=this.data.navInfo

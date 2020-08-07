@@ -5,5 +5,5 @@
   </view>
   <view style="height:120rpx;"></view>
 </scroll-view>
-<btn title="新增平行经验" bind:myevent="addRecord"></btn>
+<btn title="新增平行检验" bind:myevent="addRecord"></btn>
 
