@@ -25,7 +25,6 @@ Page({
     
   },
   delete(id){
-    console.log(id)
     util.requests('/jxm9/'+id,{},'delete').then(res=>{
       if(res.data.code==0){
         this.jxm9List()
@@ -63,7 +62,6 @@ Page({
         res.data.data.data.forEach((item,index)=>{
           let des='';
           let arr=JSON.parse(item.describe1)
-          console.log(arr)
           arr.forEach(item2=>{
             des+=item2.values+'。'
           })

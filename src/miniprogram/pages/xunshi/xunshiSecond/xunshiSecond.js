@@ -116,18 +116,26 @@ Page({
   },
   nextStep(){
     let next=true
+    let accessArr=[]
     this.data.arr.forEach(item=>{
       if(!item.values){
         next=false
         return util.toasts('请确认全部输入完毕')
       }
+      let json={}
+      json.id=item.configuration_id
+      json.name=item.about
+      json.about=item.about
+      json.values=item.values
+      accessArr.push(json)
     })
+    console.log(accessArr)
     if(next){
       if(this.data.reset){
         this.resetInfo(this.data.id)
       } else {
         wx.navigateTo({
-          url: '/pages/xunshi/xunshiThird/xunshiThird?open_date='+this.data.open_date+'&position='+this.data.position+'&project_id='+this.data.project_id+'&config='+JSON.stringify(this.data.arr),
+          url: '/pages/xunshi/xunshiThird/xunshiThird?open_date='+this.data.open_date+'&position='+this.data.position+'&project_id='+this.data.project_id+'&config='+JSON.stringify(this.data.arr)+'&access='+JSON.stringify(accessArr),
         })
       }
     }

@@ -38,7 +38,8 @@ Page({
         project_id:options.project_id,
         config:JSON.parse(options.config),
         position:options.position,
-        open_date:options.open_date
+        open_date:options.open_date,
+        access:options.access
       })
     }
     if(options.default){
@@ -74,7 +75,7 @@ Page({
     util.requests('/jaq',{
       position:this.data.position,
       matter:this.data.matter,
-      assess:'评价',
+      assess:this.data.access,
       measures:this.data.measures,
       config:this.data.config,
       open_date:this.data.open_date,

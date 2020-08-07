@@ -62,7 +62,11 @@ Page({
       if(res.data.code==0){
         res.data.data.data.forEach((item,index)=>{
           item.title=item.position+'巡视检查'
-          item.des=item.assess
+          let val=''
+          JSON.parse(item.assess).forEach(item=>{
+            val+=item.values+'。'
+          })
+          item.des=val
           item.index=index
         })
         this.setData({
