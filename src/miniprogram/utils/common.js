@@ -1,4 +1,5 @@
 const util = require('./util');
+//获取项目的名称和编码
 const getProject=(that)=>{
     let info=that.data.info
     info.name=wx.getStorageSync('pname')
@@ -7,6 +8,7 @@ const getProject=(that)=>{
       info:info
     })
 }
+//获取单位列表，及选中单位列表的值
 const getUnits=(id,that)=>{
     util.requests('/units',{p:id}).then(res=>{
       if(res.data.code==0){
@@ -34,6 +36,7 @@ const getUnits=(id,that)=>{
       }
     })
   }
+  //获取经纬度信息
 const loadWeather=(page)=> {
     wx.getLocation({
       type: 'gcj02',
@@ -76,17 +79,22 @@ const loadWeather=(page)=> {
           'content-type': 'application/json'
         },
         success: function (res) {
-          //console.log(res);
           var today = res.data;
-          //console.log(today)
           let info=page.data.info
-          //console.log(todayInfo)
-          info.weather = today.week + '，' + today.wea + '，' + today.win + today.win_speed + '，' +today.win_meter, + ',高温：' + today.tem1 + '°C，低温：' + today.tem2 + '°C。'
-          //console.log(info.weater)
+          if(wx.getStorageSync('logCode')=='jxm17'){
+            //监理日志天气信息
+            info.temperature_high=today.tem1+'°C'
+            info.temperature_low=today.tem2+'°C'
+            info.weather_day=today.wea
+          } else {
+            //旁站日志天气信息
+            info.weather = today.week + '，' + today.wea + '，' + today.win + today.win_speed + '，' +today.win_meter, + ',高温：' + today.tem1 + '°C，低温：' + today.tem2 + '°C。'
+          }
           page.setData({info:info})
         },
       })
     }
+  //修改输入框或者下拉列表的值
 const changeItem=(name,val,that)=>{
     let info=that.data.info
     info[name]=val
@@ -111,6 +119,7 @@ const changeItem=(name,val,that)=>{
         info: info
     })
 }
+//获取工序的值
 const getworking=(that,flag)=>{
     util.requests('/working',{mid:that.data.modules_id |that.data.info.modules_id}).then(res=>{
       if(res.data.code===0){
@@ -142,6 +151,7 @@ const getworking=(that,flag)=>{
       }
     })
   }
+  //获取模块的值
   const getmoduleSi=(that)=>{
     util.requests('/moduleSi',{tid:wx.getStorageSync('logId')}).then(res=>{
       if(res.data.code===0){
@@ -164,6 +174,7 @@ const getworking=(that,flag)=>{
       }
     })
   }
+  //获取日志接口
   const resetJaq=(path,params)=>{
     util.requests(path,params,'put').then(res=>{
       if(res.data.code==0){
