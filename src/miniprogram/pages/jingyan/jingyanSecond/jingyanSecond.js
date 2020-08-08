@@ -86,6 +86,8 @@ Page({data: {
       json.id=item.configuration_id
       json.values=item.values
       json.name=item.name
+      json.classes=item.classes
+      json.about=item.about
       describe.push(json)
       if(item.classes==0){
         if(!item.values){

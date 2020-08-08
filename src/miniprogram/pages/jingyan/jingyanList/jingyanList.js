@@ -61,8 +61,8 @@ Page({
     util.requests('/jzl3',{pageSize:this.data.size,pageIndex:this.data.index,p:this.data.id}).then(res=>{
       if(res.data.code==0){
         res.data.data.data.forEach((item,index)=>{
-          item.title=item.module.name.split('-')[1]
-          item.des= item.working.name.split('-')[1]
+          item.title = item.working.name.split('-')[1]
+          item.des = item.module.name.split('-')[1]
           item.index=index
         })
         this.setData({
