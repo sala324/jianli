@@ -81,13 +81,16 @@ Page({data: {
       textValue:true
     })
     console.log(this.data.arr)
+    let p_id = 0
+    let p_name = ''
     this.data.arr.forEach((item,index)=>{
       let json={}
+      json.name = item.name
       json.id=item.configuration_id
       json.values=item.values
-      json.name=item.name
       json.classes=item.classes
       json.about=item.about
+      json.memo = item.memo
       describe.push(json)
       if(item.classes==0){
         if(!item.values){
@@ -127,22 +130,46 @@ Page({data: {
       // wid:15
       wid:this.data.step1Value.working_id
     }).then(res=>{
+      //全部
       let arr=res.data.data
-      let arr3=arr.filter(item=>item.classes!=-1)
-      let arr5=[]
-      arr3.forEach((item,index)=>{
+      let arr5 = []
+      //父
+      let arr_p = arr.filter(item=>item.classes==-1)
+      //非子
+      let arr_s = arr.filter(item=>item.classes!=-1 && item.parent_id == 0)
+      arr_s.forEach((item,index)=>{
         let json={}
-        json.configuration_id=item.id
+        json.name=item.name
         if(item.classes==0){
           json.values=''
         } else {
           json.values=0
         }
-        json.name=item.name
+        json.configuration_id=item.id
         json.about=''
         json.classes=item.classes
         json.memo=item.memo
         arr5.push(json)
+      })
+      arr_p.forEach((item,index)=>{
+        let p_name = item.name;
+        let p_id = item.id;
+        let p = []
+        p = arr.filter(item=>item.parent_id == p_id)
+        p.forEach((item,index)=>{
+          let json={}
+          json.name = p_name + '-' + item.name
+          json.configuration_id=item.id
+          if(item.classes==0){
+            json.values=''
+          } else {
+            json.values=0
+          }
+          json.about=''
+          json.classes=item.classes
+          json.memo=item.memo
+          arr5.push(json)
+        })
       })
       this.setData({
         arr:arr5

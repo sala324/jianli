@@ -32,14 +32,16 @@ Page({
         arr[0].val=res.data.data.result
         arr[1].val=res.data.data.instrument
         let config=[]
-        res.data.data.config.forEach((item,index)=>{
+        let config_d = JSON.parse(res.data.data.describe)
+        //console.log(res.data.data.describe)
+        config_d.forEach((item,index)=>{
           let json={}
           json.id=item.id
           json.values=item.values
-          json.name=item.configuration.name
+          json.name=item.name
           json.about=item.about
-          json.memo=item.configuration.memo
-          json.classes=item.configuration.classes
+          json.memo=item.memo
+          json.classes=item.classes
           config.push(json)
         })
         this.setData({
