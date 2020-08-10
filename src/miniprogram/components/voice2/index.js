@@ -1,7 +1,7 @@
 
 let plugin = requirePlugin("QCloudAIVoice");
 let manager = plugin.getRecordRecognitionManager()
-plugin.setQCloudSecret(1302473051, 'AKIDvafTyD2uf9O5Wdie4C2gYDYhbFdN799s', 'e2A2eHdttbMrFNE8lIYquze3BNek59xO', true); 
+plugin.setQCloudSecret(1302214974, 'AKIDvafTyD2uf9O5Wdie4C2gYDYhbFdN799s', 'e2A2eHdttbMrFNE8lIYquze3BNek59xO', true); 
 Component({
   properties: {
     authority:Boolean
